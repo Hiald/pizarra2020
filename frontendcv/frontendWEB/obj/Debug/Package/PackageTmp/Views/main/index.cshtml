@@ -1,0 +1,237 @@
+﻿@{
+    ViewBag.Title = "Pizarra 21";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<script>
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+    today = yyyy + '-' + mm + '-' + dd;
+
+    var gfechabuscar = '';
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+        var calendar;
+
+        calendar = new FullCalendar.Calendar(calendarEl, {
+            plugins: ['bootstrap', 'interaction', 'dayGrid', 'timeGrid', 'list'],
+            themeSystem: 'bootstrap',
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: ''
+            },
+            defaultDate: today,
+            weekNumbers: true,
+            locale: 'es',
+            navLinks: false, // can click day/week names to navigate views
+            editable: true,
+            selectable: true,
+            selectMirror: true,
+            longPressDelay: 100,
+            select: function (arg) {
+
+                var Fdd = String(arg.start.getDate()).padStart(2, '0');
+                var Fmm = String(arg.start.getMonth() + 1).padStart(2, '0');
+                var Fyyyy = arg.start.getFullYear();
+                var fechaSeleccionada = Fdd + '/' + Fmm + '/' + Fyyyy;
+
+                $('#modalcurso').modal('show');
+                gfechabuscar = fechaSeleccionada;
+                /*if (title) {
+                    calendar.addEvent({
+                        title: "",
+                        start: arg.start,
+                        end: arg.end,
+                        allDay: arg.allDay
+                    })
+                }*/
+                calendar.unselect()
+
+            },
+            eventClick: function (calEvent, jsEvent, view) {
+
+                /*alert('Event: ' + calEvent.title);
+                alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+                alert('View: ' + view.name);*/
+
+                // change the border color just for fun
+                $(this).css('border-color', 'red');
+
+            },
+            /*dayClick: function (date, allDay, jsEvent, view) {
+                 alert("clicked on day");
+             },*/
+            eventLimit: true,
+            events: [
+                {
+                    title: 'All Day Event',
+                    start: '2020-02-01'
+                }
+            ]
+        });
+        calendar.render();
+
+    });
+
+</script>
+<style>
+
+    body {
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+    }
+
+    #calendar {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 0 0px;
+        cursor: pointer;
+    }
+
+    .fc-day:hover {
+        background: #36a925;
+        cursor: pointer;
+    }
+</style>
+
+<div id="app" v-cloak>
+    <v-app id="inspire">
+        <v-toolbar>
+            <img v-on:click="IndexPrincipal()" src="~/Content/image/pizarra21.png" height="60" width="120" style="margin-right:30px;cursor:pointer" />
+            @*<v-flex xs12 sm6 md2>
+                       <v-text-field label="Buscar cursos" required></v-text-field>
+                </v-flex>
+                <v-btn color="success">Buscar</v-btn>*@
+            <v-spacer></v-spacer>
+            @*<v-toolbar-items class="hidden-sm-and-down">
+                    <v-btn>Link Two</v-btn>
+                    <v-btn flat>Link Three</v-btn>
+                </v-toolbar-items>*@
+            <div class="text-xs-center">
+                <v-menu :close-on-content-click="false" :nudge-width="200" offset-y>
+                    <template v-slot:activator="{ on }">
+                        <v-btn fab color="success"
+                               dark depressed
+                               v-on="on">
+                            <i class="fas fa-user-circle fa-2x"></i>
+
+                        </v-btn>
+                    </template>
+                    <v-card>
+                        <v-list>
+                            <v-list-tile avatar>
+                                <v-list-tile-avatar>
+                                    <img src="~/Content/image/elearning.png" alt="alumno">
+                                </v-list-tile-avatar>
+
+                                <v-list-tile-content>
+                                    <v-list-tile-title>@ViewBag.Gnombre</v-list-tile-title>
+                                    <v-list-tile-sub-title>@ViewBag.Gcorreo</v-list-tile-sub-title>
+                                </v-list-tile-content>
+
+                            </v-list-tile>
+                        </v-list>
+                        <v-divider></v-divider>
+                        <v-list>
+                            <v-list-tile>
+                                <v-list-tile-action>
+                                    <v-switch color="purple"></v-switch>
+                                </v-list-tile-action>
+                            </v-list-tile>
+                            <v-list-tile>
+                                <v-list-tile-title>Mis cursos</v-list-tile-title>
+                            </v-list-tile>
+                        </v-list>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn color="primary" flat v-on:click="CerrarSesion">Cerrar sesión</v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-menu>
+            </div>
+        </v-toolbar>
+
+        <div class="row text-center">
+            <div class="col-md-12 text-center">
+                <br />
+                <h1 class="h1" style="font-family: sans-serif">Hola! @ViewBag.Gnombre, selecciona una fecha para ver la clase</h1>
+            </div>
+        </div>
+
+        <v-layout>
+            <v-container grid-list-md grid-list-xs>
+                <v-layout row wrap class="justify-center">
+                    <v-flex lg11 xs11 md11 sm11 xl11 class="p-0">
+                        <div id='calendar'></div>
+                    </v-flex>
+                </v-layout>
+            </v-container>
+        </v-layout>
+    </v-app>
+</div>
+
+<div class="modal fade" id="modalcurso" tabindex="-1" role="dialog" aria-labelledby="modalcursoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Selecciona un curso</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row text-center align-center pr-3">
+
+                    @if (ViewBag.loenGradoConteo == 1 && ViewBag.loenGrado[0].idcurso == 0)
+                    {
+                        <div class="col-md-3 text-md-center">
+                            <h4 class="h4"> No hay cursos para este día</h4>
+                        </div>
+                    }
+                    else
+                    {
+                        foreach (var ent in ViewBag.loenGrado)
+                        {
+                            if (ent.srutaimagen == "-" && ent.idcurso > 0)
+                            {
+                                <div class="col-md-3 text-md-center pb-2">
+                                    <div class="card" style="width: 18rem;display:block !important">
+                                        <img class="card-img-top" src="~/Content/image/acercade1.jpg" style="width:45%;text-align:center">
+                                        <div class="card-body">
+                                            <p class="card-text">Curso de @ent.snombre</p>
+                                            <button class="btn btn-lg btn-outline-success" onclick="AbrirCurso(@ent.idcurso)">Ir a @ent.snombre</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else if (ent.idcurso > 0)
+                            {
+                                <div class="col-md-3 text-md-center pb-2">
+                                    <div class="card" style="width: 18rem;display:block !important">
+                                        <img class="card-img-top" src="@ent.srutaimagen" alt="Card image cap" style="width:70%;text-align:center">
+                                        <div class="card-body">
+                                            <p class="card-text">Curso de @ent.snombre</p>
+                                            <button class="btn btn-lg btn-outline-success" onclick="AbrirCurso(@ent.idcurso)">Ir al Curso</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Content/src/main/Principal.js"></script>
+}

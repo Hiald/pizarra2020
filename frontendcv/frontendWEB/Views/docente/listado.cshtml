@@ -1,0 +1,302 @@
+﻿
+@{
+    ViewBag.Title = "listado";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<link href="~/Content/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<div id="app" v-cloak>
+    <v-app id="inspire">
+        <v-toolbar>
+            <img v-on:click="IndexPrincipal()" src="~/Content/image/pizarra21.png" height="60" width="120" style="margin-right:30px;cursor:pointer" />
+            <v-spacer></v-spacer>
+            <v-toolbar-items class="hidden-sm-and-down">
+                <v-btn v-on:click="MenuArchivo">Menú Archivo</v-btn>
+                <v-btn v-on:click="MenuVideo">Menú Docente</v-btn>
+                <v-btn v-on:click="MenuListado">Listado Videos</v-btn>
+            </v-toolbar-items>
+            <div class="text-xs-center">
+                <v-menu :close-on-content-click="false" :nudge-width="200" offset-y>
+                    <template v-slot:activator="{ on }">
+                        <v-btn fab color="success"
+                               dark depressed
+                               v-on="on">
+                            <i class="fas fa-user-circle fa-2x"></i>
+
+                        </v-btn>
+                    </template>
+                    <v-card>
+                        <v-list>
+                            <v-list-tile avatar>
+                                <v-list-tile-avatar>
+                                    <img src="~/Content/image/elearning.png" alt="alumno">
+                                </v-list-tile-avatar>
+
+                                <v-list-tile-content>
+                                    <v-list-tile-title>@ViewBag.Gnombre</v-list-tile-title>
+                                    <v-list-tile-sub-title>@ViewBag.Gcorreo</v-list-tile-sub-title>
+                                </v-list-tile-content>
+
+                            </v-list-tile>
+                        </v-list>
+                        <v-divider></v-divider>
+                        <v-list>
+                            <v-list-tile>
+                                <v-list-tile-action>
+                                    <v-switch color="purple"></v-switch>
+                                </v-list-tile-action>
+                            </v-list-tile>
+                            <v-list-tile>
+                                <v-list-tile-title v-on:click="MenuArchivo">Menú Archivo</v-list-tile-title>
+                            </v-list-tile>
+                            <v-list-tile>
+                                <v-list-tile-title v-on:click="MenuVideo">Menú Docente</v-list-tile-title>
+                            </v-list-tile>
+                            <v-list-tile>
+                                <v-list-tile-title v-on:click="MenuListado">Listado Videos</v-list-tile-title>
+                            </v-list-tile>
+                        </v-list>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn flat>Configuración</v-btn>
+                            <v-btn color="primary" flat v-on:click="CerrarSesion">Cerrar sesión</v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-menu>
+            </div>
+        </v-toolbar>
+        <div class="border-bottom pb-2 mb-3">
+            <h3 class="mt-lg-2 pl-lg-3 pt-lg-5 h3">Listado de videos</h3>
+        </div>
+        <div class="container pull-up mt-5">
+
+            <div class="row justify-content-center">
+                <div class="col-lg-9">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="tblCategoria" class="table" style="width:100%">
+                                    <colgroup>
+                                        <col width="30%" />
+                                        <col width="10%" />
+                                        <col width="10%" />
+                                        <col width="30%" />
+                                        <col width="10%" />
+                                        <col width="10%" />
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Etapa</th>
+                                            <th>Grado</th>
+                                            <th>Curso</th>
+                                            <th>Enlace</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </v-app>
+</div>
+
+<!-- Eliminar -->
+<div class="modal fade" id="modalEliminarCategoria" tabindex="-1" role="dialog">
+    <input type="hidden" value="" data-idcategoriaEliminar="" id="hddcategoriaEliminar" />
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <form class="needs-validation" novalidate id="frm3">
+                <div class="modal-body">
+                    <h5 class="h5">¿Desea eliminar el archivo?</h5>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary btn-sm" data-dismiss="modal">Cerrar</button>
+                    <button class="btn btn-success btn-shadow btn-sm" onclick="fn_ConfimarEliminar()">Eliminar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/src/docente/archivo.js"></script>
+    <script>
+        $('#frm1').submit(false);
+        $('#frm2').submit(false);
+        $('#frm3').submit(false);
+
+        $(document).ready(function () {
+
+            function fn_util_obtieneNroPagina(iDisplayStart, iDisplayLength) {
+                var start = (iDisplayStart === 0 ? 1 : iDisplayStart);
+                return (start / iDisplayLength) + 1;
+            }
+
+            function fn_util_AjaxWM_Obj(pstrMetodo, pParam, successFn, errorFn) {
+                var oParametros = JSON.stringify(pParam);
+
+                //Arma Parametros
+                var parametro = '';
+                if (oParametros === '') {
+                    parametro = "{}";
+                } else {
+                    parametro = oParametros;
+                }
+                //Ejecuta Ajax
+                $.ajax({
+                    type: "POST",
+                    url: pstrMetodo,
+                    contentType: "application/json; charset=utf-8",
+                    data: parametro,
+                    dataType: "json",
+                    async: true,
+                    success: function (data) {
+                        successFn(data);
+                    },
+                    error: errorFn
+                });
+
+            }
+
+            $('#tblCategoria').dataTable({
+                "responsive": {
+                    "details": true,
+                    "columnDefs": [
+                        { "responsivePriority": 1 },
+                        { "responsivePriority": 2 }
+                    ]
+                },
+                "bServerSide": true,
+                "sAjaxSource": vgrutaprincipal + 'docente/ListadoVideo',
+                "bProcessing": true,
+                "sPaginationType": "full_numbers",
+                "bFilter": false,
+                "bSort": false,
+                "language": {
+                    "info": "",
+                    "infoEmpty": "",
+                    "infoFiltered": "",
+                    "emptyTable": "No se encontraron registros",
+                    "sZeroRecords": "No se encontraron registros.",
+                    "processing": "Cargando. Por favor espere...",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "sSearch": "Buscar:"
+                },
+                "bLengthChange": false,
+                "fnDrawCallback": function (oSettings) {
+                    //si esta cargando la data
+                },
+                "aoColumns": [
+                    { "sName": "snombre", "mDataProp": "snombre" },
+                    {
+                        "mData": "idcurso",
+                        "sClass": "center",
+                        "mRender": function (data, type, value) {
+                            switch (value.idcurso) {
+                                case 1: return "Inicial";
+                                case 2: return "Primaria";
+                                case 3: return "Secundaria";
+                                case 4: return "COAR";
+                                case 5: return "Pre-Universitario";
+                            }
+                        }
+                    },
+                    {
+                        "mData": "iorden",
+                        "sClass": "center",
+                        "mRender": function (data, type, value) {
+                            switch (value.iorden) {
+                                case 1: return "Primero";
+                                case 2: return "Segundo";
+                                case 3: return "Tercero";
+                                case 4: return "Cuarto";
+                                case 5: return "Quinto";
+                                case 6: return "Sexto";
+                                case 10: return "COAR";
+                                case 11: return "Pre-Universitario";
+                            }
+                        }
+                    },
+                    { "sName": "sdescripcion", "mDataProp": "sdescripcion" },
+                    { "sName": "srutavideo", "mDataProp": "srutavideo" },
+                    {}
+                ],
+                "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
+                    var sEcho = aoData[0].value;
+
+                    var sParams = {};
+
+                    oSettings.jqXHR = fn_util_AjaxWM_Obj(
+                        sSource,
+                        sParams,
+                        function (result) {
+                            fnCallback(result);
+                        }, function (error) {
+                            // mostrar si hay un error
+                            console.log(error);
+                        });
+                }, "aoColumnDefs":
+                    [
+                        {
+                            "mRender": function (data, type, row) {
+                                var strHtml = "<button class='btn btn-info' onclick='fn_Eliminar()' data-cat=\"" + row.idvideo + "\" id='AcessEliminar' >Eliminar</button>";
+                                return strHtml;
+                            },
+                            "sWidth": "5px",
+                            "sClass": "css-center",
+                            "bSort": false,
+                            "aTargets": [5]
+                        }
+                    ]
+            });
+
+        });
+
+
+        function fn_Eliminar() {
+            $('body').on("click", "#AcessEliminar", function () {
+                var id_categoria = $(this).attr("data-cat");
+                var ArrayCategoria = id_categoria.split("|");
+
+                $('#hddcategoriaEliminar').attr("data-idcategoriaEliminar", ArrayCategoria[0]);
+                $('#modalEliminarCategoria').modal("show");
+            });
+        }
+
+        function fn_ConfimarEliminar() {
+            var idcategoria = $('#hddcategoriaEliminar').attr("data-idcategoriaEliminar");
+            $.ajax({
+                type: "POST",
+                url: vgrutaprincipal + "docente/EliminarVideo",
+                data: {
+                    "wvideoid": idcategoria
+                },
+                success: function (data) {
+                    $('#modalEliminarCategoria').modal("hide");
+                    var table = $('#tblCategoria').DataTable();
+                    table.clear().draw();
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+        }
+
+    </script>
+}

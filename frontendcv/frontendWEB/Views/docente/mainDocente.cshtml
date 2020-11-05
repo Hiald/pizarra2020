@@ -1,0 +1,308 @@
+﻿@{
+    ViewBag.Title = "Pizarra 21";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<link href="~/Content/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<div id="app" v-cloak>
+    <v-app id="inspire">
+        <v-toolbar>
+            <img v-on:click="IndexPrincipal()" src="~/Content/image/pizarra21.png" height="60" width="120" style="margin-right:30px;cursor:pointer" />
+            <v-spacer></v-spacer>
+            <v-toolbar-items class="hidden-sm-and-down">
+                <v-btn v-on:click="MenuArchivo">Menú Archivo</v-btn>
+                <v-btn v-on:click="MenuVideo">Menú Docente</v-btn>
+                <v-btn v-on:click="MenuListado">Listado Videos</v-btn>
+            </v-toolbar-items>
+            <div class="text-xs-center">
+                <v-menu :close-on-content-click="false" :nudge-width="200" offset-y>
+                    <template v-slot:activator="{ on }">
+                        <v-btn fab color="success"
+                               dark depressed
+                               v-on="on">
+                            <i class="fas fa-user-circle fa-2x"></i>
+                        </v-btn>
+                    </template>
+                    <v-card>
+                        <v-list>
+                            <v-list-tile avatar>
+                                <v-list-tile-avatar>
+                                    <img src="~/Content/image/elearning.png" alt="alumno">
+                                </v-list-tile-avatar>
+
+                                <v-list-tile-content>
+                                    <v-list-tile-title>@ViewBag.Gnombre</v-list-tile-title>
+                                    <v-list-tile-sub-title>@ViewBag.Gcorreo</v-list-tile-sub-title>
+                                </v-list-tile-content>
+
+                            </v-list-tile>
+                        </v-list>
+                        <v-divider></v-divider>
+                        <v-list>
+                            <v-list-tile>
+                                <v-list-tile-action>
+                                    <v-switch color="purple"></v-switch>
+                                </v-list-tile-action>
+                            </v-list-tile>
+                            <v-list-tile>
+                                <v-list-tile-title v-on:click="MenuArchivo">Menú Archivo</v-list-tile-title>
+                            </v-list-tile>
+                            <v-list-tile>
+                                <v-list-tile-title v-on:click="MenuVideo">Menú Docente</v-list-tile-title>
+                            </v-list-tile>
+                            <v-list-tile>
+                                <v-list-tile-title v-on:click="MenuListado">Listado Videos</v-list-tile-title>
+                            </v-list-tile>
+                        </v-list>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn flat>Configuración</v-btn>
+                            <v-btn color="primary" flat v-on:click="CerrarSesion">Cerrar sesión</v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-menu>
+            </div>
+        </v-toolbar>
+        <div class="row text-center">
+            <div class="col-md-12 text-center">
+                <br />
+                <h1 class="h1" style="font-family: sans-serif">Hola! @ViewBag.Gnombre, aquí puedes registrar videos.</h1>
+                <br />
+            </div>
+            <div class="col-md-4">
+                <form>
+                    <div class="form-group">
+                        <label for="slcEtapa" style="font-weight:600">Etapa escolar</label>
+                        <select class="form-control" id="slcEtapa">
+                            <option value="1">Inicial</option>
+                            <option value="2">Primaria</option>
+                            <option value="3">Secundaria</option>
+                            <option value="4">COAR</option>
+                            <option value="5">Pre-Universitario</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <form>
+                    <div class="form-group">
+                        <label for="slcGrado" style="font-weight:600">Grado</label>
+                        <select class="form-control" id="slcGrado">
+                            <option value="">Seleccione</option>
+                            <option value="1">Primero</option>
+                            <option value="2">Segundo</option>
+                            <option value="3">Tercero</option>
+                            <option value="4">Cuarto</option>
+                            <option value="5">Quinto</option>
+                            <option value="6">Sexto</option>
+                            <option value="1">3 años</option>
+                            <option value="2">4 años</option>
+                            <option value="3">5 años</option>
+                            <option value="10">COAR</option>
+                            <option value="11">Pre-Universitario</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="TxCurso" style="font-weight:600">Curso</label>
+                    <select class="form-control custom-select" id="TxCurso" required></select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <form>
+                    <div class="form-group">
+                        <label for="txNombreVideo" style="font-weight:600">Nombre del video</label>
+                        <input type="text" class="form-control" id="txNombreVideo" placeholder="ejemplo: Conjuntos 1">
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <form>
+                    <div class="form-group">
+                        <label for="txDescripcion" style="font-weight:600">Fecha de subida del curso</label>
+                        <input type="text" class="form-control" id="txDescripcion" style="font-family:sans-serif" autocomplete="off">
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <form>
+                    <div class="form-group">
+                        <label for="txCodYoutube" style="font-weight:600">Código del video</label>
+                        <input type="text" class="form-control" id="txCodYoutube" placeholder="Ejemplo: cCWNbYwEfdw">
+                        <br />
+                        <img class="img img-fluid" src="~/Content/image/ejemplo.png" alt="" />
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-12 text-center">
+                <button class="btn btn-success btn-lg" onclick="RegistrarVideo()">Registrar Video</button>
+            </div>
+        </div>
+
+
+    </v-app>
+</div>
+
+@section scripts{
+    <script src="~/Content/src/main/mainDocente.js"></script>
+    <script>
+        $('#slcGrado').on('change', function () {
+            //INI listar categoria 1
+            $('#TxCurso').find('option').remove();
+            var slcetapa = $('#slcEtapa option:selected').attr('value');
+            var slcgrado = $('#slcGrado option:selected').attr('value');
+            $.ajax({
+                type: "POST",
+                url: vgrutaprincipal + "docente/BuscarCurso",
+                data: {
+                    "GGrado": slcgrado,
+                    "GEtapa": slcetapa
+                },
+                success: function (data) {
+                    if (data.aaData === "") {
+                        alert("No hay datos, intenta agregar alguno");
+                    }
+                    $('#TxCurso').append($("<option></option>")
+                        .attr("value", "")
+                        .text("seleccione una opción"));
+                    $.each(data.aaData, function (index, value) {
+                        $('#TxCurso').append($("<option></option>")
+                            .attr("value", value.idcurso)
+                            .text(value.snombre));
+
+                    });
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+            //FIN listar categoria
+        });
+
+        $('#slcEtapa').on('change', function () {
+            //INI listar categoria 1
+            $('#TxCurso').find('option').remove();
+            var slcetapa = $('#slcEtapa option:selected').attr('value');
+            var slcgrado = $('#slcGrado option:selected').attr('value');
+            $.ajax({
+                type: "POST",
+                url: vgrutaprincipal + "docente/BuscarCurso",
+                data: {
+                    "GGrado": slcgrado,
+                    "GEtapa": slcetapa
+                },
+                success: function (data) {
+                    if (data.aaData === "") {
+                        alert("No hay datos, intenta agregar alguno");
+                    }
+                    $('#TxCurso').append($("<option></option>")
+                        .attr("value", "")
+                        .text("seleccione una opción"));
+                    $.each(data.aaData, function (index, value) {
+                        $('#TxCurso').append($("<option></option>")
+                            .attr("value", value.idcurso)
+                            .text(value.snombre));
+                    });
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+            //FIN listar categoria
+        });
+
+        $("#txDescripcion").datepicker({
+            closeText: 'Cerrar',
+            currentText: 'Hoy',
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+            dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+            dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+            weekHeader: 'Sm',
+            dateFormat: 'dd/mm/yy',
+            firstDay: 1,
+            isRTL: false,
+            autoSize: false,
+            showMonthAfterYear: false,
+            yearSuffix: ''
+        });
+        $("#txDescripcion").datepicker("option", "prevText", "Anterior    ");
+        $("#txDescripcion").datepicker("option", "nextText", "   Siguiente");
+
+        function BuscarCurso() {
+            var slcEtapa = $('#slcEtapa option').filter(':selected').val();
+            var slcGrado = $('#slcGrado option').filter(':selected').val();
+            var txCurso = $('#TxCurso').val();
+
+            if (txCurso == "") {
+                alert("completar el campo curso");
+            } else {
+                $.ajax({
+                    url: vgrutaprincipal + "docente/ListarCurso",
+                    cache: false,
+                    type: "POST",
+                    data: {
+                        "wdidgrado": slcGrado,
+                        "wdidetapa": slcEtapa,
+                        "wdnombre": txCurso
+                    },
+                    success: function (respuesta) {
+                        console.log(respuesta.rData);
+                        if (respuesta.rData == null) {
+                            alert("no hay resultados");
+                        } else {
+                            $('#resBuscar').text(respuesta.rData.snombre);
+                            $('#resBuscar').attr('data-idcurso', respuesta.rData.idcurso);
+                        }
+
+                    },
+                    error: function () {
+                        console.log("error al registrar");
+                    }
+                });
+            }
+        }
+
+        function RegistrarVideo() {
+            var idCurso = $('#TxCurso option:selected').attr('value');
+            var txCursoNombre = $('#txNombreVideo').val();
+            var txDescripcion = $('#txDescripcion').val();
+            var txUrl = $('#txCodYoutube').val();
+
+            if (idCurso == "") {
+                alert("Por favor, buscar un curso para poder registar");
+            } else if (txUrl == "" || txDescripcion.substr(2) == "/") {
+                alert("Por favor, completar los campos");
+            } else {
+                var urlYoutube = 'https://www.youtube.com/embed/' + txUrl;
+
+                $.ajax({
+                    url: vgrutaprincipal + "docente/registrarCurso",
+                    cache: false,
+                    type: "POST",
+                    data: {
+                        "wdidcurso": idCurso,
+                        "wdnombre": txCursoNombre,
+                        "wddescripcion": txDescripcion,
+                        "wdrutavideo": urlYoutube
+                    },
+                    success: function (respuesta) {
+                        $('#resBuscar').attr('data-idcurso', 0);
+                        $('#resBuscar').text("");
+                        $('#txNombreVideo').val("");
+                        $('#txDescripcion').val("");
+                        $('#txCodYoutube').val("");
+                        alert("Registrado correctamente!");
+                    },
+                    error: function () {
+                        console.log("error al registrar");
+                    }
+                });
+            }
+
+        }
+
+    </script>
+}

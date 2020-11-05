@@ -1,0 +1,14 @@
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\backendcv\backendTD\bin\Release\backendTD.dll.config
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\backendcv\backendTD\bin\Release\backendTD.dll
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\backendcv\backendTD\bin\Release\backendTD.pdb
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\backendcv\backendTD\bin\Release\backendAD.dll
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\backendcv\backendTD\bin\Release\backendED.dll
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\backendcv\backendTD\bin\Release\MySql.Data.dll
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\backendcv\backendTD\bin\Release\backendAD.pdb
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\backendcv\backendTD\bin\Release\backendAD.dll.config
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\backendcv\backendTD\bin\Release\backendED.pdb
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\backendcv\backendTD\obj\Release\backendTD.csprojAssemblyReference.cache
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\backendcv\backendTD\obj\Release\backendTD.csproj.CoreCompileInputs.cache
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\backendcv\backendTD\obj\Release\backendTD.csproj.CopyComplete
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\backendcv\backendTD\obj\Release\backendTD.dll
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\backendcv\backendTD\obj\Release\backendTD.pdb

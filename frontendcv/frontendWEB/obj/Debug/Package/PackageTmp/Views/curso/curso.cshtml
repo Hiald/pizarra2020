@@ -1,0 +1,103 @@
+﻿@{
+    ViewBag.Title = "Curso";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<div id="appcurso" v-cloak>
+    <v-app>
+        <v-toolbar>
+            <img v-on:click="IndexPrincipal()" src="~/Content/image/pizarra21.png" height="60" width="120" style="margin-right:30px;cursor:pointer" />
+            <v-spacer></v-spacer>
+            <div class="text-xs-center">
+                <v-menu :close-on-content-click="false" :nudge-width="200" offset-y>
+                    <template v-slot:activator="{ on }">
+                        <v-btn fab color="success"
+                               dark depressed
+                               v-on="on">
+                            <i class="fas fa-user-circle fa-2x"></i>
+
+                        </v-btn>
+                    </template>
+                    <v-card>
+                        <v-list>
+                            <v-list-tile avatar>
+                                <v-list-tile-avatar>
+                                    <img src="~/Content/image/elearning.png" alt="alumno">
+                                </v-list-tile-avatar>
+
+                                <v-list-tile-content>
+                                    <v-list-tile-title>@ViewBag.Gnombre</v-list-tile-title>
+                                    <v-list-tile-sub-title>@ViewBag.Gcorreo</v-list-tile-sub-title>
+                                </v-list-tile-content>
+
+                            </v-list-tile>
+                        </v-list>
+                        <v-divider></v-divider>
+                        <v-list>
+                            <v-list-tile>
+                                <v-list-tile-action>
+                                    <v-switch color="purple"></v-switch>
+                                </v-list-tile-action>
+                                <v-list-tile-title>Modo oscuro</v-list-tile-title>
+                            </v-list-tile>
+                            <v-list-tile>
+                                <v-list-tile-title>Mis cursos</v-list-tile-title>
+                            </v-list-tile>
+                        </v-list>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn color="primary" flat v-on:click="CerrarSesion">Cerrar sesión</v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-menu>
+            </div>
+        </v-toolbar>
+
+                <div class="justify-center row">
+                    @if (ViewBag.loenCursoConteo > 0)
+                    {
+                        foreach (var ent in ViewBag.loenCurso)
+                        {
+                            <v-flex class="col-lg-3 col-md-6 col-xs-12 pl-3 pr-3 pt-5">
+                                <v-card>
+                                    <v-img src="~/Content/image/acercade2.jpg" style="min-height:280px!important;cursor:pointer" onclick="javascript:AbrirCurso('@ent.srutavideo', '@ent.snombre','@ent.idvideo','@ent.idcurso','@ViewBag.Gfechabuscar')"></v-img>
+                                    <v-card-title primary-title>
+                                        <div style="cursor:pointer" onclick="javascript:AbrirCurso('@ent.srutavideo', '@ent.snombre','@ent.idvideo','@ent.idcurso','@ViewBag.Gfechabuscar')">
+                                            <div>@ent.snombre</div>
+                                        </div>
+                                    </v-card-title>
+                                    <v-card-actions>
+                                        <v-btn block onclick="javascript:AbrirCurso('@ent.srutavideo', '@ent.snombre','@ent.idvideo','@ent.idcurso','@ViewBag.Gfechabuscar')" color="purple" style="color:white">Entrar</v-btn>
+                                    </v-card-actions>
+                                    <v-card-text>
+                                        @ent.sdescripcion
+                                    </v-card-text>
+                                </v-card>
+                            </v-flex>
+                        }
+                    }
+                    else
+                    {
+                        <v-flex lg3 xs12 md3 sm3 xl3 class="pl-3 pr-3 pt-5">
+                            <v-card>
+                                <v-img src="~/Content/image/imagen2.jpg" height="200px" style="cursor:pointer"></v-img>
+                                <v-card-title primary-title>
+                                    <div style="cursor:pointer">
+                                        <div class="headline">Próximamente cursos</div>
+                                    </div>
+                                </v-card-title>
+                                <v-card-actions>
+                                </v-card-actions>
+                                <v-card-text>
+                                    Ponte en contacto con tu pizarra21 para consultar sobre los próximos cursos en esta fecha
+                                </v-card-text>
+                            </v-card>
+                        </v-flex>
+                    }
+                </div>
+
+    </v-app>
+</div>
+
+@section scripts{
+    <script src="~/Content/src/curso/curso.js"></script>
+}

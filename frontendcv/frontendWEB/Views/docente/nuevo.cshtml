@@ -1,0 +1,121 @@
+﻿@{
+    ViewData["Title"] = "Registro";
+    Layout = "~/Views/Shared/_LayoutVue.cshtml";
+}
+
+<div id="appregistro" v-cloak>
+    <v-app id="inspire">
+        <v-toolbar color="transparent" id="vtoolbar" class="elevation-0">
+            <img src="~/Content/image/pizarra21.png" style="width:95px;height:45px;cursor:pointer" id="imgs" onclick="rtindex()" />
+        </v-toolbar>
+        <v-content style="background-image:url(../../Content/image/contactar.jpg)">
+            <v-container fluid fill-height id="vcontainerreg">
+                <v-flex class="text-lg-center hidden-sm-and-down" lg3>
+                    <h2 class="display-2" style="color:#fff">Únete a Pizarra 21 como Docente</h2>
+                </v-flex>
+                <v-flex class="text-lg-left hidden-sm-and-down" lg1></v-flex>
+                <v-layout align-center justify-center>
+                    <v-flex>
+                        <v-stepper v-model="e1">
+                            <v-stepper-header>
+                                <v-stepper-step :complete="e1 > 1" step="1">Datos de la cuenta</v-stepper-step>                                                                
+                            </v-stepper-header>
+                            <v-stepper-items>
+
+                                <v-stepper-content step="1">
+                                    <v-card color="lighten-1" id="vcard">
+                                        <v-card-text>
+                                            <v-form>
+                                                <v-container grid-list-md text-xs-center style="padding-bottom:0px;padding-top:0px">
+                                                    <v-layout row wrap>
+                                                        <v-flex xs6 lg6 xl6 sm12 md4>
+                                                            <v-text-field id="vnombrereg" v-model="firstname" maxlength="20" :rules="[rules.required, rules.counter]" label="Nombre" required>
+                                                            </v-text-field>
+                                                        </v-flex>
+                                                        <v-flex xs6 lg6 xl6 sm12 md4>
+                                                            <v-text-field id="vapellidoreg" v-model="lastname" maxlength="20" :rules="[rules.required, rules.counter]" label="Apellido"
+                                                                          required>
+                                                            </v-text-field>
+                                                        </v-flex>
+                                                    </v-layout>
+                                                </v-container>
+                                                <v-container grid-list-md text-xs-center style="padding-bottom:0px;padding-top:0px">
+                                                    <v-layout row wrap>
+                                                        <v-flex xs12 lg12 xl12 sm12 md12>
+                                                            <v-text-field id="vemailreg" prepend-icon="fas fa-envelope" v-model="email" :rules="[rules.emailrules]" maxlength="50"
+                                                                          label="Correo electrónico" required>
+                                                            </v-text-field>
+                                                        </v-flex>
+                                                        <v-flex xs11 lg11 xl11 sm11 md11>
+                                                            <v-text-field prepend-icon="fas fa-lock"
+                                                                          v-model="password"
+                                                                          :rules="[rules.required, rules.min]"
+                                                                          :type="passwordFieldType"
+                                                                          name="clave"
+                                                                          maxlength="20"
+                                                                          label="Contraseña"></v-text-field>
+                                                        </v-flex>
+                                                        <v-flex xs1 lg1 xl1 sm1 md1>
+                                                            <v-btn fab dark small color="primary" @@click="Combinacion1">
+                                                                <v-icon dark id="icono" v-model="icono">{{icono}}</v-icon>
+                                                            </v-btn>
+                                                        </v-flex>
+
+                                                    </v-layout>
+                                                </v-container>
+
+                                                <p class="my-0 text-lg-center text-xs-center text-xl-center text-md-center text-sm-center">¿Ya tienes una cuenta? <b style="text-decoration:underline;cursor:pointer" onclick="rtlogueoDocente()">Iniciar sesión</b></p>
+                                            </v-form>                                           
+
+                                        </v-card-text>
+
+                                    </v-card>
+                                    <v-tooltip v-model="show" bottom close-delay="2000">
+                                        <template v-slot:activator="{ on }">
+                                            <v-btn block color="success" v-on:click="vtooltip">Completar</v-btn>
+                                        </template>
+                                        <span>Falta rellenar campos</span>
+                                    </v-tooltip>
+
+                                </v-stepper-content>
+                                
+                            </v-stepper-items>
+                        </v-stepper>
+
+                    </v-flex>
+                </v-layout>
+            </v-container>
+        </v-content>
+
+        <v-snackbar v-model="snackbar"
+                    :color="color"
+                    :multi-line="mode === 'multi-line'"
+                    :timeout="5000"
+                    :vertical="mode === 'vertical'">
+            {{ text }}
+            <v-btn dark
+                   flat
+                   @@click="snackbar = false">
+                Cerrar
+            </v-btn>
+        </v-snackbar>
+
+        <v-dialog v-model="dialogocarga"
+                  hide-overlay
+                  persistent
+                  width="300">
+            <v-card color="primary"
+                    dark>
+                <v-card-text>
+                    Por favor espere...
+                    <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
+                </v-card-text>
+            </v-card>
+        </v-dialog>
+
+    </v-app>
+</div>
+
+@section scripts{
+    <script type="text/javascript" src="~/Content/src/docente/nuevo.js"></script>
+}

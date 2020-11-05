@@ -1,0 +1,12 @@
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\frontendcv\frontendUtil\bin\Debug\frontendUtil.dll
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\frontendcv\frontendUtil\bin\Debug\frontendUtil.pdb
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\frontendcv\frontendUtil\obj\Debug\frontendUtil.csprojAssemblyReference.cache
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\frontendcv\frontendUtil\obj\Debug\frontendUtil.csproj.CoreCompileInputs.cache
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\frontendcv\frontendUtil\obj\Debug\frontendUtil.dll
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\frontendcv\frontendUtil\obj\Debug\frontendUtil.pdb
+C:\Users\jonat\Desktop\proyectoClaseVirtual\frontendcv\frontendUtil\bin\Debug\frontendUtil.dll
+C:\Users\jonat\Desktop\proyectoClaseVirtual\frontendcv\frontendUtil\bin\Debug\frontendUtil.pdb
+C:\Users\jonat\Desktop\proyectoClaseVirtual\frontendcv\frontendUtil\obj\Debug\frontendUtil.csprojAssemblyReference.cache
+C:\Users\jonat\Desktop\proyectoClaseVirtual\frontendcv\frontendUtil\obj\Debug\frontendUtil.csproj.CoreCompileInputs.cache
+C:\Users\jonat\Desktop\proyectoClaseVirtual\frontendcv\frontendUtil\obj\Debug\frontendUtil.dll
+C:\Users\jonat\Desktop\proyectoClaseVirtual\frontendcv\frontendUtil\obj\Debug\frontendUtil.pdb

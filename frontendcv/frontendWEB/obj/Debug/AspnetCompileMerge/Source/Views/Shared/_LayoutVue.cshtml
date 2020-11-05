@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizarra 21</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link href="~/Content/lib/vuetify/css/vuetify.css" rel="stylesheet" />
+    <link href='~/Content/lib/fontsgoogle/css/css.css' rel="stylesheet">
+
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .theme--light.v-text-field--outline > .v-input__control > .v-input__slot {
+            border: 2px solid #00bcd4;
+        }
+
+        @@media (min-width: 1281px) {
+            #vcard {
+                height: 360px;
+            }
+
+            #vcontainerreg {
+                width: 80%;
+            }
+        }
+
+        @@media (min-width: 1025px) and (max-width: 1280px) {
+            #vcard {
+                height: 360px;
+            }
+
+            #vcontainerreg {
+                width: 80%;
+            }
+        }
+
+        @@media (min-width: 768px) and (max-width: 1024px) {
+            #vcard {
+                height: 360px;
+            }
+
+            #videomostrar {
+                height: 200px !important;
+                width: 390px !important;
+            }
+
+            #vcontainerreg {
+                width: 80%;
+            }
+        }
+
+        @@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+            .v-parallax__image {
+                left: 94%;
+            }
+
+            #videomostrar {
+                height: 200px !important;
+                width: 390px !important;
+            }
+
+            #imgs {
+                margin-left: 20px !important;
+            }
+        }
+
+        @@media (min-width: 481px) and (max-width: 767px) {
+            .v-parallax__image {
+                left: 94%;
+            }
+
+            #videomostrar {
+                height: 200px !important;
+                width: 390px !important;
+            }
+
+            #imgs {
+                margin-left: 20px !important;
+            }
+        }
+
+        @@media (min-width: 320px) and (max-width: 480px) {
+            .v-parallax__image {
+                left: 94%;
+            }
+
+            #videomostrar {
+                height: 200px !important;
+                width: 303px !important
+            }
+
+            #imgs {
+                margin-left: 20px !important;
+            }
+        }
+    </style>
+    <script>
+        var vgruta = "@Url.Content("~")";
+        var datourl = window.location.pathname;
+        var rutaservidor = window.location.host;
+    </script>
+</head>
+<body>
+    @RenderBody()
+
+    <script type="text/javascript" src="~/Content/lib/vue/js/vue.js"></script>
+    <script type="text/javascript" src="~/Content/lib/vuetify/js/vuetify.js"></script>
+    <script type="text/javascript" src="~/Content/lib/axios/js/axios.js"></script>
+    <script>
+        function rtindex() {
+            window.location.href = "/";
+        }
+        function rtlogueo() {
+            window.location.href = vgruta + "login/inicio";
+        }
+        function rtregistro() {
+            window.location.href = vgruta + "login/registro";
+        }
+        function rtlogueoDocente() {
+            window.location.href = vgruta + "docente/inicio";
+        }
+        function rtregistroDocente() {
+            window.location.href = vgruta + "docente/nuevo";
+        }
+        Vue.use(Vuetify, {
+            theme: {
+                primary: '#3f51b5',
+                secondary: '#673ab7',
+                accent: '#00bcd4',
+                error: '#f44336',
+                warning: '#ff5722',
+                info: '#2196f3',
+                success: '#8bc34a'
+            }
+        })
+
+        function appendHtml(el, str) {
+            var div = document.createElement('div');
+            div.innerHTML = str;
+            while (div.children.length > 0) {
+                el.appendChild(div.children[0]);
+            }
+        }
+
+        function redirectPost(location, nameparam, value) {
+            var form = '';
+            //for(args, function (key, value) {
+            //    value = value.split('"').join('\"');
+            //});
+            var rt = '<form id="rtmvc" action="' + location + '" method="POST">'
+                + '<input type="hidden" name="' + nameparam + '" value="' + value + '">'
+                + '</form>'
+            var data = appendHtml(document.body, rt);
+            document.getElementById("rtmvc").submit();
+
+        }
+
+        function redirectPostV2(location, nameparam1, value1, nameparam2, value2) {
+            var form = '';
+
+            var rt = '<form id="rtmvc" action="' + location + '" method="POST">'
+                + '<input type="hidden" name="' + nameparam1 + '" value="' + value1 + '">'
+                + '<input type="hidden" name="' + nameparam2 + '" value="' + value2 + '">'
+                + '</form>'
+            var data = appendHtml(document.body, rt);
+            document.getElementById("rtmvc").submit();
+
+        }
+
+        function redirectPostV3(location, nameparam1, value1, nameparam2, value2, nameparam3, value3) {
+            var form = '';
+
+            var rt = '<form id="rtmvc" action="' + location + '" method="POST">'
+                + '<input type="hidden" name="' + nameparam1 + '" value="' + value1 + '">'
+                + '<input type="hidden" name="' + nameparam2 + '" value="' + value2 + '">'
+                + '<input type="hidden" name="' + nameparam3 + '" value="' + value3 + '">'
+                + '</form>'
+            var data = appendHtml(document.body, rt);
+            document.getElementById("rtmvc").submit();
+
+        }
+
+        function redirectPostV4(location, nameparam1, value1, nameparam2, value2, nameparam3, value3, nameparam4, value4, nameparam5, value5) {
+            var form = '';
+
+            var rt = '<form id="rtmvc" action="' + location + '" method="POST">'
+                + '<input type="hidden" name="' + nameparam1 + '" value="' + value1 + '">'
+                + '<input type="hidden" name="' + nameparam2 + '" value="' + value2 + '">'
+                + '<input type="hidden" name="' + nameparam3 + '" value="' + value3 + '">'
+                + '<input type="hidden" name="' + nameparam4 + '" value="' + value4 + '">'
+                + '<input type="hidden" name="' + nameparam5 + '" value="' + value5 + '">'
+                + '</form>'
+            var data = appendHtml(document.body, rt);
+            document.getElementById("rtmvc").submit();
+
+        }
+
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

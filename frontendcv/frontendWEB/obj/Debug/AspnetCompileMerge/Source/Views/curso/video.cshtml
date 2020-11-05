@@ -1,0 +1,221 @@
+﻿@{
+    ViewBag.Title = "video";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<script> var vIdvideo = '@ViewBag.Gwidcurso' </script>
+<script> var vIdFechaBuscar = '@ViewBag.Gfechabuscar' </script>
+<script> var vIdVideoPDF = '@ViewBag.idvideo'</script>
+<script> var vSNombre = '@ViewBag.Gnombre'</script>
+<script> var vSTitulo = '@ViewBag.titulo'</script>
+
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.min.css'>
+<link href="~/Content/lib/chat/normalize.css" rel="stylesheet" />
+<link href="~/Content/lib/chat/style.css" rel="stylesheet" />
+<style>
+    figure.avatar {
+        bottom: 0px !important;
+    }
+
+</style>
+
+<div id="appvideo" v-cloak>
+    <v-app id="inspire">
+        <v-toolbar>
+            <img v-on:click="IndexPrincipal()" src="~/Content/image/pizarra21.png" height="60" width="120" style="margin-right:30px;cursor:pointer" />
+            <div class="text-xs-center">
+                <v-menu :close-on-content-click="false" :nudge-width="200" offset-y>
+                    <template v-slot:activator="{ on }">
+                        <v-btn fab color="success"
+                               dark depressed
+                               v-on="on">
+                            <i class="fas fa-user-circle fa-2x"></i>
+
+                        </v-btn>
+                    </template>
+                    <v-card>
+                        <v-list>
+                            <v-list-tile avatar>
+                                <v-list-tile-avatar>
+                                    <img src="~/Content/image/elearning.png" alt="alumno">
+                                </v-list-tile-avatar>
+
+                                <v-list-tile-content>
+                                    <v-list-tile-title>@ViewBag.Gnombre</v-list-tile-title>
+                                    <v-list-tile-sub-title>@ViewBag.Gcorreo</v-list-tile-sub-title>
+                                </v-list-tile-content>
+
+                            </v-list-tile>
+                        </v-list>
+                        <v-divider></v-divider>
+                        <v-list>
+                            <v-list-tile>
+                                <v-list-tile-action>
+                                    <v-switch color="purple"></v-switch>
+                                </v-list-tile-action>
+                            </v-list-tile>
+                            <v-list-tile>
+                                <v-list-tile-title>Mis cursos</v-list-tile-title>
+                            </v-list-tile>
+                        </v-list>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn color="primary" flat v-on:click="CerrarSesion">Cerrar sesión</v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-menu>
+            </div>
+        </v-toolbar>
+
+        <v-layout>
+            <v-container grid-list-md grid-list-xs>
+                <v-layout row wrap class="justify-center">
+
+                    <v-flex lg6 xs12 md6 sm6 xl6 class="pl-3 pr-3 pt-5">
+                        <v-card>
+                            @*<video  style="width:540px;height:300px" controls>
+            <source src="" type='video/mp4'>
+        </video>*@
+                            <div class="embed-responsive embed-responsive-16by9" id="videomostrar">
+                                <iframe id="videomostrar" class="embed-responsive-item" src="@ViewBag.Enlace" allowfullscreen></iframe>
+                            </div>
+
+                            <v-card-title primary-title>
+                                <div style="cursor:pointer">
+                                    <div class="headline">@ViewBag.titulo</div>
+                                </div>
+                            </v-card-title>
+                            <v-card-actions>
+                                <v-btn block outline v-on:click="IndexPrincipal()" color="success" style="color:white">Inicio</v-btn>
+                            </v-card-actions>
+                            <v-card-actions>
+                                <v-btn color="blue"
+                                       @@click="DescargarPDF()"
+                                       style="color:#fff">
+                                    PDF de la clase
+                                </v-btn>
+                                <v-btn color="red"
+                                       @@click="AbrirVideo()"
+                                       style="color:#fff">
+                                    Video en vivo
+                                </v-btn>
+                                <v-btn icon @@click="show = !show">
+                                    <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
+                                </v-btn>
+                            </v-card-actions>
+                            <v-slide-y-transition>
+                                <v-card-text v-show="show">
+                                    @ViewBag.titulo de la clase de educación de pizarra21.
+                                </v-card-text>
+                            </v-slide-y-transition>
+                        </v-card>
+                    </v-flex>
+                    <v-flex lg2 md2 sm2>
+
+                    </v-flex>
+                    <v-flex lg4 xs12 md4 sm4 xl4 class="pl-3 pr-3 pt-5">
+
+                        <div class="chat" style="font-family: Roboto!important">
+                            <div class="chat-title">
+                                <h1>chat de @ViewBag.titulo </h1>
+                                <h2>escribir</h2>
+                                <figure class="avatar">
+                                    <img src="https://p7.hiclipart.com/preview/349/273/275/livechat-online-chat-computer-icons-chat-room-web-chat-others.jpg" />
+                                </figure>
+                            </div>
+                            <div class="messages">
+                                <div class="messages-content"></div>
+                            </div>
+                            <div class="message-box">
+                                <textarea type="text" class="message-input" id="message" placeholder="escribir mensaje..."></textarea>
+                                <button type="submit" class="message-submit">enviar</button>
+                            </div>
+                        </div>
+                        
+                    </v-flex>
+
+                    <v-flex lg6 xs12 md4 sm4 xl4 class="pl-3 pr-3 pt-5">
+                        <v-card rounded>
+                            <v-toolbar color="green" dark>
+                                <v-toolbar-title style="font-size:14px">Contenido de la semana</v-toolbar-title>
+                                <v-spacer></v-spacer>
+                            </v-toolbar>
+                            <v-list>
+                                <v-list-group v-for="item in itemslista"
+                                              :key="item.title"
+                                              v-model="item.active"
+                                              :prepend-icon="item.action"
+                                              no-action>
+                                    <template v-slot:activator>
+                                        <v-list-tile>
+                                            <v-list-tile-content>
+                                                <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+                                            </v-list-tile-content>
+                                        </v-list-tile>
+                                    </template>
+
+                                    <v-list-tile v-for="subItem in item.items" :key="subItem.title"
+                                                 v-on:click="AbrirCurso(subItem.rtvideo, subItem.rtTitulo, subItem.idcurso)">
+                                        <v-list-tile-content>
+                                            <v-list-tile-title>{{ subItem.title }}</v-list-tile-title>
+                                        </v-list-tile-content>
+
+                                        <v-list-tile-action>
+                                            <v-icon>{{ subItem.action }}</v-icon>
+                                        </v-list-tile-action>
+                                    </v-list-tile>
+                                </v-list-group>
+                            </v-list>
+                        </v-card>
+                    </v-flex>
+
+                </v-layout>
+            </v-container>
+        </v-layout>
+
+    </v-app>
+</div>
+
+@section scripts{
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-database.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBL9C88FyH9-YhbQzePghskZIbP6HGxncI",
+            authDomain: "pizarra-d0038.firebaseapp.com",
+            databaseURL: "https://pizarra-d0038.firebaseio.com",
+            projectId: "pizarra-d0038",
+            storageBucket: "pizarra-d0038.appspot.com",
+            messagingSenderId: "457957875119",
+            appId: "1:457957875119:web:f7fdfa56eed2fc1ea3235a"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        firebase.database().ref("messages").on("child_removed", function (snapshot) {
+            document.getElementById("message-" + snapshot.key).innerHTML = "This message has been deleted";
+        });
+
+        function deleteMessage(self) {
+            var messageId = self.getAttribute("data-id");
+            firebase.database().ref("messages").child(messageId).remove();
+        }
+
+        function sendMessage() {
+            var message = document.getElementById("message").value;
+            firebase.database().ref("messages").push().set({
+                "message": message,
+                "sender": myName,
+                "videoid": videoid
+            });
+            return false;
+        }
+    </script>
+
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.concat.min.js'></script>
+    <script src="~/Content/src/video/video.js"></script>
+    <script src="~/Content/lib/chat/index.js"></script>
+}

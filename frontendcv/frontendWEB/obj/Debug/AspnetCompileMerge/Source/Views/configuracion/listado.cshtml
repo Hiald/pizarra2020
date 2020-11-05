@@ -1,0 +1,137 @@
+﻿@{
+    ViewBag.Title = "Configuración Alumno";
+    Layout = "~/Views/Shared/_LayoutVue.cshtml";
+}
+<div id="appconfiguracion" v-cloak>
+    <v-app id="inspire">
+
+        <v-content>
+            <v-layout row wrap class="my-3 pl-1 pr-1">
+                <v-flex d-flex>
+                    <v-text-field outline v-model="correo" label="Correo"></v-text-field>
+                    <v-text-field outline v-model="alumno" label="Nombre del Alumno"></v-text-field>
+                </v-flex>
+                <v-flex xs6 sm3 d-flex>
+                    <br />
+                    <v-btn @@click="ListarAlumnosConfPos" color="primary">Buscar</v-btn>
+                </v-flex>
+
+                <v-flex xs12 xl12 lg12 class="pl-2 pr-2">
+                    <v-data-table v-model="seleccionado"
+                                  :items="rData"
+                                  class="elevation-2">
+                        <template v-slot:headers="props">
+                            <tr>
+                                <th style="color:#356bb2">Acciones</th>
+                                <th style="color:#356bb2">Alumno</th>
+                                <th style="color:#356bb2">Correo</th>
+                                <th style="color:#356bb2">Fecha de Registro / Vencimiento</th>
+                                <th style="color:#356bb2">Días restantes</th>
+                                <th style="color:#356bb2">Estado</th>
+                            </tr>
+                        </template>
+                        <template v-slot:items="props">
+                            <tr>
+                                <td class="justify-center layout">
+                                    <v-btn @@click="AbrirActivarDosMeses(props.item)" color="primary">2 meses</v-btn>
+                                    <v-btn @@click="AbrirActivarSieteMeses(props.item)" color="primary">7 meses</v-btn>
+                                    <v-btn @@click="GenerarClave(props.item)" color="cyan" style="color:#fff">Generar clave</v-btn>
+                                </td>
+                                <td class="text-xs-center">{{ props.item.alumno }}</td>
+                                <td class="text-xs-center">{{ props.item.correo }}</td>
+                                <td class="text-xs-center">{{ props.item.fecharegfin }}</td>
+                                <td class="text-xs-center">{{ props.item.diasrestantes }}</td>
+                                <td class="text-xs-center">
+                                    <v-icon style="margin-top:10px;font-size:30px">
+                                        {{ props.item.estado }}
+                                    </v-icon>
+                                </td>
+                            </tr>
+                        </template>
+                        <template v-slot:no-data>
+                            <td colspan="10">
+                                <v-alert :value="true" color="info" icon="info">
+                                    No hay datos
+                                </v-alert>
+                            </td>
+                        </template>
+                    </v-data-table>
+                </v-flex>
+            </v-layout>
+        </v-content>
+
+        <v-dialog v-model="dialogoconfirmar2meses" persistent max-width="290">
+            <v-card>
+                <v-card-title class="headline">Registrar dos meses</v-card-title>
+                <v-card-text>
+                    Se va a registrar a <b>{{dosmesesnomb}}</b> por dos meses de pizarra 21
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="green darken-1" flat @@click="dialogoconfirmar2meses = false">Cancelar</v-btn>
+                    <v-btn color="green darken-1" flat @@click="ActivarDosMeses">Continuar</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
+
+        <v-dialog v-model="dialogoconfirmar7meses" persistent max-width="290">
+            <v-card>
+                <v-card-title class="headline">Registrar siete meses</v-card-title>
+                <v-card-text>
+                    Se va a registrar a <b>{{sietemesesnomb}}</b> por siete meses de pizarra 21
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="green darken-1" flat @@click="dialogoconfirmar7meses = false">Cancelar</v-btn>
+                    <v-btn color="green darken-1" flat @@click="ActivarSieteMeses">Continuar</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
+
+        <v-dialog v-model="nuevaclave" persistent max-width="290">
+            <v-card>
+                <v-card-title class="headline">Nueva clave generada</v-card-title>
+                <v-card-text>
+                    La nueva clave para <b>{{ncnombre}}</b> es:
+                    <br /> <b>{{ncclave}}</b>
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="green darken-1" flat @@click="nuevaclave = false">Cerrar</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
+
+        <v-dialog v-model="dialogoclavegenerar" persistent max-width="290">
+            <v-card>
+                <v-card-title class="headline">Nueva clave generada</v-card-title>
+                <v-card-text>
+                    Se ha generado una nueva clave
+                    <br /> <b>{{textogenerado}}</b>
+
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="green darken-1" flat @@click="dialogoclavegenerar = false">Cerrar</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
+
+        <v-snackbar v-model="snackbarregistro"
+                    :color="snackbarcolor"
+                    :multi-line="mode === 'multi-line'"
+                    :timeout="6000"
+                    :vertical="mode === 'vertical'">
+            {{ snackbartexto }}
+            <v-btn dark
+                   flat
+                   @@click="snackbarregistro = false">
+                Cerrar
+            </v-btn>
+        </v-snackbar>
+
+    </v-app>
+</div>
+@section scripts{
+    <script src="~/Content/src/configuracion/configuracion.js"></script>
+}

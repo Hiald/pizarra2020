@@ -1,0 +1,263 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="Index" />
+    <meta name='coverage' content='Worldwide'>
+    <meta name='distribution' content='Global'>
+    <meta name='rating' content='General'>
+    <meta name="author" content="Pizarra 21, contacto@pizarra21.com" />
+    <meta name='reply-to' content='contacto@pizarra21.com'>
+    <meta name='url' content='http://www.pizarra21.com'>
+    <meta name='category' content=''>
+    <meta name='language' content='ES'>
+    <meta name='Classification' content='Business'>
+    <meta name='apple-touch-fullscreen' content='yes'>
+    <meta name='subtitle' content='Somos una institución orientada a la educación, difusión y desarrollo en el área de Educación Escolar y Preuniversitaria, constituida sobre las bases de profesionales del área con vasta experiencia, y en constante, capacitación e interacción en este campo.'>
+    <meta name="description" content="Somos una institución orientada a la educación, difusión y desarrollo en el área de Educación Escolar y Preuniversitaria, constituida sobre las bases de profesionales del área con vasta experiencia, y en constante, capacitación e interacción en este campo." />
+    <meta name="keywords" content="Somos una institución orientada a la educación, difusión y desarrollo en el área de Educación Escolar y Preuniversitaria, constituida sobre las bases de profesionales del área con vasta experiencia, y en constante, capacitación e interacción en este campo.">
+    <meta name="keyphrases" content="Slogan, Cursos virtuales, Alumnos, Somos una institución orientada a la educación, difusión y desarrollo en el área de Educación Escolar y Preuniversitaria, constituida sobre las bases de profesionales del área con vasta experiencia, y en constante, capacitación e interacción en este campo.">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
+    <meta name="theme-color" content="#4CAF50" />
+    <title>Pizarra 21</title>
+    <link rel="icon" href="~/Content/image/pizarra21.png">
+    <link rel="stylesheet" href="~/Content/lib/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/Content/css/config.css" />
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" />
+    <style>
+        @@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+            #btncategoria {
+                margin-left: 0px !important;
+            }
+
+            #txbuscar {
+                width: 85%;
+            }
+
+            #btnbuscar {
+                margin-left: 5px !important;
+            }
+        }
+
+        @@media (min-width: 481px) and (max-width: 767px) {
+            #btncategoria {
+                margin-left: 0px !important;
+            }
+
+            #txbuscar {
+                width: 85%;
+            }
+
+            #btnbuscar {
+                margin-left: 5px !important;
+            }
+        }
+
+        @@media (min-width: 320px) and (max-width: 480px) {
+            #btncategoria {
+                margin-left: 0px !important;
+            }
+
+            #txbuscar {
+                width: 85%;
+            }
+
+            #btnbuscar {
+                margin-left: 5px !important;
+            }
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+        }
+
+        #content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        #footer {
+            padding: 20px;
+        }
+    </style>
+    <script type="text/javascript">
+        var vgruta = "@Url.Content("~")";
+        var datourl = window.location.pathname;
+        var rutaservidor = window.location.host;
+
+        function fn_rtIndexLogin() {
+            window.location.href = vgruta + 'login/inicio';
+        }
+
+        function fn_rtRegistro() {
+            window.location.href = vgruta + 'login/registro';
+        }
+
+        function fn_rtIndex() {
+            window.location = '/';
+        }
+
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <img class="navbar-brand" src="~/Content/image/pizarra21.png" style="width:130px;height:65px;cursor:pointer" onclick="javascript:fn_rtIndex()" />
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    @*<form class="form-inline my-2 my-lg-2">
+                            <input id="txbuscar" class="form-control mr-sm-0 mr-0" type="search" placeholder="Buscar cursos..." aria-label="Buscar cursos...">
+                            <button id="btnbuscar" class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+                        </form>*@
+                </li>
+
+                <li class="nav-item">
+                    <form class="form-inline">
+                        <div class="dropdown">
+                            <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-top: 8px;margin-left: 30px;"><i class="fas fa-th-list"></i> Categorías</button>
+                            <div class="dropdown-menu" aria-labelledby="btncategoria">
+                                <a class="dropdown-item" href="#portfolio">COAR</a>
+                                <a class="dropdown-item" href="#5tosec">Quinto de Secundaria</a>
+                                <a class="dropdown-item" href="#oriprev">Pre universitario</a>
+                            </div>
+                        </div>
+                    </form>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" id="frmbtn">
+                <button id="btnlogin" class="btn btn-lg btn-outline-secondary" type="button" onclick="fn_rtIndexLogin()" style="font-size:15px;margin-right:25px">Iniciar sesión</button>
+                <button class="btn btn-lg btn-danger" type="button" onclick="fn_rtRegistro()" style="font-size:15px">Regístrate</button>
+            </form>
+        </div>
+    </nav>
+    @RenderBody()
+    <script src="~/Content/lib/jquery/js/jquery.js"></script>
+    <script src="~/Content/lib/popper/js/popper.min.js"></script>
+    <script src="~/Content/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/lib/bootstrap/utilglobal.js"></script>
+    <script src="~/Content/lib/jquery/jquery.waypoints.js"></script>
+    <script>
+        $('.counterclass').waypoint(function () {
+
+            (function ($) {
+                $.fn.countTo = function (options) {
+                    options = options || {};
+
+                    return $(this).each(function () {
+                        // set options for current element
+                        var settings = $.extend({}, $.fn.countTo.defaults, {
+                            from: $(this).data('from'),
+                            to: $(this).data('to'),
+                            speed: $(this).data('speed'),
+                            refreshInterval: $(this).data('refresh-interval'),
+                            decimals: $(this).data('decimals')
+                        }, options);
+
+                        // how many times to update the value, and how much to increment the value on each update
+                        var loops = Math.ceil(settings.speed / settings.refreshInterval),
+                            increment = (settings.to - settings.from) / loops;
+
+                        // references & variables that will change with each update
+                        var self = this,
+                            $self = $(this),
+                            loopCount = 0,
+                            value = settings.from,
+                            data = $self.data('countTo') || {};
+
+                        $self.data('countTo', data);
+
+                        // if an existing interval can be found, clear it first
+                        if (data.interval) {
+                            clearInterval(data.interval);
+                        }
+                        data.interval = setInterval(updateTimer, settings.refreshInterval);
+
+                        // initialize the element with the starting value
+                        render(value);
+
+                        function updateTimer() {
+                            value += increment;
+                            loopCount++;
+
+                            render(value);
+
+                            if (typeof (settings.onUpdate) == 'function') {
+                                settings.onUpdate.call(self, value);
+                            }
+
+                            if (loopCount >= loops) {
+                                // remove the interval
+                                $self.removeData('countTo');
+                                clearInterval(data.interval);
+                                value = settings.to;
+
+                                if (typeof (settings.onComplete) == 'function') {
+                                    settings.onComplete.call(self, value);
+                                }
+                            }
+                        }
+
+                        function render(value) {
+                            var formattedValue = settings.formatter.call(self, value, settings);
+                            $self.html(formattedValue);
+                        }
+                    });
+                };
+
+                $.fn.countTo.defaults = {
+                    from: 0,               // the number the element should start at
+                    to: 0,                 // the number the element should end at
+                    speed: 1000,           // how long it should take to count between the target numbers
+                    refreshInterval: 100,  // how often the element should be updated
+                    decimals: 0,           // the number of decimal places to show
+                    formatter: formatter,  // handler for formatting the value before rendering
+                    onUpdate: null,        // callback method for every time the element is updated
+                    onComplete: null       // callback method for when the element finishes updating
+                };
+
+                function formatter(value, settings) {
+                    return value.toFixed(settings.decimals);
+                }
+            }(jQuery));
+
+            jQuery(function ($) {
+                // custom formatting example
+                $('.count-number').data('countToOptions', {
+                    formatter: function (value, options) {
+                        return value.toFixed(options.decimals).replace(/\B(?=(?:\d{3})+(?!\d))/g, ',');
+                    }
+                });
+
+                // start all the timers
+                $('.timer').each(count);
+
+                function count(options) {
+                    var $this = $(this);
+                    options = $.extend({}, options || {}, $this.data('countToOptions') || {});
+                    $this.countTo(options);
+                }
+            });
+
+        }, {
+                offset: '100%'
+            });
+
+    </script>
+
+    <script src="~/Content/lib/jquery/jquery.validate.min.js"></script>
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

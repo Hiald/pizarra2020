@@ -1,0 +1,114 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pizarra 21</title>
+    <link rel="icon" href="~/Content/image/pizarra21.png">
+    <link rel="stylesheet" href="~/Content/lib/vuetify/css/vuetify.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" />
+    <link href='~/Content/lib/fontsgoogle/css/css.css' rel="stylesheet">
+
+    <link href="~/Content/lib/main/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/lib/main/maindaygrid.css" rel="stylesheet" />
+    <link href="~/Content/lib/main/main.css" rel="stylesheet" />
+    <link href="~/Content/lib/main/mainlist.css" rel="stylesheet" />
+    <link href="~/Content/lib/main/maintemegrid.css" rel="stylesheet" />
+
+    <script src="~/Content/lib/jquery/js/jquery.js"></script>
+    <script src="~/Content/lib/main/es.js"></script>
+    <script src="~/Content/lib/main/main.js"></script>
+    <script src="~/Content/lib/main/mainbootstrap.js"></script>
+    <script src="~/Content/lib/bootstrap/js/bootstrap.js"></script>
+    <script src="~/Content/lib/main/maindaygrid.js"></script>
+    <script src="~/Content/lib/main/maininteraction.js"></script>
+    <script src="~/Content/lib/main/mainlist.js"></script>
+    <script src="~/Content/lib/main/maintimegrid.js"></script>    
+
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    @RenderBody()
+    <script type="text/javascript">
+        var vgrutaprincipal = "@Url.Content("~")";
+        var datourlp = window.location.pathname;
+        var rutaservidorp = window.location.host;
+
+        function appendHtml(el, str) {
+            var div = document.createElement('div');
+            div.innerHTML = str;
+            while (div.children.length > 0) {
+                el.appendChild(div.children[0]);
+            }
+        }
+
+        function redirectPost(location, nameparam, value) {
+            var form = '';
+            //for(args, function (key, value) {
+            //    value = value.split('"').join('\"');
+            //});
+
+            var rt = '<form id="rtmvc" action="' + location + '" method="POST">'
+                + '<input type="hidden" name="' + nameparam + '" value="' + value + '">'
+                  + '</form>'
+            var data = appendHtml(document.body, rt);
+            document.getElementById("rtmvc").submit();
+
+        }
+
+        function redirectPostV2(location, nameparam1, value1, nameparam2, value2) {
+            var form = '';
+
+            var rt = '<form id="rtmvc" action="' + location + '" method="POST">'
+                + '<input type="hidden" name="' + nameparam1 + '" value="' + value1 + '">'
+                + '<input type="hidden" name="' + nameparam2 + '" value="' + value2 + '">'
+                + '</form>'
+            var data = appendHtml(document.body, rt);
+            document.getElementById("rtmvc").submit();
+
+        }
+
+        function redirectPostV3(location, nameparam1, value1, nameparam2, value2, nameparam3, value3) {
+            var form = '';
+
+            var rt = '<form id="rtmvc" action="' + location + '" method="POST">'
+                + '<input type="hidden" name="' + nameparam1 + '" value="' + value1 + '">'
+                + '<input type="hidden" name="' + nameparam2 + '" value="' + value2 + '">'
+                + '<input type="hidden" name="' + nameparam3 + '" value="' + value3 + '">'
+                + '</form>'
+            var data = appendHtml(document.body, rt);
+            document.getElementById("rtmvc").submit();
+
+        }
+
+        function redirectPostV4(location, nameparam1, value1, nameparam2, value2, nameparam3, value3, nameparam4, value4, nameparam5, value5) {
+            var form = '';
+
+            var rt = '<form id="rtmvc" action="' + location + '" method="POST">'
+                + '<input type="hidden" name="' + nameparam1 + '" value="' + value1 + '">'
+                + '<input type="hidden" name="' + nameparam2 + '" value="' + value2 + '">'
+                + '<input type="hidden" name="' + nameparam3 + '" value="' + value3 + '">'
+                + '<input type="hidden" name="' + nameparam4 + '" value="' + value4 + '">'
+                + '<input type="hidden" name="' + nameparam5 + '" value="' + value5 + '">'
+                + '</form>'
+            var data = appendHtml(document.body, rt);
+            document.getElementById("rtmvc").submit();
+
+        }
+
+    </script>
+    <script src="~/Content/lib/vue/js/vue.js"></script>
+    <script src="~/Content/lib/vuetify/js/vuetify.js"></script>
+    <script src="~/Content/lib/axios/js/axios.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

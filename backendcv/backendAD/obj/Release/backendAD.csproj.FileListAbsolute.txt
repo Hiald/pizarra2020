@@ -1,0 +1,11 @@
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\backendcv\backendAD\bin\Release\backendAD.dll.config
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\backendcv\backendAD\bin\Release\backendAD.dll
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\backendcv\backendAD\bin\Release\backendAD.pdb
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\backendcv\backendAD\bin\Release\backendED.dll
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\backendcv\backendAD\bin\Release\MySql.Data.dll
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\backendcv\backendAD\bin\Release\backendED.pdb
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\backendcv\backendAD\obj\Release\backendAD.csprojAssemblyReference.cache
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\backendcv\backendAD\obj\Release\backendAD.csproj.CoreCompileInputs.cache
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\backendcv\backendAD\obj\Release\backendAD.csproj.CopyComplete
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\backendcv\backendAD\obj\Release\backendAD.dll
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\backendcv\backendAD\obj\Release\backendAD.pdb

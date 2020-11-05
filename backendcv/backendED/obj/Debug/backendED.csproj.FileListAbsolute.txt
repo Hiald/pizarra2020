@@ -1,0 +1,12 @@
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\backendcv\backendED\bin\Debug\backendED.dll
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\backendcv\backendED\bin\Debug\backendED.pdb
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\backendcv\backendED\obj\Debug\backendED.csprojAssemblyReference.cache
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\backendcv\backendED\obj\Debug\backendED.csproj.CoreCompileInputs.cache
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\backendcv\backendED\obj\Debug\backendED.dll
+C:\Users\jonat\Desktop\proyectoClaseVirtual\proyecto\backendcv\backendED\obj\Debug\backendED.pdb
+C:\Users\jonat\Desktop\proyectoClaseVirtual\backendcv\backendED\bin\Debug\backendED.dll
+C:\Users\jonat\Desktop\proyectoClaseVirtual\backendcv\backendED\bin\Debug\backendED.pdb
+C:\Users\jonat\Desktop\proyectoClaseVirtual\backendcv\backendED\obj\Debug\backendED.csprojAssemblyReference.cache
+C:\Users\jonat\Desktop\proyectoClaseVirtual\backendcv\backendED\obj\Debug\backendED.csproj.CoreCompileInputs.cache
+C:\Users\jonat\Desktop\proyectoClaseVirtual\backendcv\backendED\obj\Debug\backendED.dll
+C:\Users\jonat\Desktop\proyectoClaseVirtual\backendcv\backendED\obj\Debug\backendED.pdb
