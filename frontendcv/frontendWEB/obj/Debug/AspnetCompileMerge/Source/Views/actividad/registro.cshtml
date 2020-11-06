@@ -1,0 +1,113 @@
+﻿@{
+    ViewBag.Title = "registro";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row text-center">
+        <div class="col-md-12">
+            <br />
+            <h3>Registra tus datos para empezar</h3>
+            <br />
+            <h6>Consta de un cuestionario de corto tiempo, en la cual debes responder sobre tus gustos para poder aproximar una carrera óptima para ti</h6>
+            <br />
+        </div>
+    </div>
+
+    <div class="row text-center">
+        <div class="col-md-4">
+            <input type="text" class="form-control" id="txtnombre" value="" placeholder="Tus nombres" />
+        </div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" id="txtapellidos" value="" placeholder="Tus apellidos" />
+        </div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" id="txtcorreo" value="" placeholder="tu correo" />
+        </div>
+    </div>
+    <br />
+    <div class="row text-center">
+        <div class="col-md-4">
+            <input type="text" class="form-control" id="txtlugarnacimiento" value="" placeholder="Lugar de nacimiento" />
+        </div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" id="txtgrado" value="" placeholder="Grado" />
+        </div>
+        <div class="col-md-4">
+            <select class="form-control" id="slcedad">
+                <option value="0">Edad</option>
+                <option value="14">14 años</option>
+                <option value="15">15 años</option>
+                <option value="16">16 años</option>
+                <option value="17">17 años</option>
+                <option value="18">18 años</option>
+                <option value="19">19 años</option>
+                <option value="20">20 años</option>
+            </select>
+        </div>
+    </div>
+    <br />
+    <div class="row text-center">
+        <div class="col-md-4">
+            <select class="form-control" id="slcsexo">
+                <option value="">Sexo</option>
+                <option value="M">Masculino</option>
+                <option value="F">Femenino</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" id="txtcolegio" value="" placeholder="Tu colegio" />
+        </div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" id="txtdistrito" value="" placeholder="Tu distrito" />
+        </div>
+        @*<div class="col-md-4">
+            <input type="text" class="form-control" id="txtugel" value="" placeholder="Ugel" />
+        </div>*@
+    </div>
+    <br />
+    <div class="row text-center">
+        <div class="col-md-12 text-center">
+            <button class="btn btn-success" onclick="GuardarDatosAlumno();">Empezar Cuestionario</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function GuardarDatosAlumno() {
+        var txtnombre = $('#txtnombre').val();
+        var txtapellidos = $('#txtapellidos').val();
+        var txtcorreo = $('#txtcorreo').val();
+        var txtlugarnacimiento = $('#txtlugarnacimiento').val();
+        var txtgrado = $('#txtgrado').val();
+        var slcedad = $('#slcedad option:selected').attr('value');
+        var slcsexo = $('#slcsexo option:selected').attr('value');
+        var txtcolegio = $('#txtcolegio').val();
+        var txtdistrito = $('#txtdistrito').val();
+
+        $.ajax({
+            url: vgruta + "actividad/InsertarActividadAlumno",
+            data: {
+                "wactividad": 1,
+                "wnombres" : txtnombre,
+                "wapellidos": txtapellidos,
+                "wlugarnacimiento": txtlugarnacimiento,
+                "wigrado": txtgrado,
+                "wiedad": slcedad,
+                "wisexo": slcsexo,
+                "wcolegio": txtcolegio,
+                "wdistrito": txtdistrito,
+                "wugel" : ""
+            },
+            cache: false,
+            type: "POST",
+            success: function (respuesta) {
+                window.location.href = vgruta + "actividad/fase?idrespuesta=" + respuesta;
+            },
+            error: function () {
+                console.log("No se ha podido obtener la información");
+            }
+        });
+
+    }
+</script>

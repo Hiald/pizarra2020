@@ -127,7 +127,7 @@ namespace backendAD
         }
 
         //VIDEO.mp4, etc
-        public List<edCurso> adListarVideo(int adidcurso, int adidalumno, string adfechabuscar)
+        public List<edCurso> adListarVideo(int adidcurso, int adidalumno, int adidsemana)
         {
             try
             {
@@ -137,7 +137,7 @@ namespace backendAD
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@_idcurso", MySqlDbType.Int32).Value = adidcurso;
                     cmd.Parameters.Add("@_idalumno", MySqlDbType.Int32).Value = adidalumno;
-                    cmd.Parameters.Add("@_fechabuscar", MySqlDbType.VarChar, 25).Value = adfechabuscar;
+                    cmd.Parameters.Add("@_idsemana", MySqlDbType.Int32).Value = adidsemana;
 
                     using (MySqlDataReader mdrd = cmd.ExecuteReader())
                     {
@@ -145,6 +145,7 @@ namespace backendAD
                         {
                             edCurso oenvideo = null;
                             int pos_idvideo = mdrd.GetOrdinal("idvideo");
+                            int pos_idsemana = mdrd.GetOrdinal("idsemana");
                             int pos_idcurso = mdrd.GetOrdinal("idcurso");
                             int pos_nombre = mdrd.GetOrdinal("nombre");
                             int pos_descripcion = mdrd.GetOrdinal("descripcion");
@@ -157,6 +158,7 @@ namespace backendAD
                             {
                                 oenvideo = new edCurso();
                                 oenvideo.idvideo = (mdrd.IsDBNull(pos_idvideo) ? 0 : mdrd.GetInt32(pos_idvideo));
+                                oenvideo.idsemana = (mdrd.IsDBNull(pos_idsemana) ? 0 : mdrd.GetInt32(pos_idsemana));
                                 oenvideo.idcurso = (mdrd.IsDBNull(pos_idcurso) ? 0 : mdrd.GetInt32(pos_idcurso));
                                 oenvideo.snombre = (mdrd.IsDBNull(pos_nombre) ? "-" : mdrd.GetString(pos_nombre));
                                 oenvideo.sdescripcion = (mdrd.IsDBNull(pos_descripcion) ? "-" : mdrd.GetString(pos_descripcion));
@@ -219,7 +221,7 @@ namespace backendAD
             }
         }
 
-        public int adRegistrarCurso(int adidcurso, string adnombre, string addescripcion, string adrutavideo)
+        public int adRegistrarCurso(int adidcurso, string adnombre, string addescripcion, string adrutavideo, int adidsemana)
         {
             try
             {
@@ -227,6 +229,7 @@ namespace backendAD
                 MySqlCommand cmd = new MySqlCommand("spcurso_crear", cnMysql);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@_idcurso", MySqlDbType.Int32).Value = adidcurso;
+                cmd.Parameters.Add("@_idsemana", MySqlDbType.Int32).Value = adidsemana;
                 cmd.Parameters.Add("@_nombre", MySqlDbType.VarChar, 50).Value = adnombre;
                 cmd.Parameters.Add("@_descripcion", MySqlDbType.VarChar, 150).Value = addescripcion;
                 cmd.Parameters.Add("@_rutavideo", MySqlDbType.VarChar, 250).Value = adrutavideo;
@@ -258,6 +261,7 @@ namespace backendAD
                             edCurso oenvideo = null;
                             int pos_idvideo = mdrd.GetOrdinal("idvideo");
                             int pos_idcurso = mdrd.GetOrdinal("idcurso");
+                            int pos_idsemana = mdrd.GetOrdinal("idsemana");
                             int pos_nombre = mdrd.GetOrdinal("nombre");
                             int pos_descripcion = mdrd.GetOrdinal("descripcion");
                             int pos_orden = mdrd.GetOrdinal("orden");
@@ -269,6 +273,7 @@ namespace backendAD
                                 oenvideo = new edCurso();
                                 oenvideo.idvideo = (mdrd.IsDBNull(pos_idvideo) ? 0 : mdrd.GetInt32(pos_idvideo));
                                 oenvideo.idcurso = (mdrd.IsDBNull(pos_idcurso) ? 0 : mdrd.GetInt32(pos_idcurso));
+                                oenvideo.idsemana = (mdrd.IsDBNull(pos_idsemana) ? 0 : mdrd.GetInt32(pos_idsemana));
                                 oenvideo.snombre = (mdrd.IsDBNull(pos_nombre) ? "-" : mdrd.GetString(pos_nombre));
                                 oenvideo.sdescripcion = (mdrd.IsDBNull(pos_descripcion) ? "-" : mdrd.GetString(pos_descripcion));
                                 oenvideo.iorden = (mdrd.IsDBNull(pos_orden) ? 0 : mdrd.GetInt32(pos_orden));

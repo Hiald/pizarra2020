@@ -1,5 +1,5 @@
 ﻿function AbrirCurso(enlace, titulo, idvideo, idcurso, wfechabuscar) {
-    redirectPostV4(vgrutaprincipal + 'curso/video', "wenlace", enlace, "wtitulo", titulo, "widvideo", idvideo, "widcurso", idcurso, "wfechabuscar", wfechabuscar);
+    redirectPostV4(vgrutaprincipal + 'curso/video', "wenlace", enlace, "wtitulo", titulo, "widvideo", idvideo, "widcurso", idcurso, "widsemana", wfechabuscar);
 }
 
 new Vue({

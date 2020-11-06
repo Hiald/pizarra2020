@@ -6,6 +6,7 @@ namespace frontendED
         public int idcursomalla { get; set; }
         public int idleccion { get; set; }
         public int idcurso { get; set; }
+        public int idsemana { get; set; }
         public int iorden { get; set; }
         public int igrupo { get; set; }
         public int idgrado { get; set; }

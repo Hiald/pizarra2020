@@ -1,6 +1,5 @@
-﻿function AbrirCurso(idcurso) {
-    var fechabuscar = gfechabuscar;    
-    redirectPostV3(vgrutaprincipal + 'curso/curso', "widcurso", idcurso, "wfechabuscar", fechabuscar);
+﻿function AbrirCurso(idsemana) {
+    redirectPostV3(vgrutaprincipal + 'curso/curso', "widcurso", idcurso, "widsemana", idsemana);
 }
 
 new Vue({

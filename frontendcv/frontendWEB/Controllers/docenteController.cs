@@ -315,7 +315,7 @@ namespace frontendWEB.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> registrarCurso(int wdidcurso, string wdnombre, string wddescripcion, string wdrutavideo)
+        public async Task<JsonResult> registrarCurso(int wdidcurso, string wdnombre, string wddescripcion, string wdrutavideo, int widsemana)
         {
             try
             {
@@ -328,7 +328,8 @@ namespace frontendWEB.Controllers
                     client.DefaultRequestHeaders.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     HttpResponseMessage Reswsru = await client.GetAsync("api/grado/APIRegistrarCurso?wdidcurso=" + wdidcurso
-                        + "&wdnombre=" + wdnombre + "&wddescripcion=" + wddescripcion + "&wdrutavideo=" + wdrutavideo);
+                        + "&wdnombre=" + wdnombre + "&wddescripcion=" + wddescripcion + "&wdrutavideo=" + wdrutavideo
+                        + "&widsemana=" + widsemana);
                     if (Reswsru.IsSuccessStatusCode)
                     {
                         var lpoEnUsuarioreg = Reswsru.Content.ReadAsAsync<string>().Result;

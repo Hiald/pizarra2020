@@ -20,3 +20,14 @@ C:\Users\jonat\Desktop\proyectoClaseVirtual\backendcv\backendAD\obj\Debug\backen
 C:\Users\jonat\Desktop\proyectoClaseVirtual\backendcv\backendAD\obj\Debug\backendAD.csproj.CopyComplete
 C:\Users\jonat\Desktop\proyectoClaseVirtual\backendcv\backendAD\obj\Debug\backendAD.dll
 C:\Users\jonat\Desktop\proyectoClaseVirtual\backendcv\backendAD\obj\Debug\backendAD.pdb
+C:\Users\jonat\Desktop\proyectoClaseVirtual\pizarra2020\backendcv\backendAD\bin\Debug\backendAD.dll.config
+C:\Users\jonat\Desktop\proyectoClaseVirtual\pizarra2020\backendcv\backendAD\bin\Debug\backendAD.dll
+C:\Users\jonat\Desktop\proyectoClaseVirtual\pizarra2020\backendcv\backendAD\bin\Debug\backendAD.pdb
+C:\Users\jonat\Desktop\proyectoClaseVirtual\pizarra2020\backendcv\backendAD\bin\Debug\backendED.dll
+C:\Users\jonat\Desktop\proyectoClaseVirtual\pizarra2020\backendcv\backendAD\bin\Debug\MySql.Data.dll
+C:\Users\jonat\Desktop\proyectoClaseVirtual\pizarra2020\backendcv\backendAD\bin\Debug\backendED.pdb
+C:\Users\jonat\Desktop\proyectoClaseVirtual\pizarra2020\backendcv\backendAD\obj\Debug\backendAD.csprojAssemblyReference.cache
+C:\Users\jonat\Desktop\proyectoClaseVirtual\pizarra2020\backendcv\backendAD\obj\Debug\backendAD.csproj.CoreCompileInputs.cache
+C:\Users\jonat\Desktop\proyectoClaseVirtual\pizarra2020\backendcv\backendAD\obj\Debug\backendAD.csproj.CopyComplete
+C:\Users\jonat\Desktop\proyectoClaseVirtual\pizarra2020\backendcv\backendAD\obj\Debug\backendAD.dll
+C:\Users\jonat\Desktop\proyectoClaseVirtual\pizarra2020\backendcv\backendAD\obj\Debug\backendAD.pdb

@@ -61,7 +61,7 @@ namespace backendTD
         }
 
         //VIDEO.mp4, etc
-        public List<edCurso> tdListarVideo(int tdidcurso, int tdidalumno, string tdfechabuscar)
+        public List<edCurso> tdListarVideo(int tdidcurso, int tdidalumno, int tdidsemana)
         {
             List<edCurso> loenGrado = new List<edCurso>();
             try
@@ -72,7 +72,7 @@ namespace backendTD
                     using (MySqlTransaction scope = con.BeginTransaction())
                     {
                         iadGrado = new adGrado(con);
-                        loenGrado = iadGrado.adListarVideo(tdidcurso, tdidalumno, tdfechabuscar);
+                        loenGrado = iadGrado.adListarVideo(tdidcurso, tdidalumno, tdidsemana);
                         scope.Commit();
                     }
                 }
@@ -111,7 +111,7 @@ namespace backendTD
 
         }
 
-        public int tdRegistrarCurso(int tdidcurso, string tdnombre, string tddescripcion, string tdrutavideo)
+        public int tdRegistrarCurso(int tdidcurso, string tdnombre, string tddescripcion, string tdrutavideo, int tdidsemana)
         {
             try
             {
@@ -122,7 +122,7 @@ namespace backendTD
                     using (MySqlTransaction scope = con.BeginTransaction())
                     {
                         iadGrado = new adGrado(con);
-                        iResultado = iadGrado.adRegistrarCurso(tdidcurso, tdnombre, tddescripcion, tdrutavideo);
+                        iResultado = iadGrado.adRegistrarCurso(tdidcurso, tdnombre, tddescripcion, tdrutavideo, tdidsemana);
                         scope.Commit();
                     }
                 }

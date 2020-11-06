@@ -19,7 +19,7 @@ namespace frontendWEB.Controllers
     {
         [HttpPost]
         [SeguridadSesion]
-        public async Task<ActionResult> curso(int widcurso, string wfechabuscar)
+        public async Task<ActionResult> curso(int widcurso, int widsemana)
         {
             //wfechabuscar formato = 25/04/2020
             int GIdusuario = UtlAuditoria.ObtenerIdUsuario();
@@ -32,7 +32,7 @@ namespace frontendWEB.Controllers
                 client.BaseAddress = new Uri(MvcApplication.wsRoutepizarra);
                 client.DefaultRequestHeaders.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage Reslistarusu = await client.GetAsync("api/grado/APIBuscarCurso?widmodulo=" + widcurso + "&widalumno=" + GIdusuario + "&wfechabuscar=" + wfechabuscar);
+                HttpResponseMessage Reslistarusu = await client.GetAsync("api/grado/APIBuscarCurso?widmodulo=" + widcurso + "&widalumno=" + GIdusuario + "&widsemana=" + widsemana);
                 if (Reslistarusu.IsSuccessStatusCode)
                 {
                     var rwsapilu = Reslistarusu.Content.ReadAsAsync<string>().Result;
@@ -60,7 +60,7 @@ namespace frontendWEB.Controllers
                 }
             }
             ViewBag.Gwidcurso = widcurso;
-            ViewBag.Gfechabuscar = wfechabuscar;
+            ViewBag.Gfechabuscar = widsemana;
             ViewBag.loenCursoConteo = loenCurso.Count;
             ViewBag.loenCurso = loenCurso;
             ViewBag.Gusuario = GIdusuario;
@@ -71,7 +71,7 @@ namespace frontendWEB.Controllers
 
         [HttpPost]
         [SeguridadSesion]
-        public ActionResult video(string wenlace, string wtitulo, int widvideo, int widcurso, string wfechabuscar)
+        public ActionResult video(string wenlace, string wtitulo, int widvideo, int widcurso, int widsemana)
         {
             int GIdusuario = UtlAuditoria.ObtenerIdUsuario();
             string GNombrecompleto = UtlAuditoria.ObtenerNombre();
@@ -80,7 +80,7 @@ namespace frontendWEB.Controllers
             var Senlace = "http://jurado-001-site3.gtempurl.com/" + wenlace;
 
             ViewBag.Gwidcurso = widcurso;
-            ViewBag.Gfechabuscar = wfechabuscar;
+            ViewBag.Gfechabuscar = widsemana;
             ViewBag.Enlace = wenlace;
             ViewBag.idvideo = widvideo;
             ViewBag.titulo = wtitulo;
@@ -91,17 +91,17 @@ namespace frontendWEB.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> ListarVideo(int widcursol, string wfechabuscarl)
+        public async Task<ActionResult> ListarVideo(int widcursol, int wfechabuscarl)
         {
             int GIdusuario = UtlAuditoria.ObtenerIdUsuario();
-            var objResultado = new object();            
+            var objResultado = new object();
             List<edCurso> loenCurso = new List<edCurso>();
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(MvcApplication.wsRoutepizarra);
                 client.DefaultRequestHeaders.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage Reslistarusu = await client.GetAsync("api/grado/APIBuscarCurso?widmodulo=" + widcursol + "&widalumno=" + GIdusuario + "&wfechabuscar=" + wfechabuscarl);
+                HttpResponseMessage Reslistarusu = await client.GetAsync("api/grado/APIBuscarCurso?widmodulo=" + widcursol + "&widalumno=" + GIdusuario + "&widsemana=" + wfechabuscarl);
                 if (Reslistarusu.IsSuccessStatusCode)
                 {
                     var rwsapilu = Reslistarusu.Content.ReadAsAsync<string>().Result;

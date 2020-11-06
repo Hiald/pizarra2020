@@ -47,13 +47,13 @@ namespace globalws.Controllers
 
         //VIDEO.mp4, etc
         [HttpGet]
-        public string APIBuscarCurso(int widmodulo, int widalumno, string wfechabuscar)
+        public string APIBuscarCurso(int widmodulo, int widalumno, int widsemana)
         {
             List<edCurso> wsenVideo = new List<edCurso>();
             try
             {
                 itdGrado = new tdGrado();
-                wsenVideo = itdGrado.tdListarVideo(widmodulo, widalumno, wfechabuscar);
+                wsenVideo = itdGrado.tdListarVideo(widmodulo, widalumno, widsemana);
                 return JsonConvert.SerializeObject(wsenVideo);
             }
             catch (Exception ex)
@@ -79,13 +79,13 @@ namespace globalws.Controllers
         }
 
         [HttpGet]
-        public int APIRegistrarCurso(int wdidcurso, string wdnombre, string wddescripcion, string wdrutavideo)
+        public int APIRegistrarCurso(int wdidcurso, string wdnombre, string wddescripcion, string wdrutavideo, int widsemana)
         {
             int iresultado = -1;
             try
             {
                 itdGrado = new tdGrado();
-                iresultado = itdGrado.tdRegistrarCurso(wdidcurso, wdnombre, wddescripcion, wdrutavideo);
+                iresultado = itdGrado.tdRegistrarCurso(wdidcurso, wdnombre, wddescripcion, wdrutavideo, widsemana);
                 return iresultado;
             }
             catch (Exception ex)

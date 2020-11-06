@@ -18,7 +18,7 @@ new Vue({
             window.location.href = vgrutaprincipal + "main/index";
         },
         AbrirCurso: function (enlace, titulo, idcurso) {
-            redirectPostV4(vgrutaprincipal + 'curso/video', "wenlace", enlace, "wtitulo", titulo, "widvideo", vIdvideo, "widcurso", idcurso, "wfechabuscar", vIdFechaBuscar);
+            redirectPostV4(vgrutaprincipal + 'curso/video', "wenlace", enlace, "wtitulo", titulo, "widvideo", vIdvideo, "widcurso", idcurso, "widsemana", vIdFechaBuscar);
         },
         AbrirVideo: function () {
             axios.post(vgrutaprincipal + 'docente/ListarArchivo', {

@@ -1,4 +1,6 @@
 ﻿@{
+    /**/
+
     ViewBag.Title = "Pizarra 21";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
@@ -11,70 +13,7 @@
     today = yyyy + '-' + mm + '-' + dd;
 
     var gfechabuscar = '';
-    document.addEventListener('DOMContentLoaded', function () {
-        var calendarEl = document.getElementById('calendar');
-        var calendar;
-
-        calendar = new FullCalendar.Calendar(calendarEl, {
-            plugins: ['bootstrap', 'interaction', 'dayGrid', 'timeGrid', 'list'],
-            themeSystem: 'bootstrap',
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: ''
-            },
-            defaultDate: today,
-            weekNumbers: true,
-            locale: 'es',
-            navLinks: false, // can click day/week names to navigate views
-            editable: true,
-            selectable: true,
-            selectMirror: true,
-            longPressDelay: 100,
-            select: function (arg) {
-
-                var Fdd = String(arg.start.getDate()).padStart(2, '0');
-                var Fmm = String(arg.start.getMonth() + 1).padStart(2, '0');
-                var Fyyyy = arg.start.getFullYear();
-                var fechaSeleccionada = Fdd + '/' + Fmm + '/' + Fyyyy;
-
-                $('#modalcurso').modal('show');
-                gfechabuscar = fechaSeleccionada;
-                /*if (title) {
-                    calendar.addEvent({
-                        title: "",
-                        start: arg.start,
-                        end: arg.end,
-                        allDay: arg.allDay
-                    })
-                }*/
-                calendar.unselect()
-
-            },
-            eventClick: function (calEvent, jsEvent, view) {
-
-                /*alert('Event: ' + calEvent.title);
-                alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-                alert('View: ' + view.name);*/
-
-                // change the border color just for fun
-                $(this).css('border-color', 'red');
-
-            },
-            /*dayClick: function (date, allDay, jsEvent, view) {
-                 alert("clicked on day");
-             },*/
-            eventLimit: true,
-            events: [
-                {
-                    title: 'All Day Event',
-                    start: '2020-02-01'
-                }
-            ]
-        });
-        calendar.render();
-
-    });
+    var idcurso = 0;
 
 </script>
 <style>
@@ -95,6 +34,24 @@
     .fc-day:hover {
         background: #36a925;
         cursor: pointer;
+    }
+
+    @@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+        .cardstyle {
+            width: 12rem;
+        }
+    }
+
+    @@media (min-width: 481px) and (max-width: 767px) {
+        .cardstyle {
+            width: 12rem;
+        }
+    }
+
+    @@media (min-width: 320px) and (max-width: 480px) {
+        .cardstyle {
+            width: 21rem;
+        }
     }
 </style>
 
@@ -158,15 +115,54 @@
         <div class="row text-center">
             <div class="col-md-12 text-center">
                 <br />
-                <h1 class="h1" style="font-family: sans-serif">Hola! @ViewBag.Gnombre, selecciona una fecha para ver la clase</h1>
+                <h1 class="h1" style="font-family: sans-serif">Hola! @ViewBag.Gnombre, selecciona un curso para ver las semanas</h1>
             </div>
         </div>
 
         <v-layout>
             <v-container grid-list-md grid-list-xs>
-                <v-layout row wrap class="justify-center">
+                <v-layout row wrap class="justify-center text-center">
                     <v-flex lg11 xs11 md11 sm11 xl11 class="p-0">
-                        <div id='calendar'></div>
+                        <div class="row text-center align-center pr-3">
+
+                            @if (ViewBag.loenGradoConteo == 1 && ViewBag.loenGrado[0].idcurso == 0)
+                            {
+                                <div class="col-md-3 text-center">
+                                    <h4 class="h4"> No hay cursos para este día</h4>
+                                </div>
+                            }
+                            else
+                            {
+                                foreach (var ent in ViewBag.loenGrado)
+                                {
+                                    if (ent.srutaimagen == "-" && ent.idcurso > 0)
+                                    {
+                                        <div class="col-md-3 text-center pb-2">
+                                            <div class="card" style="width: 18rem;display:block !important">
+                                                <img class="card-img-top" src="~/Content/image/acercade1.jpg" style="width:45%;text-align:center">
+                                                <div class="card-body">
+                                                    <p class="card-text">Curso de @ent.snombre</p>
+                                                    <button class="btn btn-lg btn-outline-success" onclick="AbrirModal(@ent.idcurso)">Ir a @ent.snombre</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    else if (ent.idcurso > 0)
+                                    {
+                                        <div class="col-md-3 text-center pb-2">
+                                            <div class="card" style="width: 18rem;display:block !important">
+                                                <img class="card-img-top" src="@ent.srutaimagen" alt="Card image cap" style="width:70%;text-align:center">
+                                                <div class="card-body">
+                                                    <p class="card-text">Curso de @ent.snombre</p>
+                                                    <button class="btn btn-lg btn-outline-success" onclick="AbrirModal(@ent.idcurso)">Ir al Curso</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            }
+
+                        </div>
                     </v-flex>
                 </v-layout>
             </v-container>
@@ -174,55 +170,216 @@
     </v-app>
 </div>
 
+
 <div class="modal fade" id="modalcurso" tabindex="-1" role="dialog" aria-labelledby="modalcursoLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Selecciona un curso</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Selecciona una semana</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body text-center">
+                <div class="row text-center align-center pr-2">
+
+                    <div class="col-md-2 text-md-center pb-2">
+                        <div class="card cardstyle" style="display:block !important">
+                            <div class="card-body">
+                                <button class="btn btn-lg btn-outline-success" onclick="AbrirCurso(1)">Semana 1</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-md-center pb-2">
+                        <div class="card cardstyle" style="display:block !important">
+                            <div class="card-body">
+                                <button class="btn btn-lg btn-outline-success" onclick="AbrirCurso(2)">Semana 2</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-md-center pb-2">
+                        <div class="card cardstyle" style="display:block !important">
+                            <div class="card-body">
+                                <button class="btn btn-lg btn-outline-success" onclick="AbrirCurso(3)">Semana 3</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-md-center pb-2">
+                        <div class="card cardstyle" style="display:block !important">
+                            <div class="card-body">
+                                <button class="btn btn-lg btn-outline-success" onclick="AbrirCurso(4)">Semana 4</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-md-center pb-2">
+                        <div class="card cardstyle" style="display:block !important">
+                            <div class="card-body">
+                                <button class="btn btn-lg btn-outline-success" onclick="AbrirCurso(5)">Semana 5</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-md-center pb-2">
+                        <div class="card cardstyle" style="display:block !important">
+                            <div class="card-body">
+                                <button class="btn btn-lg btn-outline-success" onclick="AbrirCurso(6)">Semana 6</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <br />
                 <div class="row text-center align-center pr-3">
 
-                    @if (ViewBag.loenGradoConteo == 1 && ViewBag.loenGrado[0].idcurso == 0)
-                    {
-                        <div class="col-md-3 text-md-center">
-                            <h4 class="h4"> No hay cursos para este día</h4>
+                    <div class="col-md-2 text-md-center pb-2">
+                        <div class="card cardstyle" style="display:block !important">
+                            <div class="card-body">
+                                <button class="btn btn-lg btn-outline-success" onclick="AbrirCurso(7)">Semana 7</button>
+                            </div>
                         </div>
-                    }
-                    else
-                    {
-                        foreach (var ent in ViewBag.loenGrado)
-                        {
-                            if (ent.srutaimagen == "-" && ent.idcurso > 0)
-                            {
-                                <div class="col-md-3 text-md-center pb-2">
-                                    <div class="card" style="width: 18rem;display:block !important">
-                                        <img class="card-img-top" src="~/Content/image/acercade1.jpg" style="width:45%;text-align:center">
-                                        <div class="card-body">
-                                            <p class="card-text">Curso de @ent.snombre</p>
-                                            <button class="btn btn-lg btn-outline-success" onclick="AbrirCurso(@ent.idcurso)">Ir a @ent.snombre</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-                            else if (ent.idcurso > 0)
-                            {
-                                <div class="col-md-3 text-md-center pb-2">
-                                    <div class="card" style="width: 18rem;display:block !important">
-                                        <img class="card-img-top" src="@ent.srutaimagen" alt="Card image cap" style="width:70%;text-align:center">
-                                        <div class="card-body">
-                                            <p class="card-text">Curso de @ent.snombre</p>
-                                            <button class="btn btn-lg btn-outline-success" onclick="AbrirCurso(@ent.idcurso)">Ir al Curso</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-                        }
-                    }
+                    </div>
+                    <div class="col-md-2 text-md-center pb-2">
+                        <div class="card cardstyle" style="display:block !important">
+                            <div class="card-body">
+                                <button class="btn btn-lg btn-outline-success" onclick="AbrirCurso(8)">Semana 8</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-md-center pb-2">
+                        <div class="card cardstyle" style="display:block !important">
 
+                            <div class="card-body">
+                                <button class="btn btn-lg btn-outline-success" onclick="AbrirCurso(9)">Semana 9</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-md-center pb-2">
+                        <div class="card cardstyle" style="display:block !important">
+
+                            <div class="card-body">
+                                <button class="btn btn-lg btn-outline-success" onclick="AbrirCurso(10)">Semana 10</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-md-center pb-2">
+                        <div class="card cardstyle" style="display:block !important">
+
+                            <div class="card-body">
+                                <button class="btn btn-lg btn-outline-success" onclick="AbrirCurso(11)">Semana 11</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-md-center pb-2">
+                        <div class="card cardstyle" style="display:block !important">
+
+                            <div class="card-body">
+                                <button class="btn btn-lg btn-outline-success" onclick="AbrirCurso(12)">Semana 12</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <br />
+                <div class="row text-center align-center pr-3">
+
+                    <div class="col-md-2 text-md-center pb-2">
+                        <div class="card cardstyle" style="display:block !important">
+
+                            <div class="card-body">
+                                <button class="btn btn-lg btn-outline-success" onclick="AbrirCurso(13)">Semana 13</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-md-center pb-2">
+                        <div class="card cardstyle" style="display:block !important">
+
+                            <div class="card-body">
+                                <button class="btn btn-lg btn-outline-success" onclick="AbrirCurso(14)">Semana 14</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-md-center pb-2">
+                        <div class="card cardstyle" style="display:block !important">
+
+                            <div class="card-body">
+                                <button class="btn btn-lg btn-outline-success" onclick="AbrirCurso(15)">Semana 15</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-md-center pb-2">
+                        <div class="card cardstyle" style="display:block !important">
+
+                            <div class="card-body">
+                                <button class="btn btn-lg btn-outline-success" onclick="AbrirCurso(16)">Semana 16</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-md-center pb-2">
+                        <div class="card cardstyle" style="display:block !important">
+
+                            <div class="card-body">
+                                <button class="btn btn-lg btn-outline-success" onclick="AbrirCurso(17)">Semana 17</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-md-center pb-2">
+                        <div class="card cardstyle" style="display:block !important">
+
+                            <div class="card-body">
+                                <button class="btn btn-lg btn-outline-success" onclick="AbrirCurso(18)">Semana 18</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <br />
+                <div class="row text-center align-center pr-3">
+
+                    <div class="col-md-2 text-md-center pb-2">
+                        <div class="card cardstyle" style="display:block !important">
+
+                            <div class="card-body">
+                                <button class="btn btn-lg btn-outline-success" onclick="AbrirCurso(19)">Semana 19</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-md-center pb-2">
+                        <div class="card cardstyle" style="display:block !important">
+
+                            <div class="card-body">
+                                <button class="btn btn-lg btn-outline-success" onclick="AbrirCurso(20)">Semana 20</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-md-center pb-2">
+                        <div class="card cardstyle" style="display:block !important">
+
+                            <div class="card-body">
+                                <button class="btn btn-lg btn-outline-success" onclick="AbrirCurso(21)">Semana 21</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-md-center pb-2">
+                        <div class="card cardstyle" style="display:block !important">
+
+                            <div class="card-body">
+                                <button class="btn btn-lg btn-outline-success" onclick="AbrirCurso(22)">Semana 22</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-md-center pb-2">
+                        <div class="card cardstyle" style="display:block !important">
+                            <div class="card-body">
+                                <button class="btn btn-lg btn-outline-success" onclick="AbrirCurso(23)">Semana 23</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-md-center pb-2">
+                        <div class="card cardstyle" style="display:block !important">
+                            <div class="card-body">
+                                <button class="btn btn-lg btn-outline-success" onclick="AbrirCurso(24)">Semana 24</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -232,6 +389,15 @@
     </div>
 </div>
 
+
 @section scripts{
     <script src="~/Content/src/main/Principal.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.js"></script>
+    <script>
+
+        function AbrirModal(pidcurso) {
+            idcurso = pidcurso;
+            $('#modalcurso').modal('show');
+        }
+    </script>
 }

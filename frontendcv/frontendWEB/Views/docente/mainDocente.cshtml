@@ -120,8 +120,34 @@
             <div class="col-md-4">
                 <form>
                     <div class="form-group">
-                        <label for="txDescripcion" style="font-weight:600">Fecha de subida del curso</label>
-                        <input type="text" class="form-control" id="txDescripcion" style="font-family:sans-serif" autocomplete="off">
+                        <label for="txDescripcion" style="font-weight:600">Semana de subida del curso</label>
+                        <select id="slcsemana" class="form-control">
+                            <option value="0">Seleccione</option>
+                            <option value="1">Semana 1</option>
+                            <option value="2">Semana 2</option>
+                            <option value="3">Semana 3</option>
+                            <option value="4">Semana 4</option>
+                            <option value="5">Semana 5</option>
+                            <option value="6">Semana 6</option>
+                            <option value="7">Semana 7</option>
+                            <option value="8">Semana 8</option>
+                            <option value="9">Semana 9</option>
+                            <option value="10">Semana 10</option>
+                            <option value="11">Semana 11</option>
+                            <option value="12">Semana 12</option>
+                            <option value="13">Semana 13</option>
+                            <option value="14">Semana 14</option>
+                            <option value="15">Semana 15</option>
+                            <option value="16">Semana 16</option>
+                            <option value="17">Semana 17</option>
+                            <option value="18">Semana 18</option>
+                            <option value="19">Semana 19</option>
+                            <option value="20">Semana 20</option>
+                            <option value="21">Semana 21</option>
+                            <option value="22">Semana 22</option>
+                            <option value="23">Semana 23</option>
+                            <option value="24">Semana 24</option>
+                        </select>
                     </div>
                 </form>
             </div>
@@ -268,12 +294,12 @@
         function RegistrarVideo() {
             var idCurso = $('#TxCurso option:selected').attr('value');
             var txCursoNombre = $('#txNombreVideo').val();
-            var txDescripcion = $('#txDescripcion').val();
             var txUrl = $('#txCodYoutube').val();
+            var slcsemana = $('#slcsemana option').filter(':selected').val();
 
             if (idCurso == "") {
                 alert("Por favor, buscar un curso para poder registar");
-            } else if (txUrl == "" || txDescripcion.substr(2) == "/") {
+            } else if (txUrl == "") {
                 alert("Por favor, completar los campos");
             } else {
                 var urlYoutube = 'https://www.youtube.com/embed/' + txUrl;
@@ -285,14 +311,14 @@
                     data: {
                         "wdidcurso": idCurso,
                         "wdnombre": txCursoNombre,
-                        "wddescripcion": txDescripcion,
-                        "wdrutavideo": urlYoutube
+                        "wddescripcion": "",
+                        "wdrutavideo": urlYoutube,
+                        "widsemana": slcsemana
                     },
                     success: function (respuesta) {
                         $('#resBuscar').attr('data-idcurso', 0);
                         $('#resBuscar').text("");
                         $('#txNombreVideo').val("");
-                        $('#txDescripcion').val("");
                         $('#txCodYoutube').val("");
                         alert("Registrado correctamente!");
                     },

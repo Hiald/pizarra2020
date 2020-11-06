@@ -192,6 +192,7 @@ CREATE TABLE IF NOT EXISTS video(  /* ESTA EL NOMBRE DEL VIDEO: circunferencias,
   `modificado` BIT(1) NULL,
   `fechareg` DATETIME NULL,
   `fechamod` DATETIME NULL,
+  `idsemana` INT(11) NULL,
   FOREIGN KEY (idcurso) REFERENCES curso(idcurso),
 PRIMARY KEY (`idvideo`));
 
@@ -727,7 +728,7 @@ DELIMITER ;
 
 /*DROP procedure IF EXISTS `spvideo_listar`;*/
 DELIMITER $$
-CREATE PROCEDURE `spvideo_listar` (IN _idcurso INT, IN _idalumno INT, IN _fechabuscar VARCHAR(25))
+CREATE PROCEDURE `spvideo_listar` (IN _idcurso INT, IN _idalumno INT, IN _idsemana INT)
 BEGIN
 -- FORMATO = 25/04/2020
 IF ((SELECT DATE(fechafin) FROM pago WHERE idalumno = _idalumno AND activo = 1 LIMIT 1) >= CURDATE()) THEN
@@ -735,6 +736,7 @@ BEGIN
 
     SELECT
     idvideo
+    ,idsemana
     ,idcurso
     ,nombre
     ,descripcion
@@ -742,8 +744,7 @@ BEGIN
     ,rutavideo
     ,rutaenlace
     ,0 as '_result'
-  from video where activo = 1 AND idcurso = _idcurso AND 
-    (DATE_FORMAT(fechareg, '%Y-%m-%d') = str_to_date(_fechabuscar, '%d/%m/%Y') OR _fechabuscar = 'regvideo') ORDER BY idvideo ASC;
+  from video where activo = 1 AND idcurso = _idcurso AND idsemana = _idsemana ORDER BY idvideo ASC;
 
 END;
 ELSE
@@ -751,6 +752,7 @@ BEGIN
 
  SELECT 
     0 as 'idvideo'
+    ,0 as 'idsemana'
     ,0 as 'idcurso'
     ,'-' as 'nombre'
     ,'-' as 'descripcion'
@@ -885,6 +887,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE `spcurso_crear` (
 IN _idcurso INT
+,IN _idsemana INT
 ,IN _nombre VARCHAR(50)
 ,IN _descripcion VARCHAR(150)
 ,IN _rutavideo VARCHAR(250)
@@ -894,6 +897,7 @@ BEGIN
 INSERT INTO video 
     (idcurso
     ,nombre
+    ,idsemana
     ,descripcion
     ,orden
     ,rutavideo
@@ -902,6 +906,7 @@ INSERT INTO video
 VALUES(
     _idcurso
     ,_nombre
+    ,_idsemana
     ,_nombre
     ,1
     ,_rutavideo
@@ -1034,9 +1039,10 @@ BEGIN
     SELECT
     v.idvideo
     ,c.idetapa as 'idcurso'
+    ,v.idsemana
     ,v.nombre
     ,c.nombre as 'descripcion'
-    ,c.idgrado as  'orden'
+    ,c.idgrado as 'orden'
     ,v.rutavideo
     ,v.rutaenlace
   from video v 

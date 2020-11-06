@@ -10,3 +10,9 @@ C:\Users\jonat\Desktop\proyectoClaseVirtual\backendcv\backendED\obj\Debug\backen
 C:\Users\jonat\Desktop\proyectoClaseVirtual\backendcv\backendED\obj\Debug\backendED.csproj.CoreCompileInputs.cache
 C:\Users\jonat\Desktop\proyectoClaseVirtual\backendcv\backendED\obj\Debug\backendED.dll
 C:\Users\jonat\Desktop\proyectoClaseVirtual\backendcv\backendED\obj\Debug\backendED.pdb
+C:\Users\jonat\Desktop\proyectoClaseVirtual\pizarra2020\backendcv\backendED\bin\Debug\backendED.dll
+C:\Users\jonat\Desktop\proyectoClaseVirtual\pizarra2020\backendcv\backendED\bin\Debug\backendED.pdb
+C:\Users\jonat\Desktop\proyectoClaseVirtual\pizarra2020\backendcv\backendED\obj\Debug\backendED.csprojAssemblyReference.cache
+C:\Users\jonat\Desktop\proyectoClaseVirtual\pizarra2020\backendcv\backendED\obj\Debug\backendED.csproj.CoreCompileInputs.cache
+C:\Users\jonat\Desktop\proyectoClaseVirtual\pizarra2020\backendcv\backendED\obj\Debug\backendED.dll
+C:\Users\jonat\Desktop\proyectoClaseVirtual\pizarra2020\backendcv\backendED\obj\Debug\backendED.pdb
