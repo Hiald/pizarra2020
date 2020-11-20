@@ -1066,3 +1066,312 @@ END$$
 
 DELIMITER ;
 
+-- --------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE t_actividad (
+  `id_actividad` int(11) NOT NULL AUTO_INCREMENT,
+  `i_tipo_examen` INT NOT NULL,
+  `v_nombre` VARCHAR(50) NOT NULL,
+  `v_descripcion` VARCHAR(150) DEFAULT NULL,
+  `i_puntaje_minimo` INT NOT NULL,
+  `i_puntaje_maximo` INT NOT NULL,
+  `i_tiempo` INT NOT NULL,
+  `i_intentos` INT NOT NULL,
+  `t_hora_examen` TIME NOT NULL,
+  `d_fecha_examen` DATE NOT NULL,
+  `i_total_puntaje` INT NOT NULL,
+  `b_estado` BIT(1) NOT NULL,
+  `dt_fecharegistro` DATETIME NOT NULL,
+  PRIMARY KEY (`id_actividad`)
+);
+
+CREATE TABLE t_actividad_detalle (
+  `id_actividad_detalle` INT NOT NULL AUTO_INCREMENT,
+  `id_actividad` INT NOT NULL,
+  `v_pregunta` VARCHAR(500) NOT NULL,
+  `v_alternativa_A` VARCHAR(50) NOT NULL,
+  `v_alternativa_B` VARCHAR(50) NOT NULL,
+  `v_alternativa_C` VARCHAR(50) NOT NULL,
+  `v_alternativa_D` VARCHAR(50) NOT NULL,
+  `v_alternativa_E` VARCHAR(50) NOT NULL,
+  `b_respuesta_A` BIT(1) NOT NULL,
+  `b_respuesta_B` BIT(1) NOT NULL,
+  `b_respuesta_C` BIT(1) NOT NULL,
+  `b_respuesta_D` BIT(1) NOT NULL,
+  `b_respuesta_E` BIT(1) NOT NULL,
+  `b_respuesta_F` BIT(1) NOT NULL,
+  `b_respuesta_G` BIT(1) NOT NULL,
+  `b_respuesta_H` BIT(1) NOT NULL,
+  `b_respuesta_I` BIT(1) NOT NULL,
+  `i_tipo_pregunta` INT NOT NULL,
+  `i_puntaje_pregunta` INT NOT NULL,
+  `b_estado` BIT(1) NOT NULL,
+  FOREIGN KEY (`id_actividad`) REFERENCES t_actividad(`id_actividad`),
+  PRIMARY KEY (`id_actividad_detalle`)
+);
+
+CREATE TABLE t_actividad_alumno (
+  `id_actividad_alumno` INT NOT NULL AUTO_INCREMENT,
+  `id_actividad` INT NOT NULL,
+  `v_nombres` VARCHAR(150) DEFAULT NULL,
+  `v_apellidos` VARCHAR(150) DEFAULT NULL,
+  `v_lugarnacimiento` VARCHAR(150) DEFAULT NULL,
+  `i_grado` INT DEFAULT NULL,
+  `i_edad` INT DEFAULT NULL,
+  `i_sexo` INT DEFAULT NULL,
+  `v_colegio` VARCHAR(100) DEFAULT NULL,
+  `v_celular` VARCHAR(100) DEFAULT NULL,
+  `v_correo`  VARCHAR(100) DEFAULT NULL,
+  `v_distrito` VARCHAR(100) DEFAULT NULL,
+  `v_ugel` VARCHAR(100) DEFAULT NULL,
+  `i_carrera1` VARCHAR(50) DEFAULT NULL,
+  `i_carrera2` VARCHAR(50) DEFAULT NULL,
+  `i_carrera3` VARCHAR(50) DEFAULT NULL,
+  `i_carrera4` VARCHAR(50) DEFAULT NULL,
+  `i_carrera5` VARCHAR(50) DEFAULT NULL,
+  `i_puntaje` INT DEFAULT NULL,
+  `v_comentario` VARCHAR(500) DEFAULT NULL,
+  `b_estado` BIT(1) NOT NULL,
+  `dt_fecharegistro` DATETIME NOT NULL,
+  `dt_fechafin` DATETIME NOT NULL,
+  PRIMARY KEY (`id_actividad_alumno`)
+);
+
+CREATE TABLE t_actividad_alumno_detalle (
+  `id_actividad_alumno_detalle` INT NOT NULL AUTO_INCREMENT,
+  `id_actividad_alumno` INT NOT NULL,
+  `id_actividad_detalle` INT NOT NULL,
+  `i_pregunta` INT NOT NULL,
+  `i_fase` INT NOT NULL,
+  `b_respuesta_A` BIT(1) NOT NULL,
+  `b_respuesta_B` BIT(1) NOT NULL,
+  `b_respuesta_C` BIT(1) NOT NULL,
+  `b_respuesta_D` BIT(1) NOT NULL,
+  `b_respuesta_E` BIT(1) NOT NULL,
+  `b_respuesta_F` BIT(1) NOT NULL,
+  `b_respuesta_G` BIT(1) NOT NULL,
+  `b_respuesta_H` BIT(1) NOT NULL,
+  `b_respuesta_I` BIT(1) NOT NULL,
+  `i_puntaje` INT NOT NULL,
+  `i_tipo_pregunta` INT NOT NULL,
+  `b_estado` BIT(1) NOT NULL,
+  FOREIGN KEY (`id_actividad_alumno`) REFERENCES t_actividad_alumno(`id_actividad_alumno`),
+  FOREIGN KEY (`id_actividad_detalle`) REFERENCES t_actividad_detalle(`id_actividad_detalle`),
+  PRIMARY KEY (`id_actividad_alumno_detalle`)
+);
+
+-- --------------------------------------------------
+
+DELIMITER $$
+CREATE PROCEDURE `sp_obtener_preguntas`(IN _idactividad int)
+BEGIN
+  select 
+    ad.id_actividad_detalle
+   ,ad.id_actividad
+   ,ad.v_pregunta
+   ,ad.v_alternativa_A
+   ,ad.v_alternativa_B
+   ,ad.v_alternativa_C
+   ,ad.v_alternativa_D
+   ,ad.v_alternativa_E
+   ,ad.i_tipo_pregunta
+   ,ad.i_puntaje_pregunta
+  from t_actividad_detalle ad
+    where ad.id_actividad = _idactividad AND ad.b_estado = 1;
+END$$
+DELIMITER ;
+
+-- -------------------------------------------------
+
+DELIMITER $$
+CREATE PROCEDURE `sp_obtener_actividadA`()
+BEGIN
+  select 
+   aa.id_actividad_alumno
+  ,aa.id_actividad
+  ,aa.v_nombres
+  ,aa.v_apellidos
+  ,aa.v_lugarnacimiento
+  ,aa.i_edad
+  ,aa.v_celular
+  ,aa.v_correo
+  ,aa.v_colegio
+  ,aa.v_distrito
+  ,aa.v_ugel
+  ,aa.i_carrera1
+  ,aa.i_carrera2
+  ,aa.i_carrera3
+  ,aa.i_carrera4
+  ,aa.i_carrera5
+  ,aa.v_comentario
+  ,aa.dt_fecharegistro
+  ,aa.dt_fechafin
+  from t_actividad_alumno aa
+    where aa.b_estado = 1;
+END$$
+DELIMITER ;
+
+-- -------------------------------------------------
+
+DELIMITER $$
+CREATE PROCEDURE `sp_obtener_actividadA_det`(IN _idactividad int)
+BEGIN
+  select 
+  aad.id_actividad_alumno_detalle
+  ,aad.id_actividad_alumno
+  ,aad.id_actividad_detalle
+  ,aad.b_respuesta_A
+  ,aad.b_respuesta_B
+  ,aad.b_respuesta_C
+  ,aad.b_respuesta_D
+  ,aad.b_respuesta_E
+  ,aad.i_pregunta
+  ,aad.i_fase
+  ,aad.i_puntaje
+  ,aad.i_tipo_pregunta
+  from t_actividad_alumno_detalle aad
+    where aad.id_actividad_alumno = _idactividad AND aad.b_estado = 1;
+END$$
+DELIMITER ;
+
+-- -------------------------------------------------
+
+DELIMITER $$
+CREATE PROCEDURE `sp_insertar_actividadAlumno`(
+  IN _id_actividad INT
+  ,IN _v_nombres VARCHAR(150)
+  ,IN _v_apellidos VARCHAR(150)
+  ,IN _v_lugarnacimiento VARCHAR(150)
+  ,IN _i_grado INT
+  ,IN _i_edad INT
+  ,IN _i_sexo INT
+  ,IN _v_celular VARCHAR(100)
+  ,IN _v_correo  VARCHAR(100)
+  ,IN _v_colegio VARCHAR(100)
+  ,IN _v_distrito VARCHAR(100)
+  ,IN _v_ugel VARCHAR(100)
+  ,IN _b_estado BIT(1)
+  ,IN _dt_fecharegistro DATETIME)
+BEGIN
+  INSERT INTO t_actividad_alumno(
+      id_actividad
+      ,v_nombres
+      ,v_apellidos
+      ,v_lugarnacimiento
+      ,i_grado
+      ,i_edad
+      ,i_sexo
+      ,v_celular
+      ,v_correo
+      ,v_colegio
+      ,v_distrito
+      ,v_ugel
+      ,b_estado
+      ,dt_fecharegistro)
+    VALUES (
+      _id_actividad
+      ,_v_nombres
+      ,_v_apellidos
+      ,_v_lugarnacimiento
+      ,_i_grado
+      ,_i_edad
+      ,_i_sexo
+      ,_v_celular
+      ,_v_correo
+      ,_v_colegio
+      ,_v_distrito
+      ,_v_ugel
+      ,_b_estado
+      ,_dt_fecharegistro);
+
+    SELECT LAST_INSERT_ID as '_result';
+
+END$$
+DELIMITER ;
+
+-- -------------------------------------------------
+
+DELIMITER $$
+CREATE PROCEDURE `sp_insertar_actividadAlumnoDetalle`(
+  IN _id_actividad_alumno INT
+  ,IN _id_actividad_detalle INT
+  ,IN _b_respuesta_A BIT(1)
+  ,IN _b_respuesta_B BIT(1)
+  ,IN _b_respuesta_C BIT(1)
+  ,IN _b_respuesta_D BIT(1)
+  ,IN _b_respuesta_E BIT(1)
+  ,IN _i_pregunta INT
+  ,IN _i_fase INT
+  ,IN _i_puntaje INT
+  ,IN _i_tipo_pregunta INT
+  ,IN _b_estado BIT(1))
+BEGIN
+  INSERT INTO t_actividad_alumno_detalle(
+      id_actividad_alumno
+      ,id_actividad_detalle
+      ,b_respuesta_A
+      ,b_respuesta_B
+      ,b_respuesta_C
+      ,b_respuesta_D
+      ,b_respuesta_E
+      ,i_pregunta
+      ,i_fase
+      ,i_puntaje
+      ,i_tipo_pregunta
+      ,b_estado)
+    VALUES (
+      _id_actividad_alumno
+      ,_id_actividad_detalle
+      ,_b_respuesta_A
+      ,_b_respuesta_B
+      ,_b_respuesta_C
+      ,_b_respuesta_D
+      ,_b_respuesta_E
+      ,_i_pregunta
+      ,_i_fase
+      ,_i_puntaje
+      ,_i_tipo_pregunta
+      ,_b_estado);
+
+    SELECT LAST_INSERT_ID as '_result';
+
+END$$
+DELIMITER ;
+
+-- ---------------------------------------
+
+
+DELIMITER $$
+CREATE PROCEDURE `sp_actualizar_actividadAlumno`(
+  IN id_actividad_alumno INT
+  ,IN _i_carrera1 VARCHAR(50)
+  ,IN _i_carrera2 VARCHAR(50)
+  ,IN _i_carrera3 VARCHAR(50)
+  ,IN _i_carrera4 VARCHAR(50)
+  ,IN _i_carrera5 VARCHAR(50)
+  ,IN _i_puntaje INT
+  ,IN _v_comentario VARCHAR(500))
+BEGIN
+  UPDATE t_actividad_alumno
+  SET  
+  i_carrera1 = _i_carrera1,
+  i_carrera2 = _i_carrera2,
+  i_carrera3 = _i_carrera3,
+  i_carrera4 = _i_carrera4,
+  i_carrera5 = _i_carrera5,
+  i_puntaje = i_puntaje,
+  v_comentario = v_comentario
+  WHERE id_actividad_alumno = id_actividad_alumno;
+END$$
+DELIMITER ;
+
+-- --------------------------------------------------

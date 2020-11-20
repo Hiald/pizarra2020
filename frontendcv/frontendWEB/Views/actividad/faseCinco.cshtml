@@ -1,0 +1,438 @@
+﻿
+@{
+    ViewBag.Title = "faseCinco";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<div class="container">
+    <div class="row text-center">
+        <div class="col-md-12">
+            <br />
+            <h6>Lee cada pregunta y marca con la respuesta que complete el sentido de lo que haces o piensas. Es muy importante tu honestidad al responder.</h6>
+            <br />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <label>1. Generalmente estudio mejor...</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd1" id="rd11" value="1">
+                <label class="form-check-label" for="rd11">
+                    con un grupo de personas.
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd1" id="rd12" value="2">
+                <label class="form-check-label" for="rd12">
+                    yo solo/a o con una persona más.
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>2. Me parece que tiendo a ser...</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd2" id="rd21" value="1">
+                <label class="form-check-label" for="rd21">
+                    realista.
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd2" id="rd22" value="2">
+                <label class="form-check-label" for="rd22">
+                    imaginativo/a.
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>3. Cuando me acuerdo de las actividades que realicé ayer, me viene a la mente:</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd3" id="rd31" value="1">
+                <label class="form-check-label" for="rd31">
+                    imágenes y figuras.
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd3" id="rd32" value="2">
+                <label class="form-check-label" for="rd32">
+                    frases y descripciones verbales.
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>4. Cuando empiezo con un tema nuevo me parece que es...</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd4" id="rd41" value="1">
+                <label class="form-check-label" for="rd41">
+                    más fácil cuando inicio, pero poco a poco se me hace más complicado.
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd4" id="rd42" value="2">
+                <label class="form-check-label" for="rd42">
+                    complicado al empezar, pero cuando avanzo se vuelve más fácil.
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>5. Cuando tengo que aprender una tarea nueva prefiero...</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd5" id="rd51" value="1">
+                <label class="form-check-label" for="rd51">
+                    tratar de desarrollarla inmediatamente.
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd5" id="rd52" value="2">
+                <label class="form-check-label" for="rd52">
+                    analizar y pensar en cómo haré para desarrollarla.
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>6. Si tuviera que enseñar, lo haría...</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd6" id="rd61" value="1">
+                <label class="form-check-label" for="rd61">
+                    planeando situaciones y soluciones que se apliquen a la vida cotidiana.
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd6" id="rd62" value="2">
+                <label class="form-check-label" for="rd62">
+                    haciendo que reflexionen sobre las ideas expresadas por mí.
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>7. Es mejor cuando la información nueva llega a mí, a través de:</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd7" id="rd71" value="1">
+                <label class="form-check-label" for="rd71">
+                    gráficos, esquemas o mapas conceptuales.
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd7" id="rd72" value="2">
+                <label class="form-check-label" for="rd72">
+                    explicaciones, instrucciones verbales o escritas.
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>8. Mi ritmo de estudio para aprender implica...</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd8" id="rd81" value="1">
+                <label class="form-check-label" for="rd81">
+                    estudiar a un ritmo regular. Estudio mucho para captar la información.
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd8" id="rd82" value="2">
+                <label class="form-check-label" for="rd82">
+                    hacerlo lentamente. Al principio me confundo hasta que, de pronto, todo cobra sentido.
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>9. Para mí es más fácil comprender instrucciones...</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd9" id="rd91" value="1">
+                <label class="form-check-label" for="rd91">
+                    inmediatamente después de que intento ejecutarlas.
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd9" id="rd92" value="2">
+                <label class="form-check-label" for="rd92">
+                    después de tomarme un tiempo para entender cómo se ejecutan.
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>10. Para mí es más fácil aprender...</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd10" id="rd101" value="1">
+                <label class="form-check-label" for="rd101">
+                    hechos concretos.
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd10" id="rd102" value="2">
+                <label class="form-check-label" for="rd102">
+                    ideas y conceptos abstractos.
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>11. Cuandos los textos que reviso tienen muchas figuras, esquemas o diagramas, etc... es posible que...</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd11" id="rd111" value="1">
+                <label class="form-check-label" for="rd111">
+                    me concentre en las figuras y tablas.
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd11" id="rd112" value="2">
+                <label class="form-check-label" for="rd112">
+                    centre mi atención en el texto.
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>12. Tengo mayor facilidad para memorizar...</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd12" id="rd121" value="1">
+                <label class="form-check-label" for="rd121">
+                    un listado de datos.
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd12" id="rd122" value="2">
+                <label class="form-check-label" for="rd122">
+                    un texto explicativo que incluye los hechos de la lista.
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>13. Me parece que más facilidad de recordar, cuando...</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd13" id="rd131" value="1">
+                <label class="form-check-label" for="rd131">
+                    participo en la elaboración de algún tema.
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd13" id="rd132" value="2">
+                <label class="form-check-label" for="rd132">
+                    leo y reflexiono sobre un tema.
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>14. Mi memoria por lo general es...</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd14" id="rd141" value="1">
+                <label class="form-check-label" for="rd141">
+                    buena: recuerdo personas, lugares y dónde dejo mis cosas.
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd14" id="rd142" value="2">
+                <label class="form-check-label" for="rd142">
+                    mala: con frecuencia olvido los rostros de personas y pierdo las cosas.
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>15. Prefiero clases en las cuales los docentes...</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd15" id="rd151" value="1">
+                <label class="form-check-label" for="rd151">
+                    desarrollan sus temas utilizando esquemas y diagramas.
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd15" id="rd152" value="2">
+                <label class="form-check-label" for="rd152">
+                    explican los contenidos la mayor parte del tiempo.
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>16. Para mí es más fácil entender...</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd16" id="rd161" value="1">
+                <label class="form-check-label" for="rd161">
+                    las partes de un texto y luego el concepto general.
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd16" id="rd162" value="2">
+                <label class="form-check-label" for="rd162">
+                    el concepto general de un texto y luego las partes.
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>17. Cuando tengo que aprender algún tema nuevo, me es más fácil entender si...</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd17" id="rd171" value="1">
+                <label class="form-check-label" for="rd171">
+                    intercambio ideas con otros.
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd17" id="rd172" value="2">
+                <label class="form-check-label" for="rd172">
+                    estudio yo solo.
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>18. Tengo habilidades para...</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd18" id="rd181" value="1">
+                <label class="form-check-label" for="rd181">
+                    hacer mis trabajos con cuidado.
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd18" id="rd182" value="2">
+                <label class="form-check-label" for="rd182">
+                    cambiar e innovar mis trabajos.
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>19. Tengo más facilidad para recordar aquello que me es...</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd19" id="rd191" value="1">
+                <label class="form-check-label" for="rd191">
+                    posible ver.
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd19" id="rd192" value="2">
+                <label class="form-check-label" for="rd192">
+                    transmitido verbalmente.
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>20. Cuando resuelvo un problema de matemáticas,</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd20" id="rd201" value="1">
+                <label class="form-check-label" for="rd201">
+                    trato de llegar paso a paso a la solución.
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd20" id="rd202" value="2">
+                <label class="form-check-label" for="rd202">
+                    tengo idea de la solución, pero me resulta difícil saber los pasos que se requieren para llegar a ella.
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>21. En la exposición de un tema, yo prefiero...</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd21" id="rd211" value="1">
+                <label class="form-check-label" for="rd211">
+                    discutir y analizar grupalmente la información.
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd21" id="rd212" value="2">
+                <label class="form-check-label" for="rd212">
+                    que haya pausas para anotar las ideas que se presentan.
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>22. Cuando me toman un exámen donde hay varias posibilidades de respuesta, es posible que...</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd22" id="rd221" value="1">
+                <label class="form-check-label" for="rd221">
+                    no me alcance el tiempo.
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd22" id="rd222" value="2">
+                <label class="form-check-label" for="rd222">
+                    me distraiga y pierda puntos por no detenerme a leer todas las instrucciones y preguntas.
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>23. Cuando tengo que ir a un lugar que no conozco, prefiero leer...</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd23" id="rd231" value="1">
+                <label class="form-check-label" for="rd231">
+                    un mapa o un croquis para orientarme.
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd23" id="rd232" value="2">
+                <label class="form-check-label" for="rd232">
+                    indicaciones escritas para llegar al lugar.
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>24. Después de haber leído algún texto, recuerdo...</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd24" id="rd241" value="1">
+                <label class="form-check-label" for="rd241">
+                    los hechos, tratando de relacionarlos para comprender el tema.
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd24" id="rd242" value="2">
+                <label class="form-check-label" for="rd242">
+                    la conclusión, más no los incidentes, necesito leer nuevamente para recordarlos.
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>25. Cuando compro una herramienta o un aparato nuevo, tiendo a...</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd25" id="rd251" value="1">
+                <label class="form-check-label" for="rd251">
+                    probar como funciona.
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd25" id="rd252" value="2">
+                <label class="form-check-label" for="rd252">
+                    leer antes el manual y seguir las instrucciones.
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>26. Cuando puedo escoger un tema para leer, prefiero aquellos...</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd26" id="rd261" value="1">
+                <label class="form-check-label" for="rd261">
+                    con información nueva o cómo desarollar actividades.
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd26" id="rd262" value="2">
+                <label class="form-check-label" for="rd262">
+                    que me hagan reflexionar.
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>27. Cuando el/la docente utiliza diagramas o esquemas, yo recuerdo...</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd27" id="rd271" value="1">
+                <label class="form-check-label" for="rd271">
+                    lo que ví.
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd27" id="rd272" value="2">
+                <label class="form-check-label" for="rd272">
+                    lo que explicó sobre el tema.
+                </label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>28. Asimilo mejor la explicación cuando,</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd28" id="rd281" value="1">
+                <label class="form-check-label" for="rd281">
+                    es presentada secuencialmente.
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="grd28" id="rd282" value="2">
+                <label class="form-check-label" for="rd282">
+                    se presenta la idea general y se relaciona con otros temas.
+                </label>
+            </div>
+        </div>
+    </div>
+</div>

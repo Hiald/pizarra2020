@@ -25,6 +25,78 @@ namespace frontendWEB.Controllers
             return View();
         }
 
+        public ActionResult faseUno(int idusuario)
+        {
+            ViewBag.VGidusuario = idusuario;
+            return View();
+        }
+
+        public ActionResult faseDos(int idusuario)
+        {
+            ViewBag.VGidusuario = idusuario;
+            return View();
+        }
+
+        public ActionResult faseTres(int idusuario)
+        {
+            ViewBag.VGidusuario = idusuario;
+            return View();
+        }
+
+        public ActionResult faseCuatro(int idusuario)
+        {
+            ViewBag.VGidusuario = idusuario;
+            return View();
+        }
+
+        public ActionResult faseCinco(int idusuario)
+        {
+            ViewBag.VGidusuario = idusuario;
+            return View();
+        }
+
+        public ActionResult faseSeis(int idusuario)
+        {
+            ViewBag.VGidusuario = idusuario;
+            return View();
+        }
+
+        public ActionResult faseSiete(int idusuario)
+        {
+            ViewBag.VGidusuario = idusuario;
+            return View();
+        }
+
+        public ActionResult faseOcho(int idusuario)
+        {
+            ViewBag.VGidusuario = idusuario;
+            return View();
+        }
+
+        public ActionResult faseNueve(int idusuario)
+        {
+            ViewBag.VGidusuario = idusuario;
+            return View();
+        }
+
+        public ActionResult faseDiez(int idusuario)
+        {
+            ViewBag.VGidusuario = idusuario;
+            return View();
+        }
+
+        public ActionResult faseOnce(int idusuario)
+        {
+            ViewBag.VGidusuario = idusuario;
+            return View();
+        }
+
+        public ActionResult faseDoce(int idusuario)
+        {
+            ViewBag.VGidusuario = idusuario;
+            return View();
+        }
+
         [HttpPost]
         public async Task<ActionResult> ListarActividad(int wactividaid)
         {

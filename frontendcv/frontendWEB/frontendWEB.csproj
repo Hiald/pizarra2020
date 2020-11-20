@@ -314,6 +314,12 @@
     <Content Include="Views\docente\listado.cshtml" />
     <Content Include="Views\actividad\registro.cshtml" />
     <Content Include="Views\actividad\fase.cshtml" />
+    <Content Include="Views\actividad\faseUno.cshtml" />
+    <Content Include="Views\actividad\faseDos.cshtml" />
+    <Content Include="Views\actividad\faseTres.cshtml" />
+    <Content Include="Views\actividad\faseCuatro.cshtml" />
+    <Content Include="Views\actividad\faseCinco.cshtml" />
+    <Content Include="Views\actividad\faseSeis.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "faseSeis";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<div class="container">
+    <div class="row text-center">
+        <div class="col-md-12">
+            <br />
+            <h6>A continuación hay una lista de actividades analiza cada una y marca SI en caso de que creas que tienes un alto grado en esa habilidad y NO en el caso que no poseas esa habilidad.</h6>
+            <br />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Item</th>
+                        <th scope="col">Sí</th>
+                        <th scope="col">No</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Encuentro con facilidad el significado de las palabras</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd1" id="rd11" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd1" id="rd12" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

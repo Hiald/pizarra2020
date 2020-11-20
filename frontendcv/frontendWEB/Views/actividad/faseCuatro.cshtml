@@ -1,0 +1,369 @@
+﻿
+@{
+    ViewBag.Title = "faseCuatro";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<div class="container">
+    <div class="row text-center">
+        <div class="col-md-12">
+            <br />
+            <h6>Lee cuidadosamente cada afirmación y decide si lo realizas casi siempre o casi nunca</h6>
+            <br />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Afirmaciones</th>
+                        <th scope="col">Casi siempre</th>
+                        <th scope="col">Casi nunca</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Digo siempre lo que en la mayoría de situaciones.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd1" id="rd11" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd1" id="rd12" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Por ningún motivo está bien causarle daño a otra persona.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd2" id="rd21" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd2" id="rd22" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>La mayoría de personas no se da cuenta cuando me hiere, porque escondo mis verdaderos sentimientos.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd3" id="rd31" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd3" id="rd32" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>Me gusta ayudar a mis amigos/as para que tomen decisiones.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd4" id="rd41" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd4" id="rd42" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <td>No estoy seguro/a que pueda ser un buen líder.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd5" id="rd51" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd5" id="rd52" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">6</th>
+                        <td>Participo en actividades que involucran la resolución de problemas.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd6" id="rd61" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd6" id="rd62" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">7</th>
+                        <td>Si un amigo/a es incapaz de cumplir con lo que me promete, seguramente lo comprendería en vez de enojarme.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd7" id="rd71" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd7" id="rd72" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">8</th>
+                        <td>Cuando alguien cercano y respetado me molesta, generalmente escondo mis sentimientos.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd8" id="rd81" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd8" id="rd82" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">9</th>
+                        <td>Disfruto participando en una buena discusión</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd9" id="rd91" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd9" id="rd92" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">10</th>
+                        <td>Me aseguro de que la gente sepa cuál es mi posición frente a una injusticia.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd10" id="rd101" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd10" id="rd102" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">11</th>
+                        <td>Creo que uno puede salir adelante en la vida sin tener que pasar sobre los demás.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd11" id="rd111" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd11" id="rd112" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">12</th>
+                        <td>Le digo a una persona cuando me parece que ha sido injusta.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd12" id="rd121" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd12" id="rd122" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">13</th>
+                        <td>Me adelanto a las consecuencias cuando surgen problemas.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd13" id="rd131" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd13" id="rd132" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">14</th>
+                        <td>Puedo convencer a otros/as de que mis ideas son correctas.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd14" id="rd141" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd14" id="rd142" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">15</th>
+                        <td>Es muy importante para mí ser capaz de decir lo que pienso.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd15" id="rd151" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd15" id="rd152" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">16</th>
+                        <td>Mis amigos/as me buscan para contarme sus cosas.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd16" id="rd161" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd16" id="rd162" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">17</th>
+                        <td>No me quedo tranquilo/a hasta resolver un problema.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd17" id="rd171" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd17" id="rd172" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">18</th>
+                        <td>En la mayoría de situaciones, prefiero participar antes que escuchar solamente.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd18" id="rd181" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd18" id="rd182" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">19</th>
+                        <td>Si después de salir de una tienda me doy cuenta de que me han dado menos vuelto, vuelvo y le pido el dinero que falta.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd19" id="rd191" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd19" id="rd192" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">20</th>
+                        <td>Rara vez tomo el liderazgo en la organización de un proyecto.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd20" id="rd201" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd20" id="rd202" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">21</th>
+                        <td>Doy a conocer mi punto de vista, aún si alguien a quien respeto, dijera algo distinto.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd21" id="rd211" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd21" id="rd212" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">22</th>
+                        <td>Me resulta fácil ayudar a mis amigos/as.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd22" id="rd221" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd22" id="rd222" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">23</th>
+                        <td>Trato de ser honesto/a acerca de mis verdaderos sentimientos.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd23" id="rd231" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd23" id="rd232" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">24</th>
+                        <td>Identifico las causas de algún problema.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd24" id="rd241" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd24" id="rd242" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
