@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "faseSeis";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
@@ -8,7 +7,8 @@
     <div class="row text-center">
         <div class="col-md-12">
             <br />
-            <h6>A continuación hay una lista de actividades analiza cada una y marca SI en caso de que creas que tienes un alto grado en esa habilidad y NO en el caso que no poseas esa habilidad.</h6>
+            <h6>A continuación hay una lista de actividades analiza cada una y marca SI en caso de que creas que tienes
+                un alto grado en esa habilidad y NO en el caso que no poseas esa habilidad.</h6>
             <br />
         </div>
     </div>
@@ -27,7 +27,7 @@
                 <tbody>
                     <tr>
                         <th scope="row">1</th>
-                        <td>Encuentro con facilidad el significado de las palabras</td>
+                        <td>Encuentro con facilidad el significado de las palabras.</td>
                         <td>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="grd1" id="rd11" value="1">
@@ -39,7 +39,594 @@
                             </div>
                         </td>
                     </tr>
-                   
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Desarrollo tareas manuales.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd2" id="rd21" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd2" id="rd22" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Utilizo fórmulas matemáticas con facilidad.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd3" id="rd31" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd3" id="rd32" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>Comprendo las emociones y las intenciones de los demás.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd4" id="rd41" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd4" id="rd42" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <td>Aprecio y produzco música.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd5" id="rd51" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd5" id="rd52" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">6</th>
+                        <td>Analizo premisas, planteo posibles consecuencias y resuelvo situaciones problemáticas.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd6" id="rd61" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd6" id="rd62" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">7</th>
+                        <td>Visualizo objetos en tres dimensiones.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd7" id="rd71" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd7" id="rd72" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">8</th>
+                        <td>Comprendo mensajes a través de las palabras.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd8" id="rd81" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd8" id="rd82" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">9</th>
+                        <td>Respondo adecuadamente a los estados de ánimo de los demás.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd9" id="rd91" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd9" id="rd92" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">10</th>
+                        <td>Aprecio y produzco música en términos de melodía.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd10" id="rd101" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd10" id="rd102" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">11</th>
+                        <td>Expreso ideas de manera clara y ordenada.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd11" id="rd111" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd11" id="rd112" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">12</th>
+                        <td>Comprendo mi propia conducta.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd12" id="rd121" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd12" id="rd122" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">13</th>
+                        <td>Relaciono la información, estableciendo causas y consecuencias.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd13" id="rd131" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd13" id="rd132" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">14</th>
+                        <td>Realizo tareas en forma simultánea y coordinada.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd14" id="rd141" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd14" id="rd142" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">15</th>
+                        <td>Conozco mis virtudes y defectos.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd15" id="rd151" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd15" id="rd152" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">16</th>
+                        <td>Establezco relaciones sociales.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd16" id="rd161" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd16" id="rd162" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">17</th>
+                        <td>Memorizo datos, nombres, fechas, etc.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd17" id="rd171" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd17" id="rd172" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">18</th>
+                        <td>Imagino figuras y establezco relaciones entre ellas (tamaño, distancia, etc).</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd18" id="rd181" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd18" id="rd182" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">19</th>
+                        <td>Utilizo la parte del cuerpo o todo el cuerpo con destreza.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd19" id="rd191" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd19" id="rd192" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">20</th>
+                        <td>Pongo el práctica el pensamiento crítico.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd20" id="rd201" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd20" id="rd202" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">21</th>
+                        <td>Convenzo a los demás acerca de un asunto.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd21" id="rd211" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd21" id="rd212" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">22</th>
+                        <td>Analizo las conductas de los demás.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd22" id="rd221" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd22" id="rd222" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">23</th>
+                        <td>Soy capaz de analizarme a mí mismo/a.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd23" id="rd231" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd23" id="rd232" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">24</th>
+                        <td>Explico un tema.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd24" id="rd241" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd24" id="rd242" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">25</th>
+                        <td>Aplico operaciones numéricas en problemas matemáticos.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd25" id="rd251" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd25" id="rd252" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">26</th>
+                        <td>Realizo transformaciones sobre percepciones iniciales.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd26" id="rd261" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd26" id="rd262" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">27</th>
+                        <td>Memorizo información.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd27" id="rd271" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd27" id="rd272" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">28</th>
+                        <td>Extraigo informaciones a partir de una comunicación recibida.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd28" id="rd281" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd28" id="rd282" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">29</th>
+                        <td>Imagino una figura desde diferentes ángulos.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd29" id="rd291" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd29" id="rd292" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">30</th>
+                        <td>Controlo mis movimientos.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd30" id="rd301" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd30" id="rd302" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">31</th>
+                        <td>Aprecio y produzco la música en términos de ritmo.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd31" id="rd311" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd31" id="rd312" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">32</th>
+                        <td>Soy capaz de colocarme en el lugar de la otra persona.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd32" id="rd321" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd32" id="rd322" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">33</th>
+                        <td>Comprendo mis emociones e intenciones.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd33" id="rd331" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd33" id="rd332" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">34</th>
+                        <td>Manejo mis emociones.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd34" id="rd341" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd34" id="rd342" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">35</th>
+                        <td>Reflexiono sobre mis fortalezas y debilidades.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd35" id="rd351" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd35" id="rd352" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">36</th>
+                        <td>Manejo el lenguaje y me expreso con fluidez y claridad.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd36" id="rd361" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd36" id="rd362" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">37</th>
+                        <td>Hago deducciones.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd37" id="rd371" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd37" id="rd372" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">38</th>
+                        <td>Manejo eficientemente objetos e instrumentos.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd38" id="rd381" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd38" id="rd382" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">39</th>
+                        <td>Aprecio y produzco música en términos de sonidos y voces.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd39" id="rd391" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd39" id="rd392" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">40</th>
+                        <td>Respeto las normas sociales establecidas.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd40" id="rd401" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd40" id="rd402" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">41</th>
+                        <td>Reconozco la estructura gramatical de los enunciados.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd41" id="rd411" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd41" id="rd412" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">42</th>
+                        <td>Respondo adecuadamente a las motivaciones y deseos de otras personas.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd42" id="rd421" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd42" id="rd422" value="2">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">43</th>
+                        <td>Utilizo adecuadamente las palabras.</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd43" id="rd431" value="1">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="grd43" id="rd432" value="2">
+                            </div>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
