@@ -14,13 +14,28 @@ namespace frontendWEB.Controllers
 {
     public class actividadController : Controller
     {
+
         public ActionResult registro()
         {
-            return View();
+            if (Session["SESSION_IDUSUARIO_OV"] != null)
+            {
+                int valorsession = int.Parse(Session["SESSION_IDUSUARIO_OV"].ToString());
+                return RedirectToAction("fase", "actividad", new { idrespuesta = valorsession });
+            }
+            else
+            {
+                return View();
+            }
+
         }
 
         public ActionResult fase(int idrespuesta)
         {
+            if (Session["SESSION_IDUSUARIO_OV"] == null)
+            {
+                return View("registro");
+            }
+
             ViewBag.VGidrespuesta = idrespuesta;
             return View();
         }
@@ -30,7 +45,6 @@ namespace frontendWEB.Controllers
             ViewBag.VGidusuario = idusuario;
             return View();
         }
-
         public ActionResult faseDos(int idusuario)
         {
             ViewBag.VGidusuario = idusuario;
@@ -127,7 +141,7 @@ namespace frontendWEB.Controllers
 
         public async Task<JsonResult> InsertarActividadAlumno(int wactividad, string wnombres
           , string wapellidos, string wlugarnacimiento, int wigrado, int wiedad
-          , int wisexo, string wcelular, string wcorreo, string wcolegio, string wdistrito, string wugel)
+          , int wisexo, string wcelular, string wcorreo, string wclave, string wcolegio, string wdistrito, string wugel)
         {
             int iresultado = 0;
             string wfechareg = DateTime.Now.ToString();
@@ -141,34 +155,40 @@ namespace frontendWEB.Controllers
                     "&wsnombres=" + wnombres + "&wsapellidos=" + wapellidos +
                     "&wslugarnacimiento=" + wlugarnacimiento + "&wsigrado=" + wigrado +
                     "&wsiedad=" + wiedad + "&wsisexo=" + wisexo + "&wscelular=" + wcelular + "&wscorreo=" + wcorreo +
-                    "&wscolegio=" + wcolegio + "&wsdistrito=" + wdistrito + "&wsugel=" + wugel +
+                    "&wsclave=" + wclave + "&wscolegio=" + wcolegio + "&wsdistrito=" + wdistrito + "&wsugel=" + wugel +
                     "&wsestado=" + 1 + "&wsfechareg=" + wfechareg);
                 if (Resregrusu.IsSuccessStatusCode)
                 {
                     var rwsapilu = Resregrusu.Content.ReadAsAsync<string>().Result;
                     iresultado = int.Parse(rwsapilu);
-                    obj = new
+                    if (iresultado != -1 || iresultado != 0)
                     {
-                        iresultado = 1,
-                    };
-                }
-                else
-                {
-                    obj = new
+                        Session["SESSION_IDUSUARIO_OV"] = iresultado;
+                        obj = new
+                        {
+                            resultado = iresultado,
+                        };
+                    }
+                    else
                     {
-                        iresultado = -1,
-                    };
+                        Session["SESSION_IDUSUARIO_OV"] = 0;
+                        obj = new
+                        {
+                            resultado = 0,
+                        };
+                    }
+
                 }
+
             }
 
             return Json(obj);
         }
 
-        public async Task<JsonResult> InsertarActividadAlumnoDetalle(int widactividadAlumno
-                , int widactividadDetalle, Int16 wrespuesta_A
-                , Int16 wrespuesta_B, Int16 wrespuesta_C, Int16 wrespuesta_D
-                , Int16 wrespuesta_E, int wipuntaje, int witipoPregunta
-                , Int16 westado)
+        public async Task<JsonResult> InsertarActividadAlumnoDetalle(int widactividadAlumno, int widactividadDetalle
+                , string wrespuesta_A, string wrespuesta_B, string wrespuesta_C, string wrespuesta_D
+                , string wrespuesta_E, string wrespuesta_F, string wrespuesta_G, string wrespuesta_H
+                , string wrespuesta_I, int wipuntaje, int wifase, int wipregunta, int witipopregunta)
         {
             int iresultado = 0;
             var obj = new object();
@@ -178,10 +198,11 @@ namespace frontendWEB.Controllers
                 client.DefaultRequestHeaders.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 HttpResponseMessage Resregrusu = await client.GetAsync("api/actividad/APIInsertarActividadAlumnoDetalle?wsidactividadAlumno=" + widactividadAlumno +
-                    "&widactividadDetalle=" + widactividadDetalle + "&wrespuesta_A=" + wrespuesta_A +
-                    "&wrespuesta_B=" + wrespuesta_B + "&wrespuesta_C=" + wrespuesta_C +
-                    "&wrespuesta_D=" + wrespuesta_D + "&wrespuesta_E=" + wrespuesta_E + "&wipuntaje=" + wipuntaje +
-                    "&witipoPregunta=" + witipoPregunta + "&westado=" + westado);
+                "&wsidactividadDetalle=" + widactividadDetalle + "&wsrespuesta_A=" + wrespuesta_A +
+                "&wsrespuesta_B=" + wrespuesta_B + "&wsrespuesta_C=" + wrespuesta_C + "&wsrespuesta_D=" + wrespuesta_D +
+                "&wsrespuesta_E=" + wrespuesta_E + "&wsrespuesta_F=" + wrespuesta_F + "&wsrespuesta_G=" + wrespuesta_G +
+                "&wsrespuesta_H=" + wrespuesta_H + "&wsrespuesta_I=" + wrespuesta_I + "&wsipuntaje=" + wipuntaje +
+                "&wsifase=" + wifase + "&wspregunta=" + wipregunta + "&wsitipoPregunta=" + witipopregunta + "&wsestado=" + 1);
                 if (Resregrusu.IsSuccessStatusCode)
                 {
                     var rwsapilu = Resregrusu.Content.ReadAsAsync<string>().Result;
@@ -240,7 +261,7 @@ namespace frontendWEB.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> ListarActividadAlumno()
+        public async Task<ActionResult> ListarActividadAlumno(string wcorreo)
         {
             var objResultado = new object();
             List<edActividad> loenActividad = new List<edActividad>();
@@ -249,7 +270,7 @@ namespace frontendWEB.Controllers
                 client.BaseAddress = new Uri(MvcApplication.wsRoutepizarra);
                 client.DefaultRequestHeaders.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage Reslistarusu = await client.GetAsync("api/actividad/APIListarActividadAlumno?wsvalor=0");
+                HttpResponseMessage Reslistarusu = await client.GetAsync("api/actividad/APIListarActividadAlumno?wsGeneralcorreo=" + wcorreo);
                 if (Reslistarusu.IsSuccessStatusCode)
                 {
                     var rwsapilu = Reslistarusu.Content.ReadAsAsync<string>().Result;
@@ -273,6 +294,7 @@ namespace frontendWEB.Controllers
             return Json(objResultado);
         }
 
+        //no se usa
         [HttpPost]
         public async Task<ActionResult> ListarActividadAlumnoDetalle(int widactividad)
         {
@@ -305,6 +327,126 @@ namespace frontendWEB.Controllers
                 aaData = loenActividad
             };
             return Json(objResultado);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> ListarActividadAlumnoAcceso(string wcorreoacs, string wclaveacs)
+        {
+            var objResultado = new object();
+            edActividad loenActividad = new edActividad();
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(MvcApplication.wsRoutepizarra);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage Reslistarusu = await
+                    client.GetAsync("api/actividad/APIListarActividadAlumnoAcceso?wscorreoacs=" + wcorreoacs + "&wsclaveacs=" + wclaveacs);
+                if (Reslistarusu.IsSuccessStatusCode)
+                {
+                    var rwsapilu = Reslistarusu.Content.ReadAsAsync<string>().Result;
+                    loenActividad = JsonConvert.DeserializeObject<edActividad>(rwsapilu);
+                }
+                else
+                {
+                    loenActividad = null;
+                }
+            }
+
+            if (loenActividad != null)
+            {
+                Session["SESSION_IDUSUARIO_OV"] = loenActividad.idactividad;
+                Session["SESSION_NOMBRES_OV"] = loenActividad.snombres;
+                Session["SESSION_APELLIDOS_OV"] = loenActividad.sapellidos;
+                Session["SESSION_CORREO_OV"] = loenActividad.scorreo;
+                Session["SESSION_COLEGIO_OV"] = loenActividad.scolegio;
+                objResultado = new
+                {
+                    resultado = loenActividad
+                };
+            }
+            else
+            {
+                Session["SESSION_IDUSUARIO_OV"] = null;
+                Session["SESSION_NOMBRES_OV"] = null;
+                Session["SESSION_APELLIDOS_OV"] = null;
+                Session["SESSION_CORREO_OV"] = null;
+                Session["SESSION_COLEGIO_OV"] = null;
+                objResultado = new
+                {
+                    resultado = ""
+                };
+            }
+
+            return Json(objResultado);
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> ListarFases(int widactividadFase)
+        {
+            var objResultado = new object();
+            List<edActividad> loenActividad = new List<edActividad>();
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(MvcApplication.wsRoutepizarra);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage Reslistarusu = await
+                    client.GetAsync("api/actividad/APIListarFases?wsidactividadFase=" + widactividadFase);
+                if (Reslistarusu.IsSuccessStatusCode)
+                {
+                    var rwsapilu = Reslistarusu.Content.ReadAsAsync<string>().Result;
+                    loenActividad = JsonConvert.DeserializeObject<List<edActividad>>(rwsapilu);
+                }
+                else
+                {
+                    loenActividad = null;
+                }
+            }
+            objResultado = new
+            {
+                aaData = loenActividad
+            };
+            return Json(objResultado);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> ListarPreguntasxFase(int wifase)
+        {
+            var objResultado = new object();
+            int Sessionwidalumno = int.Parse(Session["SESSION_IDUSUARIO_OV"].ToString());
+            List<edActividad> loenActividad = new List<edActividad>();
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(MvcApplication.wsRoutepizarra);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage Reslistarusu = await
+                    client.GetAsync("api/actividad/APIListarPreguntasxFase?wsidalumno=" + Sessionwidalumno + "&wsifase=" + wifase);
+                if (Reslistarusu.IsSuccessStatusCode)
+                {
+                    var rwsapilu = Reslistarusu.Content.ReadAsAsync<string>().Result;
+                    loenActividad = JsonConvert.DeserializeObject<List<edActividad>>(rwsapilu);
+                }
+                else
+                {
+                    loenActividad = null;
+                }
+            }
+            objResultado = new
+            {
+                aaData = loenActividad
+            };
+            return Json(objResultado);
+        }
+
+        public JsonResult CerrarOV()
+        {
+            Session["SESSION_IDUSUARIO_OV"] = null;
+            Session["SESSION_NOMBRES_OV"] = null;
+            Session["SESSION_APELLIDOS_OV"] = null;
+            Session["SESSION_CORREO_OV"] = null;
+            Session["SESSION_COLEGIO_OV"] = null;
+            return Json("");
         }
 
     }

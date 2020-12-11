@@ -69,7 +69,7 @@ namespace backendAD
 
         public int adInsertarActividadAlumno(int adactividad, string adnombres
           , string adapellidos, string adlugarnacimiento, int adigrado, int adiedad
-          , int adisexo,string adcelular, string adcorreo, string adcolegio, string addistrito, string adugel
+          , int adisexo, string adcelular, string adcorreo, string adclave, string adcolegio, string addistrito, string adugel
           , Int16 adestado, DateTime adfecharegistro)
         {
             try
@@ -85,7 +85,8 @@ namespace backendAD
                 cmd.Parameters.Add("_i_edad", MySqlDbType.Int32).Value = adiedad;
                 cmd.Parameters.Add("_i_sexo", MySqlDbType.Int32).Value = adisexo;
                 cmd.Parameters.Add("_v_celular", MySqlDbType.VarChar, 100).Value = adcelular;
-                cmd.Parameters.Add("_v_correo", MySqlDbType.VarChar,100).Value = adcorreo;
+                cmd.Parameters.Add("_v_correo", MySqlDbType.VarChar, 100).Value = adcorreo;
+                cmd.Parameters.Add("_v_clave", MySqlDbType.VarChar, 100).Value = adclave;
                 cmd.Parameters.Add("_v_colegio", MySqlDbType.VarChar, 100).Value = adcolegio;
                 cmd.Parameters.Add("_v_distrito", MySqlDbType.VarChar, 100).Value = addistrito;
                 cmd.Parameters.Add("_v_ugel", MySqlDbType.VarChar, 100).Value = adugel;
@@ -102,10 +103,10 @@ namespace backendAD
             }
         }
 
-        public int adInsertarActividadAlumnoDetalle(int adidactividadAlumno
-                , int adidactividadDetalle, Int16 adrespuesta_A
-                , Int16 adrespuesta_B, Int16 adrespuesta_C, Int16 adrespuesta_D
-                , Int16 adrespuesta_E, int adipuntaje, int aditipoPregunta
+        public int adInsertarActividadAlumnoDetalle(int adidactividadAlumno, int adidactividadDetalle
+                , string adrespuesta_A, string adrespuesta_B, string adrespuesta_C, string adrespuesta_D
+                , string adrespuesta_E, string adrespuesta_F, string adrespuesta_G, string adrespuesta_H
+                , string adrespuesta_I, int adipuntaje, int adifase, int adpregunta, int aditipoPregunta
                 , Int16 adestado)
         {
             try
@@ -115,11 +116,17 @@ namespace backendAD
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("_id_actividad_alumno", MySqlDbType.Int32).Value = adidactividadAlumno;
                 cmd.Parameters.Add("_id_actividad_detalle", MySqlDbType.Int32).Value = adidactividadDetalle;
-                cmd.Parameters.Add("_b_respuesta_A", MySqlDbType.Bit).Value = adrespuesta_A;
-                cmd.Parameters.Add("_b_respuesta_B", MySqlDbType.Bit).Value = adrespuesta_B;
-                cmd.Parameters.Add("_b_respuesta_C", MySqlDbType.Bit).Value = adrespuesta_C;
-                cmd.Parameters.Add("_b_respuesta_D", MySqlDbType.Bit).Value = adrespuesta_D;
-                cmd.Parameters.Add("_b_respuesta_E", MySqlDbType.Bit).Value = adrespuesta_E;
+                cmd.Parameters.Add("_b_respuesta_A", MySqlDbType.VarChar, 50).Value = adrespuesta_A;
+                cmd.Parameters.Add("_b_respuesta_B", MySqlDbType.VarChar, 50).Value = "";
+                cmd.Parameters.Add("_b_respuesta_C", MySqlDbType.VarChar, 50).Value = "";
+                cmd.Parameters.Add("_b_respuesta_D", MySqlDbType.VarChar, 50).Value = "";
+                cmd.Parameters.Add("_b_respuesta_E", MySqlDbType.VarChar, 50).Value = "";
+                cmd.Parameters.Add("_b_respuesta_F", MySqlDbType.VarChar, 50).Value = "";
+                cmd.Parameters.Add("_b_respuesta_G", MySqlDbType.VarChar, 50).Value = "";
+                cmd.Parameters.Add("_b_respuesta_H", MySqlDbType.VarChar, 50).Value = "";
+                cmd.Parameters.Add("_b_respuesta_I", MySqlDbType.VarChar, 50).Value = "";
+                cmd.Parameters.Add("_i_pregunta", MySqlDbType.Int32).Value = adpregunta;
+                cmd.Parameters.Add("_i_fase", MySqlDbType.Int32).Value = adifase;
                 cmd.Parameters.Add("_i_puntaje", MySqlDbType.Int32).Value = adipuntaje;
                 cmd.Parameters.Add("_i_tipo_pregunta", MySqlDbType.Int32).Value = aditipoPregunta;
                 cmd.Parameters.Add("_b_estado", MySqlDbType.Bit).Value = adestado;
@@ -141,7 +148,7 @@ namespace backendAD
             try
             {
                 int result = -1;
-                MySqlCommand cmd = new MySqlCommand("sp_actualizar_clase", cnMysql);
+                MySqlCommand cmd = new MySqlCommand("sp_actualizar_actividadAlumno", cnMysql);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("id_actividad_alumno", MySqlDbType.Int32).Value = adidactividadAlumno;
                 cmd.Parameters.Add("_i_carrera1", MySqlDbType.VarChar, 50).Value = adcarrera1;
@@ -162,7 +169,7 @@ namespace backendAD
             }
         }
 
-        public List<edActividad> adListarActividadAlumno()
+        public List<edActividad> adListarActividadAlumno(string adcorreo)
         {
             try
             {
@@ -170,6 +177,7 @@ namespace backendAD
                 using (MySqlCommand cmd = new MySqlCommand("sp_obtener_actividadA", cnMysql))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("_v_correo", MySqlDbType.VarChar, 100).Value = adcorreo;
 
                     using (MySqlDataReader mdrd = cmd.ExecuteReader())
                     {
@@ -265,12 +273,158 @@ namespace backendAD
                                 senArchivo.idactividadAlumnodetalle = (mdrd.IsDBNull(pos_idactividadalumnodetalle) ? 0 : mdrd.GetInt32(pos_idactividadalumnodetalle));
                                 senArchivo.idactividad_alumno = (mdrd.IsDBNull(pos_idactividadalumno) ? 0 : mdrd.GetInt32(pos_idactividadalumno));
                                 senArchivo.idactividaddetalle = (mdrd.IsDBNull(pos_idactividaddetalle) ? 0 : mdrd.GetInt32(pos_idactividaddetalle));
-                                senArchivo.respuestaA = (mdrd.IsDBNull(pos_brespuestaA) ? 0 : mdrd.GetInt32(pos_brespuestaA));
-                                senArchivo.respuestaB = (mdrd.IsDBNull(pos_brespuestaB) ? 0 : mdrd.GetInt32(pos_brespuestaB));
-                                senArchivo.respuestaC = (mdrd.IsDBNull(pos_brespuestaC) ? 0 : mdrd.GetInt32(pos_brespuestaC));
-                                senArchivo.respuestaD = (mdrd.IsDBNull(pos_brespuestaD) ? 0 : mdrd.GetInt32(pos_brespuestaD));
-                                senArchivo.respuestaE = (mdrd.IsDBNull(pos_brespuestaE) ? 0 : mdrd.GetInt32(pos_brespuestaE));
+                                senArchivo.respuestaA = (mdrd.IsDBNull(pos_brespuestaA) ? "-" : mdrd.GetString(pos_brespuestaA));
+                                senArchivo.respuestaB = (mdrd.IsDBNull(pos_brespuestaB) ? "-" : mdrd.GetString(pos_brespuestaB));
+                                senArchivo.respuestaC = (mdrd.IsDBNull(pos_brespuestaC) ? "-" : mdrd.GetString(pos_brespuestaC));
+                                senArchivo.respuestaD = (mdrd.IsDBNull(pos_brespuestaD) ? "-" : mdrd.GetString(pos_brespuestaD));
+                                senArchivo.respuestaE = (mdrd.IsDBNull(pos_brespuestaE) ? "-" : mdrd.GetString(pos_brespuestaE));
                                 senArchivo.puntaje_pregunta = (mdrd.IsDBNull(pos_ipuntaje) ? 0 : mdrd.GetInt32(pos_brespuestaE));
+                                senArchivo.tipo_pregunta = (mdrd.IsDBNull(pos_itipopregunta) ? 0 : mdrd.GetInt32(pos_itipopregunta));
+
+                                lstArchivo.Add(senArchivo);
+                            }
+                        }
+                    }
+                    return lstArchivo;
+                }
+            }
+            catch (Exception ex)
+            {
+                //UtlLog.toWrite(UtlConstantes.TProcessAD, UtlConstantes.LogNamespace_TProcessAD, this.GetType().Name.ToString(), MethodBase.GetCurrentMethod().Name, UtlConstantes.LogTipoError, "", ex.StackTrace.ToString(), ex.Message.ToString());
+                throw ex;
+            }
+        }
+
+        public edActividad adListarActividadAlumnoAcceso(string adcorreo, string adclave)
+        {
+            try
+            {
+                edActividad senArchivo = null;
+                using (MySqlCommand cmd = new MySqlCommand("sp_listar_actividadAlumno", cnMysql))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("_v_correo", MySqlDbType.VarChar, 100).Value = adcorreo;
+                    cmd.Parameters.Add("_v_clave", MySqlDbType.VarChar, 100).Value = adclave;
+
+                    using (MySqlDataReader mdrd = cmd.ExecuteReader())
+                    {
+                        if (mdrd != null)
+                        {
+                            int pos_idactividad = mdrd.GetOrdinal("id_actividad");
+                            int pos_vnombres = mdrd.GetOrdinal("v_nombres");
+                            int pos_vapellidos = mdrd.GetOrdinal("v_apellidos");
+                            int pos_lugarnacimiento = mdrd.GetOrdinal("v_lugarnacimiento");
+                            int pos_vcorreo = mdrd.GetOrdinal("v_correo");
+                            int pos_vclave = mdrd.GetOrdinal("v_clave");
+                            int pos_vcolegio = mdrd.GetOrdinal("v_colegio");
+
+                            while (mdrd.Read())
+                            {
+                                senArchivo = new edActividad();
+                                senArchivo.idactividad = (mdrd.IsDBNull(pos_idactividad) ? 0 : mdrd.GetInt32(pos_idactividad));
+                                senArchivo.snombres = (mdrd.IsDBNull(pos_vnombres) ? "-" : mdrd.GetString(pos_vnombres));
+                                senArchivo.sapellidos = (mdrd.IsDBNull(pos_vapellidos) ? "-" : mdrd.GetString(pos_vapellidos));
+                                senArchivo.slugarnacimiento = (mdrd.IsDBNull(pos_lugarnacimiento) ? "-" : mdrd.GetString(pos_lugarnacimiento));
+                                senArchivo.scorreo = (mdrd.IsDBNull(pos_vcorreo) ? "-" : mdrd.GetString(pos_vcorreo));
+                                senArchivo.sclave = (mdrd.IsDBNull(pos_vclave) ? "-" : mdrd.GetString(pos_vclave));
+                                senArchivo.scolegio = (mdrd.IsDBNull(pos_vcolegio) ? "-" : mdrd.GetString(pos_vcolegio));
+                            }
+                        }
+                    }
+                    return senArchivo;
+                }
+            }
+            catch (Exception ex)
+            {
+                //UtlLog.toWrite(UtlConstantes.TProcessAD, UtlConstantes.LogNamespace_TProcessAD, this.GetType().Name.ToString(), MethodBase.GetCurrentMethod().Name, UtlConstantes.LogTipoError, "", ex.StackTrace.ToString(), ex.Message.ToString());
+                throw ex;
+            }
+        }
+
+        public List<edActividad> adListarFases(int adidactividad)
+        {
+            try
+            {
+                List<edActividad> lstArchivo = new List<edActividad>();
+                using (MySqlCommand cmd = new MySqlCommand("sp_listar_actividadFases", cnMysql))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("_id_actividad", MySqlDbType.Int32).Value = adidactividad;
+
+                    using (MySqlDataReader mdrd = cmd.ExecuteReader())
+                    {
+                        if (mdrd != null)
+                        {
+                            edActividad senArchivo = null;
+                            int pos_fase = mdrd.GetOrdinal("i_fase");
+
+                            while (mdrd.Read())
+                            {
+                                senArchivo = new edActividad();
+                                senArchivo.idactividad_alumno = (mdrd.IsDBNull(pos_fase) ? 0 : mdrd.GetInt32(pos_fase));
+                                lstArchivo.Add(senArchivo);
+                            }
+                        }
+                    }
+                    return lstArchivo;
+                }
+            }
+            catch (Exception ex)
+            {
+                //UtlLog.toWrite(UtlConstantes.TProcessAD, UtlConstantes.LogNamespace_TProcessAD, this.GetType().Name.ToString(), MethodBase.GetCurrentMethod().Name, UtlConstantes.LogTipoError, "", ex.StackTrace.ToString(), ex.Message.ToString());
+                throw ex;
+            }
+        }
+
+        public List<edActividad> adListarPreguntasxFase(int adidalumno, int adifase)
+        {
+            try
+            {
+                List<edActividad> lstArchivo = new List<edActividad>();
+                using (MySqlCommand cmd = new MySqlCommand("sp_listar_actividadAlumnoDetalle", cnMysql))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("_id_actividad", MySqlDbType.Int32).Value = adidalumno;
+                    cmd.Parameters.Add("_i_fase", MySqlDbType.Int32).Value = adifase;
+
+                    using (MySqlDataReader mdrd = cmd.ExecuteReader())
+                    {
+                        if (mdrd != null)
+                        {
+                            edActividad senArchivo = null;
+                            int pos_idactividadalumnodetalle = mdrd.GetOrdinal("id_actividad_alumno_detalle");
+                            int pos_idactividadalumno = mdrd.GetOrdinal("id_actividad_alumno");
+                            int pos_idactividaddetalle = mdrd.GetOrdinal("id_actividad_detalle");
+                            int pos_ipregunta = mdrd.GetOrdinal("i_pregunta");
+                            int pos_ifase = mdrd.GetOrdinal("i_fase");
+                            int pos_brespuestaA = mdrd.GetOrdinal("b_respuesta_A");
+                            int pos_brespuestaB = mdrd.GetOrdinal("b_respuesta_B");
+                            int pos_brespuestaC = mdrd.GetOrdinal("b_respuesta_C");
+                            int pos_brespuestaD = mdrd.GetOrdinal("b_respuesta_D");
+                            int pos_brespuestaE = mdrd.GetOrdinal("b_respuesta_E");
+                            int pos_brespuestaF = mdrd.GetOrdinal("b_respuesta_F");
+                            int pos_brespuestaG = mdrd.GetOrdinal("b_respuesta_G");
+                            int pos_brespuestaH = mdrd.GetOrdinal("b_respuesta_H");
+                            int pos_brespuestaI = mdrd.GetOrdinal("b_respuesta_I");
+                            int pos_itipopregunta = mdrd.GetOrdinal("i_tipo_pregunta");
+
+                            while (mdrd.Read())
+                            {
+                                senArchivo = new edActividad();
+                                senArchivo.idactividadAlumnodetalle = (mdrd.IsDBNull(pos_idactividadalumnodetalle) ? 0 : mdrd.GetInt32(pos_idactividadalumnodetalle));
+                                senArchivo.idactividad_alumno = (mdrd.IsDBNull(pos_idactividadalumno) ? 0 : mdrd.GetInt32(pos_idactividadalumno));
+                                senArchivo.idactividaddetalle = (mdrd.IsDBNull(pos_idactividaddetalle) ? 0 : mdrd.GetInt32(pos_idactividaddetalle));
+                                senArchivo.ipregunta = (mdrd.IsDBNull(pos_ipregunta) ? 0 : mdrd.GetInt32(pos_ipregunta));
+                                senArchivo.ifase = (mdrd.IsDBNull(pos_ifase) ? 0 : mdrd.GetInt32(pos_ifase));
+                                senArchivo.respuestaA = (mdrd.IsDBNull(pos_brespuestaA) ? "-" : mdrd.GetString(pos_brespuestaA));
+                                senArchivo.respuestaB = (mdrd.IsDBNull(pos_brespuestaB) ? "-" : mdrd.GetString(pos_brespuestaB));
+                                senArchivo.respuestaC = (mdrd.IsDBNull(pos_brespuestaC) ? "-" : mdrd.GetString(pos_brespuestaC));
+                                senArchivo.respuestaD = (mdrd.IsDBNull(pos_brespuestaD) ? "-" : mdrd.GetString(pos_brespuestaD));
+                                senArchivo.respuestaE = (mdrd.IsDBNull(pos_brespuestaE) ? "-" : mdrd.GetString(pos_brespuestaE));
+                                senArchivo.respuestaF = (mdrd.IsDBNull(pos_brespuestaF) ? "-" : mdrd.GetString(pos_brespuestaF));
+                                senArchivo.respuestaG = (mdrd.IsDBNull(pos_brespuestaG) ? "-" : mdrd.GetString(pos_brespuestaG));
+                                senArchivo.respuestaH = (mdrd.IsDBNull(pos_brespuestaH) ? "-" : mdrd.GetString(pos_brespuestaH));
+                                senArchivo.respuestaI = (mdrd.IsDBNull(pos_brespuestaI) ? "-" : mdrd.GetString(pos_brespuestaI));
                                 senArchivo.tipo_pregunta = (mdrd.IsDBNull(pos_itipopregunta) ? 0 : mdrd.GetInt32(pos_itipopregunta));
 
                                 lstArchivo.Add(senArchivo);

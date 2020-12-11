@@ -256,6 +256,8 @@
     <Content Include="Content\lib\vuetify\js\vuetify.min.js" />
     <Content Include="Content\lib\vue\js\vue.js" />
     <Content Include="Content\lib\vue\js\vue.min.js" />
+    <Content Include="Content\src\actividad\faseDos.js" />
+    <Content Include="Content\src\actividad\faseUno.js" />
     <Content Include="Content\src\configuracion\configuracion.js" />
     <Content Include="Content\src\curso\curso.js" />
     <Content Include="Content\src\docente\archivo.js" />
@@ -320,6 +322,12 @@
     <Content Include="Views\actividad\faseCuatro.cshtml" />
     <Content Include="Views\actividad\faseCinco.cshtml" />
     <Content Include="Views\actividad\faseSeis.cshtml" />
+    <Content Include="Views\actividad\faseOcho.cshtml" />
+    <Content Include="Views\actividad\faseSiete.cshtml" />
+    <Content Include="Views\actividad\faseNueve.cshtml" />
+    <Content Include="Views\actividad\faseDiez.cshtml" />
+    <Content Include="Views\actividad\faseOnce.cshtml" />
+    <Content Include="Views\actividad\faseDoce.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

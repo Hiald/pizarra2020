@@ -30,8 +30,8 @@ namespace globalws.Controllers
         [HttpGet]
         public int APIInsertarActividadAlumno(int wsactividad, string wsnombres
           , string wsapellidos, string wslugarnacimiento, int wsigrado, int wsiedad
-          , int wsisexo, string wscelular, string wscorreo, string wscolegio, string wsdistrito, string wsugel
-          , Int16 wsestado, string wsfechareg)
+          , int wsisexo, string wscelular, string wscorreo, string wsclave, string wscolegio, string wsdistrito
+          , string wsugel, Int16 wsestado, string wsfechareg)
         {
             int iresultado = -1;
             try
@@ -39,9 +39,9 @@ namespace globalws.Controllers
                 DateTime wsfecharegistro = DateTime.Parse(wsfechareg);
                 itdActividad = new tdActividad();
                 iresultado = itdActividad.tdInsertarActividadAlumno(wsactividad, wsnombres
-                                      , wsapellidos, wslugarnacimiento, wsigrado, wsiedad
-                                      , wsisexo, wscelular, wscorreo, wscolegio, wsdistrito, wsugel
-                                      , wsestado, wsfecharegistro);
+                                                    , wsapellidos, wslugarnacimiento, wsigrado, wsiedad
+                                                    , wsisexo, wscelular, wscorreo, wsclave, wscolegio, wsdistrito
+                                                    , wsugel, wsestado, wsfecharegistro);
                 return iresultado;
             }
             catch (Exception)
@@ -52,20 +52,20 @@ namespace globalws.Controllers
         }
 
         [HttpGet]
-        public int APIInsertarActividadAlumnoDetalle(int wsidactividadAlumno
-                , int wsidactividadDetalle, Int16 wsrespuesta_A
-                , Int16 wsrespuesta_B, Int16 wsrespuesta_C, Int16 wsrespuesta_D
-                , Int16 wsrespuesta_E, int wsipuntaje, int wsitipoPregunta
+        public int APIInsertarActividadAlumnoDetalle(int wsidactividadAlumno, int wsidactividadDetalle
+                , string wsrespuesta_A, string wsrespuesta_B, string wsrespuesta_C, string wsrespuesta_D
+                , string wsrespuesta_E, string wsrespuesta_F, string wsrespuesta_G, string wsrespuesta_H
+                , string wsrespuesta_I, int wsipuntaje, int wsifase, int wspregunta, int wsitipoPregunta
                 , Int16 wsestado)
         {
             int iresultado = -1;
             try
             {
                 itdActividad = new tdActividad();
-                iresultado = itdActividad.tdInsertarActividadAlumnoDetalle(wsidactividadAlumno
-                                    , wsidactividadDetalle, wsrespuesta_A, wsrespuesta_B
-                                    , wsrespuesta_C, wsrespuesta_D, wsrespuesta_E
-                                    , wsipuntaje, wsitipoPregunta, wsestado);
+                iresultado = itdActividad.tdInsertarActividadAlumnoDetalle(wsidactividadAlumno, wsidactividadDetalle
+                                        , wsrespuesta_A, wsrespuesta_B, wsrespuesta_C, wsrespuesta_D
+                                        , wsrespuesta_E, wsrespuesta_F, wsrespuesta_G, wsrespuesta_H
+                                        , wsrespuesta_I, wsipuntaje, wsifase, wspregunta, wsitipoPregunta, wsestado);
                 return iresultado;
             }
             catch (Exception)
@@ -97,13 +97,13 @@ namespace globalws.Controllers
         }
 
         [HttpGet]
-        public string APIListarActividadAlumno(int wsvalor)
+        public string APIListarActividadAlumno(string wsGeneralcorreo)
         {
             List<edActividad> renArchivo = new List<edActividad>();
             try
             {
                 itdActividad = new tdActividad();
-                renArchivo = itdActividad.tdListarActividadAlumno();
+                renArchivo = itdActividad.tdListarActividadAlumno(wsGeneralcorreo);
                 return JsonConvert.SerializeObject(renArchivo);
             }
             catch (Exception ex)
@@ -120,6 +120,54 @@ namespace globalws.Controllers
             {
                 itdActividad = new tdActividad();
                 renArchivo = itdActividad.tdListarActividadAlumnoDetalle(wsidactividad);
+                return JsonConvert.SerializeObject(renArchivo);
+            }
+            catch (Exception ex)
+            {
+                return JsonConvert.SerializeObject(ex);
+            }
+        }
+
+        [HttpGet]
+        public string APIListarActividadAlumnoAcceso(string wscorreoacs, string wsclaveacs)
+        {
+            edActividad renArchivo = new edActividad();
+            try
+            {
+                itdActividad = new tdActividad();
+                renArchivo = itdActividad.tdListarActividadAlumnoAcceso(wscorreoacs, wsclaveacs);
+                return JsonConvert.SerializeObject(renArchivo);
+            }
+            catch (Exception ex)
+            {
+                return JsonConvert.SerializeObject(ex);
+            }
+        }
+
+        [HttpGet]
+        public string APIListarFases(int wsidactividadFase)
+        {
+            List<edActividad> renArchivo = new List<edActividad>();
+            try
+            {
+                itdActividad = new tdActividad();
+                renArchivo = itdActividad.tdListarFases(wsidactividadFase);
+                return JsonConvert.SerializeObject(renArchivo);
+            }
+            catch (Exception ex)
+            {
+                return JsonConvert.SerializeObject(ex);
+            }
+        }
+
+        [HttpGet]
+        public string APIListarPreguntasxFase(int wsidalumno, int wsifase)
+        {
+            List<edActividad> renArchivo = new List<edActividad>();
+            try
+            {
+                itdActividad = new tdActividad();
+                renArchivo = itdActividad.tdListarPreguntasxFase(wsidalumno, wsifase);
                 return JsonConvert.SerializeObject(renArchivo);
             }
             catch (Exception ex)

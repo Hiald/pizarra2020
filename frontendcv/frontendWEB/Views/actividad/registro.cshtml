@@ -15,25 +15,20 @@
     </div>
 
     <div class="row text-center">
-        <div class="col-md-4">
-            <input type="text" class="form-control" id="txtnombre" value="" placeholder="Tus nombres" />
+        <div class="col-md-3">
+            <input type="text" class="form-control" id="txtnombre" value="" placeholder="Tus nombres" maxlength="75" />
         </div>
-        <div class="col-md-4">
-            <input type="text" class="form-control" id="txtapellidos" value="" placeholder="Tus apellidos" />
+        <div class="col-md-3">
+            <input type="text" class="form-control" id="txtapellidos" value="" placeholder="Tus apellidos" maxlength="75" />
         </div>
-        <div class="col-md-4">
-            <input type="text" class="form-control" id="txtcorreo" value="" placeholder="tu correo" />
+        <div class="col-md-3">
+            <select class="form-control" id="slcsexo">
+                <option value="">Sexo</option>
+                <option value="1">Masculino</option>
+                <option value="2">Femenino</option>
+            </select>
         </div>
-    </div>
-    <br />
-    <div class="row text-center">
-        <div class="col-md-4">
-            <input type="text" class="form-control" id="txtlugarnacimiento" value="" placeholder="Lugar de nacimiento" />
-        </div>
-        <div class="col-md-4">
-            <input type="text" class="form-control" id="txtgrado" value="" placeholder="Grado" />
-        </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <select class="form-control" id="slcedad">
                 <option value="0">Edad</option>
                 <option value="14">14 años</option>
@@ -45,64 +40,175 @@
                 <option value="20">20 años</option>
             </select>
         </div>
+
     </div>
     <br />
     <div class="row text-center">
         <div class="col-md-4">
-            <select class="form-control" id="slcsexo">
-                <option value="">Sexo</option>
-                <option value="M">Masculino</option>
-                <option value="F">Femenino</option>
-            </select>
+            <input type="text" class="form-control" id="txtcolegio" value="" placeholder="Tu colegio" maxlength="75" />
         </div>
         <div class="col-md-4">
-            <input type="text" class="form-control" id="txtcolegio" value="" placeholder="Tu colegio" />
+            <input type="text" class="form-control" id="txtcorreo" value="" placeholder="tu correo" maxlength="50" />
         </div>
-        <div class="col-md-4">
-            <input type="text" class="form-control" id="txtdistrito" value="" placeholder="Tu distrito" />
+        <div class="col-md-2">
+            <input type="password" class="form-control" id="txtclave" value="" placeholder="tu clave" maxlength="10" />
         </div>
-        @*<div class="col-md-4">
-            <input type="text" class="form-control" id="txtugel" value="" placeholder="Ugel" />
-        </div>*@
+        <div class="col-md-2">
+            <input type="password" class="form-control" id="txtclaverep" value="" placeholder="repite tu  clave" maxlength="10" />
+        </div>
+
     </div>
+    <br />
+    @*<div class="row text-center">
+            <div class="col-md-4">
+                    <input type="text" class="form-control" id="txtlugarnacimiento" value="" placeholder="Lugar de nacimiento" />
+                </div>
+            <div class="col-md-4">
+                    <input type="text" class="form-control" id="txtgrado" value="" placeholder="Grado" />
+                </div>
+            <div class="col-md-4">
+                <input type="text" class="form-control" id="txtdistrito" value="" placeholder="Tu distrito" />
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="form-control" id="txtugel" value="" placeholder="Ugel" />
+            </div>
+        </div>
+    *@
     <br />
     <div class="row text-center">
         <div class="col-md-12 text-center">
             <button class="btn btn-success" onclick="GuardarDatosAlumno();">Empezar Cuestionario</button>
+            <br />
+            <p class="mt-3" data-toggle="modal" data-target="#modalUsuario">¿Ya has empezado antes con la prueba?<a style="font-weight: bold;cursor:pointer;">&nbsp;Iniciar sesión</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Iniciar sesión</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <input type="text" class="form-control" id="txtcorreois" value="" placeholder="correo electrónico" maxlength="50" />
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <input type="password" class="form-control" id="txtclaveis" value="" placeholder="clave" maxlength="10" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Atrás</button>
+                <button type="button" class="btn btn-success" onclick="AbrirSesion();">Ingresar</button>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
-    function GuardarDatosAlumno() {
-        var txtnombre = $('#txtnombre').val();
-        var txtapellidos = $('#txtapellidos').val();
-        var txtcorreo = $('#txtcorreo').val();
-        var txtlugarnacimiento = $('#txtlugarnacimiento').val();
-        var txtgrado = $('#txtgrado').val();
-        var slcedad = $('#slcedad option:selected').attr('value');
-        var slcsexo = $('#slcsexo option:selected').attr('value');
-        var txtcolegio = $('#txtcolegio').val();
-        var txtdistrito = $('#txtdistrito').val();
+    function AbrirSesion() {
+        var txtcorreois = $('#txtcorreois').val();
+        var txtclaveis = $('#txtclaveis').val();
+
+        if (txtcorreois == "" || txtclaveis == "") {
+            alert("completar campos");
+            return;
+        }
+        $('#divcarga').addClass("is-active");
 
         $.ajax({
-            url: vgruta + "actividad/InsertarActividadAlumno",
+            url: vgruta + "actividad/ListarActividadAlumnoAcceso",
             data: {
-                "wactividad": 1,
-                "wnombres" : txtnombre,
-                "wapellidos": txtapellidos,
-                "wlugarnacimiento": txtlugarnacimiento,
-                "wigrado": txtgrado,
-                "wiedad": slcedad,
-                "wisexo": slcsexo,
-                "wcolegio": txtcolegio,
-                "wdistrito": txtdistrito,
-                "wugel" : ""
+                "wcorreoacs": txtcorreois,
+                "wclaveacs": txtclaveis
             },
             cache: false,
             type: "POST",
             success: function (respuesta) {
-                window.location.href = vgruta + "actividad/fase?idrespuesta=" + respuesta;
+                $('#divcarga').removeClass("is-active");
+                if (respuesta.resultado != "" || respuesta != "" || respuesta.resultado != null) {
+                    var valoridalumno = respuesta.resultado.idactividad;
+                    if (valoridalumno == undefined || valoridalumno == "" || valoridalumno == "0") {
+                        alert("usuario o clave incorrectos");
+                        return;
+                    } else {
+                        window.location.href = vgruta + "actividad/fase?idrespuesta=" + valoridalumno;
+                    }
+                } else {
+                    alert("usuario o clave incorrectos");
+                    return;
+                }
+
+            },
+            error: function () {
+                console.log("No se ha podido obtener la información");
+            }
+        });
+
+    }
+
+
+    function GuardarDatosAlumno() {
+        var txtnombre = $('#txtnombre').val();
+        var txtapellidos = $('#txtapellidos').val();
+        var slcsexo = $('#slcsexo option:selected').attr('value');
+        var slcedad = $('#slcedad option:selected').attr('value');
+        var txtcolegio = $('#txtcolegio').val();
+        var txtcorreo = $('#txtcorreo').val();
+        var txtclave = $('#txtclave').val();
+        var txtclaverep = $('#txtclaverep').val();
+
+        if (txtnombre == "" || txtapellidos == "" || slcsexo == "" || slcedad == "0" || txtcolegio == "" || txtcorreo == "" || txtclave == "") {
+            alert("rellenar campos faltantes");
+            return;
+        }
+
+        if (txtclave.length < 6) {
+            alert("la clave debe tener 6 dígitos");
+            return;
+        }
+
+        if (txtclave != txtclaverep) {
+            alert("las claves no coinciden");
+            return;
+        }
+        $('#divcarga').addClass("is-active");
+        $.ajax({
+            url: vgruta + "actividad/InsertarActividadAlumno",
+            data: {
+                "wactividad": 1,
+                "wnombres": txtnombre,
+                "wapellidos": txtapellidos,
+                "wlugarnacimiento": "",
+                "wigrado": 0,
+                "wiedad": slcedad,
+                "wisexo": slcsexo,
+                "wcelular": "",
+                "wcorreo": txtcorreo,
+                "wclave": txtclave,
+                "wcolegio": txtcolegio,
+                "wdistrito": "",
+                "wugel": ""
+            },
+            cache: false,
+            type: "POST",
+            success: function (respuesta) {
+                $('#divcarga').removeClass("is-active");
+                console.log(respuesta);
+                if (respuesta.resultado == 0) {
+                    alert("el correo ya ha sido tomado");
+                    return;
+                } else {
+                    window.location.href = vgruta + "actividad/fase?idrespuesta=" + respuesta.resultado;
+                }
             },
             error: function () {
                 console.log("No se ha podido obtener la información");

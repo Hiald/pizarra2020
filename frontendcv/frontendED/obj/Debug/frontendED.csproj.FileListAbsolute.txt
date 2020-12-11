@@ -12,7 +12,6 @@ C:\Users\jonat\Desktop\proyectoClaseVirtual\frontendcv\frontendED\obj\Debug\fron
 C:\Users\jonat\Desktop\proyectoClaseVirtual\frontendcv\frontendED\obj\Debug\frontendED.pdb
 C:\Users\jonat\Desktop\proyectoClaseVirtual\pizarra2020\frontendcv\frontendED\bin\Debug\frontendED.dll
 C:\Users\jonat\Desktop\proyectoClaseVirtual\pizarra2020\frontendcv\frontendED\bin\Debug\frontendED.pdb
-C:\Users\jonat\Desktop\proyectoClaseVirtual\pizarra2020\frontendcv\frontendED\obj\Debug\frontendED.csprojAssemblyReference.cache
 C:\Users\jonat\Desktop\proyectoClaseVirtual\pizarra2020\frontendcv\frontendED\obj\Debug\frontendED.csproj.CoreCompileInputs.cache
 C:\Users\jonat\Desktop\proyectoClaseVirtual\pizarra2020\frontendcv\frontendED\obj\Debug\frontendED.dll
 C:\Users\jonat\Desktop\proyectoClaseVirtual\pizarra2020\frontendcv\frontendED\obj\Debug\frontendED.pdb

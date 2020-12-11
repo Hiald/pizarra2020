@@ -2,420 +2,389 @@
 @{
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
+<input type="hidden" id="hddidusuario" value="@ViewBag.VGidusuario" />
 
+<nav class="navbar navbar-light bg-light justify-content-between">
+    <img class="navbar-brand" src="~/Content/image/pizarra21.png" style="width:130px;height:65px;cursor:pointer" />
+    <form class="form-inline">
+        <button class="btn btn-outline-success my-2 my-sm-0" onclick="CerrarOV()">Salir</button>
+    </form>
+</nav>
 <div class="container">
     <div class="row text-center">
         <div class="col-md-12">
             <br />
-            <h6>Por favor marca las respuestas según sea:</h6>
+            <h3>Por favor marca las respuestas según sea:</h3>
             <br />
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4">
-            <label>¿Desde cuándo has pensado en tu futuro?</label>
+        <div class="col-md-4 rdgrupo">
+            <label>1. ¿Desde cuándo has pensado en tu futuro?</label>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd1" id="rd11" value="1">
+                <input class="form-check-input" type="radio" name="vp1" id="rd11" value="1">
                 <label class="form-check-label" for="rd11">
                     Hace muchos años, desde pequeño/a
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd1" id="rd12" value="2">
+                <input class="form-check-input" type="radio" name="vp1" id="rd12" value="2">
                 <label class="form-check-label" for="rd12">
                     Al comenzar la secundaria
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd1" id="rd13" value="3">
+                <input class="form-check-input" type="radio" name="vp1" id="rd13" value="3">
                 <label class="form-check-label" for="rd13">
                     A la mitad de la secundaria
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd1" id="rd14" value="4">
+                <input class="form-check-input" type="radio" name="vp1" id="rd14" value="4">
                 <label class="form-check-label" for="rd14">
                     Este año
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd1" id="rd15" value="5">
+                <input class="form-check-input" type="radio" name="vp1" id="rd15" value="5">
                 <label class="form-check-label" for="rd15">
                     Aún no lo he pensado
                 </label>
             </div>
         </div>
 
-        <div class="col-md-4">
-            <label>¿Cuánto conoces acerca de las diversas alternativas profesionales que existen?</label>
+        <div class="col-md-4 rdgrupo">
+            <label>2. ¿Cuánto conoces acerca de las diversas alternativas profesionales que existen?</label>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd2" id="rd21" value="1">
+                <input class="form-check-input" type="radio" name="vp2" id="rd21" value="1">
                 <label class="form-check-label" for="rd21">
                     Bastante
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd2" id="rd22" value="2">
+                <input class="form-check-input" type="radio" name="vp2" id="rd22" value="2">
                 <label class="form-check-label" for="rd22">
                     Regular
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd2" id="rd23" value="3">
+                <input class="form-check-input" type="radio" name="vp2" id="rd23" value="3">
                 <label class="form-check-label" for="rd23">
                     Poco
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd2" id="rd24" value="4">
+                <input class="form-check-input" type="radio" name="vp2" id="rd24" value="4">
                 <label class="form-check-label" for="rd24">
                     Nada
                 </label>
             </div>
         </div>
 
-        <div class="col-md-4">
-            <label>Escribe en números la respuesta</label>
+        <div class="col-md-4 ipgrupo">
+            <label>3. Escribe en números la respuesta</label>
             <div class="form-group">
-                <label for="ip31" class="sr-only">¿Cúantas carreras universitarias conoces?</label>
-                <input type="number" class="form-control" id="ip31" placeholder="Tu respuesta">
+                <input type="number" class="form-control" id="vp3" placeholder="¿Cúantas carreras universitarias conoces?">
             </div>
             <div class="form-group">
-                <label for="ip32" class="sr-only">¿Cúantas carreras técnicas conoces?</label>
-                <input type="number" class="form-control" id="ip32" placeholder="Tu respuesta">
+                <input type="number" class="form-control" id="vp4" placeholder="¿Cúantas carreras técnicas conoces?">
             </div>
             <div class="form-group">
-                <label for="ip33" class="sr-only">¿Cúantas universidades conoces?</label>
-                <input type="number" class="form-control" id="ip33" placeholder="Tu respuesta">
+                <input type="number" class="form-control" id="vp5" placeholder="¿Cúantas universidades conoces?">
             </div>
             <div class="form-group">
-                <label for="ip34" class="sr-only">¿Cúantos centros de enseñanza técnica conoces?</label>
-                <input type="number" class="form-control" id="ip34" placeholder="Tu respuesta">
+                <input type="number" class="form-control" id="vp6" placeholder="¿Cúantos centros de enseñanza técnica conoces?">
             </div>
             <div class="form-group">
-                <label for="ip35" class="sr-only">¿Cúantos estudiantes de quinto grado crees que egresan actualmente en el Perú?</label>
-                <input type="number" class="form-control" id="ip35" placeholder="Tu respuesta">
+                <input type="number" class="form-control" id="vp7" placeholder="¿Cúantos estudiantes crees que egresan en Perú?">
             </div>
         </div>
 
-        <div class="col-md-4">
-            <label>Según tu parecer, indica las 5 carreras con mayor demanda laboral en Perú.</label>
+        <div class="col-md-4 ipgrupo">
+            <label>4. Según tu parecer, indica las 5 carreras con mayor demanda laboral en Perú.</label>
             <div class="form-group">
-                <label for="ip41" class="sr-only">1er Lugar</label>
-                <input type="text" class="form-control" id="ip41" placeholder="Tu respuesta">
+                <input type="text" class="form-control" id="vp8" placeholder="1er Lugar">
             </div>
             <div class="form-group">
-                <label for="ip42" class="sr-only">2do Lugar</label>
-                <input type="text" class="form-control" id="ip42" placeholder="Tu respuesta">
+                <input type="text" class="form-control" id="vp9" placeholder="2do Lugar">
             </div>
             <div class="form-group">
-                <label for="ip43" class="sr-only">3er Lugar</label>
-                <input type="text" class="form-control" id="ip43" placeholder="Tu respuesta">
+                <input type="text" class="form-control" id="vp10" placeholder="3er Lugar">
             </div>
             <div class="form-group">
-                <label for="ip44" class="sr-only">4to Lugar</label>
-                <input type="text" class="form-control" id="ip44" placeholder="Tu respuesta">
+                <input type="text" class="form-control" id="vp11" placeholder="4to Lugar">
             </div>
             <div class="form-group">
-                <label for="ip45" class="sr-only">5to Lugar</label>
-                <input type="text" class="form-control" id="ip45" placeholder="Tu respuesta">
+                <input type="text" class="form-control" id="vp12" placeholder="5to Lugar">
             </div>
         </div>
 
-        <div class="col-md-4">
-            <label>Según tu parecer, indica las 3 carreras con mayor demanda laboral en Perú.</label>
+        <div class="col-md-4 ipgrupo">
+            <label>5. Según tu parecer, indica las 3 carreras con mayor demanda laboral en Perú.</label>
             <div class="form-group">
-                <label for="ip51" class="sr-only">1er Lugar</label>
-                <input type="text" class="form-control" id="ip51" placeholder="Tu respuesta">
+                <input type="text" class="form-control" id="vp13" placeholder="1er Lugar">
             </div>
             <div class="form-group">
-                <label for="ip52" class="sr-only">2do Lugar</label>
-                <input type="text" class="form-control" id="ip52" placeholder="Tu respuesta">
+                <input type="text" class="form-control" id="vp14" placeholder="2do Lugar">
             </div>
             <div class="form-group">
-                <label for="ip53" class="sr-only">3er Lugar</label>
-                <input type="text" class="form-control" id="ip53" placeholder="Tu respuesta">
+                <input type="text" class="form-control" id="vp15" placeholder="3er Lugar">
             </div>
         </div>
 
-        <div class="col-md-4">
-            <label>¿Qué profesiones te han intereado durante las diferentes edades?.</label>
+        <div class="col-md-4 ipgrupo">
+            <label>6. ¿Qué profesiones te han interesado durante las diferentes edades?.</label>
             <div class="form-group">
-                <label for="ip61" class="sr-only">6 - 10 años</label>
-                <input type="text" class="form-control" id="ip61" placeholder="Tu respuesta">
+                <input type="text" class="form-control" id="vp16" placeholder="6 - 10 años">
             </div>
             <div class="form-group">
-                <label for="ip62" class="sr-only">11 - 13 años</label>
-                <input type="text" class="form-control" id="ip62" placeholder="Tu respuesta">
+                <input type="text" class="form-control" id="vp17" placeholder="11 - 13 años">
             </div>
             <div class="form-group">
-                <label for="ip63" class="sr-only">14 - 16</label>
-                <input type="text" class="form-control" id="ip63" placeholder="Tu respuesta">
+                <input type="text" class="form-control" id="vp18" placeholder="14 - 16 años">
             </div>
             <div class="form-group">
-                <label for="ip64" class="sr-only">17 a más</label>
-                <input type="text" class="form-control" id="ip64" placeholder="Tu respuesta">
+                <input type="text" class="form-control" id="vp19" placeholder="17 años a más">
             </div>
         </div>
 
-        <div class="col-md-4">
-            <label>¿Actualmente, te has identificado con alguna profesión u ocupación que te interese especialmente?.</label>
+        <div class="col-md-4 rdgrupo">
+            <label>7. ¿Actualmente, te has identificado con alguna profesión u ocupación que te interese especialmente?.</label>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd7" id="rd71" value="1">
+                <input class="form-check-input" type="radio" name="vp20" id="rd71" value="1">
                 <label class="form-check-label" for="rd71">
                     Sí
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd7" id="rd72" value="2">
+                <input class="form-check-input" type="radio" name="vp20" id="rd72" value="2">
                 <label class="form-check-label" for="rd72">
                     No
                 </label>
             </div>
         </div>
 
-        <div id="bloque1">
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label for="ip71" class="sr-only">¿Cuál es esa ocupación o profesión que más te interesa?</label>
-                    <input type="text" class="form-control" id="ip71" placeholder="Tu respuesta">
-                </div>
-                <div class="form-group">
-                    <label for="ip72" class="sr-only">¿Por qúe te interesa?</label>
-                    <input type="text" class="form-control" id="ip72" placeholder="Tu respuesta">
-                </div>
+
+        <div class="col-md-4 secpreg7 ipgrupo2" id="pregsec8">
+            <label>8. Responde las siguientes preguntas:</label>
+            <div class="form-group">
+                <input type="text" class="form-control" id="vp21" placeholder="¿Cuál es la profesión que te interesa?">
             </div>
-
-            <div class="col-md-4">
-                <label>¿Qué tan seguro te sientes al querer seguir esa profesión y/u ocupación?</label>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="grd8" id="rd81" value="1">
-                    <label class="form-check-label" for="rd81">
-                        Completamente seguro
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="grd8" id="rd82" value="2">
-                    <label class="form-check-label" for="rd82">
-                        Seguro
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="grd8" id="rd83" value="3">
-                    <label class="form-check-label" for="rd83">
-                        Un poco seguro
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="grd8" id="rd84" value="4">
-                    <label class="form-check-label" for="rd84">
-                        No estoy seguro
-                    </label>
-                </div>
-
+            <div class="form-group">
+                <input type="text" class="form-control" id="vp22" placeholder="¿Por qúe te interesa?">
             </div>
+        </div>
 
-            <div class="col-md-4">
-                <label>¿Qué personas han influido en tu interés hacia esta profesión u ocupación?</label>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="grd9" id="rd91" value="1">
-                    <label class="form-check-label" for="rd91">
-                        Padres (Papá o Mamá)
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="grd9" id="rd92" value="2">
-                    <label class="form-check-label" for="rd92">
-                        Profesores
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="grd9" id="rd93" value="3">
-                    <label class="form-check-label" for="rd93">
-                        Amigos
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="grd9" id="rd94" value="4">
-                    <label class="form-check-label" for="rd94">
-                        Otros familiares
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="grd9" id="rd95" value="5">
-                    <label class="form-check-label" for="rd95">
-                        Personajes públicos
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="grd9" id="rd96" value="6">
-                    <label class="form-check-label" for="rd96">
-                        Otros
-                    </label>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <label>¿Cuánto conoces sobre la profesión u ocupación que te interesa?</label>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="grd10" id="rd101" value="1">
-                    <label class="form-check-label" for="rd101">
-                        Bastante
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="grd10" id="rd102" value="2">
-                    <label class="form-check-label" for="rd102">
-                        Regular
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="grd10" id="rd103" value="3">
-                    <label class="form-check-label" for="rd103">
-                        Poco
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="grd10" id="rd104" value="4">
-                    <label class="form-check-label" for="rd104">
-                        Nada
-                    </label>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <label>¿Consideras que tus capacidades y características personales van de acuerdo a lo que requiere esa profesión u ocupación?</label>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="grd11" id="rd111" value="1">
-                    <label class="form-check-label" for="rd111">
-                        Sí, bastante
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="grd11" id="rd112" value="2">
-                    <label class="form-check-label" for="rd112">
-                        Sí, lo suficiente
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="grd11" id="rd113" value="3">
-                    <label class="form-check-label" for="rd113">
-                        Un Poco
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="grd11" id="rd114" value="4">
-                    <label class="form-check-label" for="rd114">
-                        No van de acuerdo
-                    </label>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <label>¿Cuánto crees que costaría estudiar la profesión u ocupación que te interesa?.</label>
-                <div class="form-group">
-                    <label for="ip121" class="sr-only">Ingresar monto</label>
-                    <input type="text" class="form-control" id="ip121" placeholder="Tu respuesta">
-                </div>
-
-            </div>
-
-            <div class="col-md-4">
-                <label>¿Realizas alguna acción que te permita prepararte para esa profesión u ocuación?.</label>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="grd13" id="rd131" value="1">
-                    <label class="form-check-label" for="rd131">
-                        Sí
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="grd13" id="rd132" value="2">
-                    <label class="form-check-label" for="rd132">
-                        No
-                    </label>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <label>Marca las acciones que realizas para prepararte en esa profesión u ocupación (Puedes marcar más de una opción).</label>
-                <input class="form-check-input gchk14" type="checkbox" value="" id="chk141">
-                <label class="form-check-label" for="chk141">
-                    Me preparo en una academia
-                </label>
-                <input class="form-check-input gchk14" type="checkbox" value="" id="chk142">
-                <label class="form-check-label" for="chk142">
-                    Aprendo idiomas
-                </label>
-                <input class="form-check-input gchk14" type="checkbox" value="" id="chk143">
-                <label class="form-check-label" for="chk143">
-                    Ahorro, guardo dinero
-                </label>
-                <input class="form-check-input gchk14" type="checkbox" value="" id="chk144">
-                <label class="form-check-label" for="chk144">
-                    Llevo cursos de desarrollo personal
-                </label>
-                <input class="form-check-input gchk14" type="checkbox" value="" id="chk145">
-                <label class="form-check-label" for="chk145">
-                    Leo libros afines
-                </label>
-                <input class="form-check-input gchk14" type="checkbox" value="" id="chk146">
-                <label class="form-check-label" for="chk146">
-                    Investigo sobre la carrera
-                </label>
-                <input class="form-check-input gchk14" type="checkbox" value="" id="chk147">
-                <label class="form-check-label" for="chk147">
-                    Converso con profesionales
-                </label>
-                <input class="form-check-input gchk14" type="checkbox" value="" id="chk148">
-                <label class="form-check-label" for="chk148">
-                    Otro
+        <div class="col-md-4 secpreg7 rdgrupo2" id="pregsec9">
+            <label>9. ¿Qué tan seguro te sientes al querer seguir esa profesión y/u ocupación?</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="vp23" id="rd81" value="1">
+                <label class="form-check-label" for="rd81">
+                    Completamente seguro
                 </label>
             </div>
-
-            <div class="col-md-4">
-                <label>Si tienes otras profesiones u ocupaciones que te interesan en la actualidad, ponlas en orden de tu preferencia.</label>
-                <div class="form-group">
-                    <label for="ip151" class="sr-only">1er Lugar</label>
-                    <input type="text" class="form-control" id="ip151" placeholder="Tu respuesta">
-                </div>
-                <div class="form-group">
-                    <label for="ip152" class="sr-only">2do Lugar</label>
-                    <input type="text" class="form-control" id="ip152" placeholder="Tu respuesta">
-                </div>
-                <div class="form-group">
-                    <label for="ip153" class="sr-only">3er Lugar</label>
-                    <input type="text" class="form-control" id="ip153" placeholder="Tu respuesta">
-                </div>
-                <div class="form-group">
-                    <label for="ip154" class="sr-only">4to Lugar</label>
-                    <input type="text" class="form-control" id="ip154" placeholder="Tu respuesta">
-                </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="vp23" id="rd82" value="2">
+                <label class="form-check-label" for="rd82">
+                    Seguro
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="vp23" id="rd83" value="3">
+                <label class="form-check-label" for="rd83">
+                    Un poco seguro
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="vp23" id="rd84" value="4">
+                <label class="form-check-label" for="rd84">
+                    No estoy seguro
+                </label>
             </div>
 
         </div>
 
-        <div class="col-md-4">
-            <label>Con relación al logro de tus metas profesionales, consideras que:</label>
+        <div class="col-md-4 secpreg7 rdgrupo2" id="pregsec10">
+            <label>10. ¿Qué personas han influido en tu interés hacia esta profesión u ocupación?</label>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd16" id="rd161" value="1">
+                <input class="form-check-input" type="radio" name="vp24" id="rd91" value="1">
+                <label class="form-check-label" for="rd91">
+                    Padres (Papá o Mamá)
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="vp24" id="rd92" value="2">
+                <label class="form-check-label" for="rd92">
+                    Profesores
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="vp24" id="rd93" value="3">
+                <label class="form-check-label" for="rd93">
+                    Amigos
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="vp24" id="rd94" value="4">
+                <label class="form-check-label" for="rd94">
+                    Otros familiares
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="vp24" id="rd95" value="5">
+                <label class="form-check-label" for="rd95">
+                    Personajes públicos
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="vp24" id="rd96" value="6">
+                <label class="form-check-label" for="rd96">
+                    Otros
+                </label>
+            </div>
+        </div>
+
+        <div class="col-md-4 secpreg7 rdgrupo2" id="pregsec11">
+            <label>11. ¿Cuánto conoces sobre la profesión u ocupación que te interesa?</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="vp25" id="rd101" value="1">
+                <label class="form-check-label" for="rd101">
+                    Bastante
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="vp25" id="rd102" value="2">
+                <label class="form-check-label" for="rd102">
+                    Regular
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="vp25" id="rd103" value="3">
+                <label class="form-check-label" for="rd103">
+                    Poco
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="vp25" id="rd104" value="4">
+                <label class="form-check-label" for="rd104">
+                    Nada
+                </label>
+            </div>
+        </div>
+
+        <div class="col-md-4 secpreg7 rdgrupo2" id="pregsec12">
+            <label>12. ¿Consideras que tus capacidades y características personales van de acuerdo a lo que requiere esa profesión u ocupación?</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="vp26" id="rd111" value="1">
+                <label class="form-check-label" for="rd111">
+                    Sí, bastante
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="vp26" id="rd112" value="2">
+                <label class="form-check-label" for="rd112">
+                    Sí, lo suficiente
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="vp26" id="rd113" value="3">
+                <label class="form-check-label" for="rd113">
+                    Un Poco
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="vp26" id="rd114" value="4">
+                <label class="form-check-label" for="rd114">
+                    No van de acuerdo
+                </label>
+            </div>
+        </div>
+
+        <div class="col-md-4 secpreg7 ipgrupo2" id="pregsec13">
+            <label>13. ¿Cuánto crees que costaría estudiar la profesión u ocupación que te interesa?.</label>
+            <div class="form-group">
+                <input type="text" class="form-control" id="vp27" placeholder="Ingresar monto">
+            </div>
+        </div>
+
+        <div class="col-md-4 secpreg7 rdgrupo2" id="pregsec14">
+            <label>14. ¿Realizas alguna acción que te permita prepararte para esa profesión u ocuación?.</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="vp28" id="rd131" value="1">
+                <label class="form-check-label" for="rd131">
+                    Sí
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="vp28" id="rd132" value="2">
+                <label class="form-check-label" for="rd132">
+                    No
+                </label>
+            </div>
+        </div>
+
+        <div class="col-md-4 secpreg7" id="pregsec15">
+            <label>15. Marca las acciones que realizas para prepararte en esa profesión u ocupación (Puedes marcar más de una opción).</label>
+            <input class="gchk14" type="checkbox" value="" id="vp29">&nbsp;Me preparo en una academia
+            <br />
+            <input class="gchk14" type="checkbox" value="" id="vp30">&nbsp;Aprendo idiomas
+            <br />
+            <input class="gchk14" type="checkbox" value="" id="vp31">&nbsp;Ahorro, guardo dinero
+            <br />
+            <input class="gchk14" type="checkbox" value="" id="vp32">&nbsp;Llevo cursos de desarrollo personal
+            <br />
+            <input class="gchk14" type="checkbox" value="" id="vp33">&nbsp;Leo libros afines
+            <br />
+            <input class="gchk14" type="checkbox" value="" id="vp34">&nbsp;Investigo sobre la carrera
+            <br />
+            <input class="gchk14" type="checkbox" value="" id="vp35">&nbsp;Converso con profesionales
+            <br />
+            <input class="gchk14" type="checkbox" value="" id="vp36">&nbsp;Otro
+        </div>
+
+        <div class="col-md-4 secpreg7 ipgrupo2" id="pregsec16">
+            <label>16. Si tienes otras profesiones u ocupaciones que te interesan en la actualidad, ponlas en orden de tu preferencia.</label>
+            <div class="form-group">
+                <label for="ip151" class="sr-only">1er Lugar</label>
+                <input type="text" class="form-control" id="vp37" placeholder="Tu respuesta">
+            </div>
+            <div class="form-group">
+                <label for="ip152" class="sr-only">2do Lugar</label>
+                <input type="text" class="form-control" id="vp38" placeholder="Tu respuesta">
+            </div>
+            <div class="form-group">
+                <label for="ip153" class="sr-only">3er Lugar</label>
+                <input type="text" class="form-control" id="vp39" placeholder="Tu respuesta">
+            </div>
+            <div class="form-group">
+                <label for="ip154" class="sr-only">4to Lugar</label>
+                <input type="text" class="form-control" id="vp40" placeholder="Tu respuesta">
+            </div>
+        </div>
+
+
+        <div class="col-md-4 rdgrupo">
+            <label>17. Con relación al logro de tus metas profesionales, consideras que:</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="vp41" id="rd161" value="1">
                 <label class="form-check-label" for="rd161">
                     Será fácil alcanzarlas
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd16" id="rd162" value="2">
+                <input class="form-check-input" type="radio" name="vp41" id="rd162" value="2">
                 <label class="form-check-label" for="rd162">
                     Pueden lograrse pero con esfuerzo
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd16" id="rd163" value="3">
+                <input class="form-check-input" type="radio" name="vp41" id="rd163" value="3">
                 <label class="form-check-label" for="rd163">
                     Pueden lograrse solo si hay suerte
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd16" id="rd164" value="4">
+                <input class="form-check-input" type="radio" name="vp41" id="rd164" value="4">
                 <label class="form-check-label" for="rd164">
                     Es casi imposible alcanzarlas
                 </label>
@@ -423,103 +392,113 @@
 
         </div>
 
-        <div class="col-md-4">
-            <label>¿Cuáles crees que son los principales obstáculos que tienes para lograr tus metas profesionales?</label>
+        <div class="col-md-4 rdgrupo">
+            <label>18. ¿Cuáles crees que son los principales obstáculos que tienes para lograr tus metas profesionales?</label>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd17" id="rd171" value="1">
+                <input class="form-check-input" type="radio" name="vp42" id="rd171" value="1">
                 <label class="form-check-label" for="rd171">
                     Falta de dinero
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd17" id="rd172" value="2">
+                <input class="form-check-input" type="radio" name="vp42" id="rd172" value="2">
                 <label class="form-check-label" for="rd172">
                     Falta de capacidad intelectual
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd17" id="rd173" value="3">
+                <input class="form-check-input" type="radio" name="vp42" id="rd173" value="3">
                 <label class="form-check-label" for="rd173">
                     Indecisión personal
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd17" id="rd174" value="4">
+                <input class="form-check-input" type="radio" name="vp42" id="rd174" value="4">
                 <label class="form-check-label" for="rd174">
                     Falta de oportunidad
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd17" id="rd175" value="4">
+                <input class="form-check-input" type="radio" name="vp42" id="rd175" value="4">
                 <label class="form-check-label" for="rd175">
                     Falta de apoyo u oposición familiar
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd17" id="rd176" value="4">
+                <input class="form-check-input" type="radio" name="vp42" id="rd176" value="4">
                 <label class="form-check-label" for="rd176">
                     No hay obstáculos
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd17" id="rd177" value="4">
+                <input class="form-check-input" type="radio" name="vp42" id="rd177" value="4">
                 <label class="form-check-label" for="rd177">
                     Otros
                 </label>
             </div>
         </div>
 
-        <div class="col-md-4">
-            <label>¿Existe alguna situación que te preocupa para optar por otra profesión u ocupación que no deseas?</label>
+        <div class="col-md-4 rdgrupo">
+            <label>19. ¿Existe alguna situación que te preocupa para optar por otra profesión u ocupación que no deseas?</label>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd18" id="rd181" value="1">
+                <input class="form-check-input" type="radio" name="vp43" id="rd181" value="1">
                 <label class="form-check-label" for="rd181">
                     Sí
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd18" id="rd182" value="2">
+                <input class="form-check-input" type="radio" name="vp43" id="rd182" value="2">
                 <label class="form-check-label" for="rd182">
                     No
                 </label>
             </div>
         </div>
 
-        <div id="bloque2">
-            <div class="col-md-4">
-                <label>En caso sea sí, ¿De dónde proviene esa presión?</label>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="grd19" id="rd191" value="1">
-                    <label class="form-check-label" for="rd191">
-                        Exigencia familiar
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="grd19" id="rd192" value="2">
-                    <label class="form-check-label" for="rd192">
-                        Limitaciones económicas
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="grd19" id="rd193" value="3">
-                    <label class="form-check-label" for="rd193">
-                        Existencia de pocos centros de estudios
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="grd19" id="rd194" value="4">
-                    <label class="form-check-label" for="rd194">
-                        Exigencia que impone el mercado laboral
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="grd19" id="rd195" value="4">
-                    <label class="form-check-label" for="rd195">
-                        Otros factores
-                    </label>
-                </div>
+
+        <div class="col-md-4" id="pregsec2">
+            <label>20. En caso sea sí, ¿De dónde proviene esa presión?</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="vp44" id="rd191" value="1">
+                <label class="form-check-label" for="rd191">
+                    Exigencia familiar
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="vp44" id="rd192" value="2">
+                <label class="form-check-label" for="rd192">
+                    Limitaciones económicas
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="vp44" id="rd193" value="3">
+                <label class="form-check-label" for="rd193">
+                    Existencia de pocos centros de estudios
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="vp44" id="rd194" value="4">
+                <label class="form-check-label" for="rd194">
+                    Exigencia que impone el mercado laboral
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="vp44" id="rd195" value="4">
+                <label class="form-check-label" for="rd195">
+                    Otros factores
+                </label>
             </div>
         </div>
 
     </div>
 </div>
+
+<div class="container justify-center">
+    <div class="row align-center justify-center justify-content-md-center">
+        <div class="col-md-12"></div>
+        <button class="btn btn-lg btn-success" onclick="fnValidar();">Finalizar fase</button>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Content/src/actividad/faseUno.js"></script>
+}

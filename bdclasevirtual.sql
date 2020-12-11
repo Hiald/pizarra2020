@@ -628,11 +628,13 @@ DELIMITER ;
 
 /*DROP procedure IF EXISTS `spgrado_listar`;*/
 /* antiguo: spcurso_listar */
+-- este SP tambien se utiliza para listar los cursos desde modo admin con el usuario 1, corregir este sp
+-- ya estan los cambios solo falta subir a la bd y probar esta por defecto con el usuario 0 , corregir en el frontendcv en el metodo
 DELIMITER $$
 CREATE PROCEDURE `spgrado_listar` (IN _idetapa INT, IN _idalumno INT)
 BEGIN
 
-IF EXISTS(SELECT idpago FROM pago where idalumno = _idalumno AND idetapa = _idetapa AND activo = 1 AND DATE(fechafin) >= CURDATE()) THEN
+IF EXISTS(SELECT idpago FROM pago where (idalumno = _idalumno || _idalumno = 0) AND idetapa = _idetapa AND activo = 1 AND DATE(fechafin) >= CURDATE()) THEN
 BEGIN
 
 SELECT
@@ -1131,6 +1133,7 @@ CREATE TABLE t_actividad_alumno (
   `v_colegio` VARCHAR(100) DEFAULT NULL,
   `v_celular` VARCHAR(100) DEFAULT NULL,
   `v_correo`  VARCHAR(100) DEFAULT NULL,
+  `v_clave`  VARCHAR(100) DEFAULT NULL,
   `v_distrito` VARCHAR(100) DEFAULT NULL,
   `v_ugel` VARCHAR(100) DEFAULT NULL,
   `i_carrera1` VARCHAR(50) DEFAULT NULL,
@@ -1152,15 +1155,15 @@ CREATE TABLE t_actividad_alumno_detalle (
   `id_actividad_detalle` INT NOT NULL,
   `i_pregunta` INT NOT NULL,
   `i_fase` INT NOT NULL,
-  `b_respuesta_A` BIT(1) NOT NULL,
-  `b_respuesta_B` BIT(1) NOT NULL,
-  `b_respuesta_C` BIT(1) NOT NULL,
-  `b_respuesta_D` BIT(1) NOT NULL,
-  `b_respuesta_E` BIT(1) NOT NULL,
-  `b_respuesta_F` BIT(1) NOT NULL,
-  `b_respuesta_G` BIT(1) NOT NULL,
-  `b_respuesta_H` BIT(1) NOT NULL,
-  `b_respuesta_I` BIT(1) NOT NULL,
+  `b_respuesta_A` VARCHAR(50) NOT NULL,
+  `b_respuesta_B` VARCHAR(50) NOT NULL,
+  `b_respuesta_C` VARCHAR(50) NOT NULL,
+  `b_respuesta_D` VARCHAR(50) NOT NULL,
+  `b_respuesta_E` VARCHAR(50) NOT NULL,
+  `b_respuesta_F` VARCHAR(50) NOT NULL,
+  `b_respuesta_G` VARCHAR(50) NOT NULL,
+  `b_respuesta_H` VARCHAR(50) NOT NULL,
+  `b_respuesta_I` VARCHAR(50) NOT NULL,
   `i_puntaje` INT NOT NULL,
   `i_tipo_pregunta` INT NOT NULL,
   `b_estado` BIT(1) NOT NULL,
@@ -1193,7 +1196,7 @@ DELIMITER ;
 -- -------------------------------------------------
 
 DELIMITER $$
-CREATE PROCEDURE `sp_obtener_actividadA`()
+CREATE PROCEDURE `sp_obtener_actividadA`(IN _v_correo VARCHAR(100))
 BEGIN
   select 
    aa.id_actividad_alumno
@@ -1216,7 +1219,7 @@ BEGIN
   ,aa.dt_fecharegistro
   ,aa.dt_fechafin
   from t_actividad_alumno aa
-    where aa.b_estado = 1;
+    where aa.b_estado = 1 AND (aa.v_correo = _v_correo OR _v_correo = '');
 END$$
 DELIMITER ;
 
@@ -1256,13 +1259,24 @@ CREATE PROCEDURE `sp_insertar_actividadAlumno`(
   ,IN _i_sexo INT
   ,IN _v_celular VARCHAR(100)
   ,IN _v_correo  VARCHAR(100)
+  ,IN _v_clave VARCHAR(100)
   ,IN _v_colegio VARCHAR(100)
   ,IN _v_distrito VARCHAR(100)
   ,IN _v_ugel VARCHAR(100)
   ,IN _b_estado BIT(1)
   ,IN _dt_fecharegistro DATETIME)
 BEGIN
-  INSERT INTO t_actividad_alumno(
+
+IF EXISTS(SELECT aa.id_actividad FROM t_actividad_alumno aa WHERE aa.v_correo = _v_correo) THEN
+BEGIN
+
+    SELECT 0 as '_result';
+
+END;
+ELSE
+BEGIN
+
+INSERT INTO t_actividad_alumno(
       id_actividad
       ,v_nombres
       ,v_apellidos
@@ -1272,6 +1286,7 @@ BEGIN
       ,i_sexo
       ,v_celular
       ,v_correo
+      ,v_clave
       ,v_colegio
       ,v_distrito
       ,v_ugel
@@ -1287,13 +1302,17 @@ BEGIN
       ,_i_sexo
       ,_v_celular
       ,_v_correo
+      ,_v_clave
       ,_v_colegio
       ,_v_distrito
       ,_v_ugel
       ,_b_estado
       ,_dt_fecharegistro);
 
-    SELECT LAST_INSERT_ID as '_result';
+    SELECT LAST_INSERT_ID() as '_result';
+
+END;
+END IF;
 
 END$$
 DELIMITER ;
@@ -1304,11 +1323,15 @@ DELIMITER $$
 CREATE PROCEDURE `sp_insertar_actividadAlumnoDetalle`(
   IN _id_actividad_alumno INT
   ,IN _id_actividad_detalle INT
-  ,IN _b_respuesta_A BIT(1)
-  ,IN _b_respuesta_B BIT(1)
-  ,IN _b_respuesta_C BIT(1)
-  ,IN _b_respuesta_D BIT(1)
-  ,IN _b_respuesta_E BIT(1)
+  ,IN _b_respuesta_A VARCHAR(50)
+  ,IN _b_respuesta_B VARCHAR(50)
+  ,IN _b_respuesta_C VARCHAR(50)
+  ,IN _b_respuesta_D VARCHAR(50)
+  ,IN _b_respuesta_E VARCHAR(50)
+  ,IN _b_respuesta_F VARCHAR(50)
+  ,IN _b_respuesta_G VARCHAR(50)
+  ,IN _b_respuesta_H VARCHAR(50)
+  ,IN _b_respuesta_I VARCHAR(50)
   ,IN _i_pregunta INT
   ,IN _i_fase INT
   ,IN _i_puntaje INT
@@ -1323,6 +1346,10 @@ BEGIN
       ,b_respuesta_C
       ,b_respuesta_D
       ,b_respuesta_E
+      ,b_respuesta_F
+      ,b_respuesta_G
+      ,b_respuesta_H
+      ,b_respuesta_I
       ,i_pregunta
       ,i_fase
       ,i_puntaje
@@ -1336,18 +1363,22 @@ BEGIN
       ,_b_respuesta_C
       ,_b_respuesta_D
       ,_b_respuesta_E
+      ,_b_respuesta_F
+      ,_b_respuesta_G
+      ,_b_respuesta_H
+      ,_b_respuesta_I
       ,_i_pregunta
       ,_i_fase
       ,_i_puntaje
       ,_i_tipo_pregunta
       ,_b_estado);
 
-    SELECT LAST_INSERT_ID as '_result';
+    SELECT LAST_INSERT_ID() as '_result';
 
 END$$
 DELIMITER ;
 
--- ---------------------------------------
+-- -------------------------------------------------
 
 
 DELIMITER $$
@@ -1375,3 +1406,71 @@ END$$
 DELIMITER ;
 
 -- --------------------------------------------------
+
+DELIMITER $$
+CREATE PROCEDURE `sp_listar_actividadAlumno`(
+  IN _v_correo  VARCHAR(100)
+  ,IN _v_clave  VARCHAR(100)
+  )
+BEGIN
+ SELECT
+      aa.id_actividad
+      ,aa.v_nombres
+      ,aa.v_apellidos
+      ,aa.v_lugarnacimiento
+      ,aa.v_correo
+      ,aa.v_clave
+      ,aa.v_colegio
+
+  FROM t_actividad_alumno aa WHERE aa.v_correo = _v_correo AND aa.v_clave = _v_clave;
+
+END$$
+DELIMITER ;
+
+
+-- --------------------------------------------------
+
+DELIMITER $$
+CREATE PROCEDURE `sp_listar_actividadFases`(
+  IN _id_actividad INT)
+BEGIN
+ SELECT DISTINCT
+  aad.i_fase
+
+  FROM t_actividad_alumno_detalle aad WHERE aad.id_actividad_alumno = _id_actividad;
+
+END$$
+DELIMITER ;
+
+-- ---------------------------------------------------
+
+
+DELIMITER $$
+CREATE PROCEDURE `sp_listar_actividadAlumnoDetalle`(
+  IN _id_actividad INT
+  ,IN _i_fase INT)
+BEGIN
+ SELECT
+  aad.id_actividad_alumno_detalle
+  ,aad.id_actividad_alumno
+  ,aad.id_actividad_detalle
+  ,aad.i_pregunta
+  ,aad.i_fase
+  ,aad.b_respuesta_A
+  ,aad.b_respuesta_B
+  ,aad.b_respuesta_C
+  ,aad.b_respuesta_D
+  ,aad.b_respuesta_E
+  ,aad.b_respuesta_F
+  ,aad.b_respuesta_G
+  ,aad.b_respuesta_H
+  ,aad.b_respuesta_I
+  ,aad.i_tipo_pregunta
+
+  FROM t_actividad_alumno_detalle aad 
+    WHERE aad.id_actividad_alumno = _id_actividad 
+      AND aad.i_fase = _i_fase;
+
+END$$
+DELIMITER ;
+

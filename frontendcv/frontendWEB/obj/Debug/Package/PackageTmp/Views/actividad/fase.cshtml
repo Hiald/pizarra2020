@@ -2,7 +2,17 @@
     ViewBag.Title = "fase";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
-
+<script>
+    function fn_rtIndex() {
+        window.location = '/';
+    }
+</script>
+<nav class="navbar navbar-light bg-light justify-content-between">
+    <img class="navbar-brand" src="~/Content/image/pizarra21.png" style="width:130px;height:65px;cursor:pointer" />
+    <form class="form-inline">
+        <button class="btn btn-outline-success my-2 my-sm-0" onclick="CerrarOV()">Salir</button>
+    </form>
+</nav>
 <div class="container">
     <div class="row text-center">
         <div class="col-md-12">
@@ -11,194 +21,200 @@
             <br />
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="~/Content/image/imagen2.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Fase 1</h5>
+                    <p class="card-text">Fase 1 Prueba de entrada</p>
+                    <a class="btn btn-primary text-white" id="btn1" style="cursor:pointer;" onclick="fnAbrirFase(1)">Ir a la fase</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="~/Content/image/imagen2.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Fase 2</h5>
+                    <p class="card-text">Mis espectativas</p>
+                    <a class="btn btn-primary text-white" id="btn2" style="cursor:pointer;" onclick="fnAbrirFase(2)">Ir a la fase</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="~/Content/image/imagen2.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Fase 3</h5>
+                    <p class="card-text">Escuchar a los padres</p>
+                    <a class="btn btn-primary text-white" id="btn3" style="cursor:pointer;" onclick="fnAbrirFase(3)">Ir a la fase</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="~/Content/image/imagen2.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Fase 4</h5>
+                    <p class="card-text">Conocer mis habilidades</p>
+                    <a class="btn btn-primary text-white" id="btn4" style="cursor:pointer;" onclick="fnAbrirFase(4)">Ir a la fase</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="~/Content/image/imagen2.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Fase 5</h5>
+                    <p class="card-text">Conocer mis estilos de aprendizaje</p>
+                    <a class="btn btn-primary text-white" id="btn5" style="cursor:pointer;" onclick="fnAbrirFase(5)">Ir a la fase</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="~/Content/image/imagen2.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Fase 6</h5>
+                    <p class="card-text">Mi tipo de inteligencia</p>
+                    <a class="btn btn-primary text-white" id="btn6" style="cursor:pointer;" onclick="fnAbrirFase(6)">Ir a la fase</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="~/Content/image/imagen2.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Fase 7</h5>
+                    <p class="card-text">Conociendo mi personalidad</p>
+                    <a class="btn btn-primary text-white" id="btn7" style="cursor:pointer;" onclick="fnAbrirFase(7)">Ir a la fase</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="~/Content/image/imagen2.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Fase 8</h5>
+                    <p class="card-text">Entrevistas a profesionales</p>
+                    <a class="btn btn-primary text-white" id="btn8" style="cursor:pointer;" onclick="fnAbrirFase(8)">Ir a la fase</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="~/Content/image/imagen2.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Fase 9</h5>
+                    <p class="card-text">Conociendo el mercado laboral</p>
+                    <a class="btn btn-primary text-white" id="btn9" style="cursor:pointer;" onclick="fnAbrirFase(9)">Ir a la fase</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="~/Content/image/imagen2.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Fase 10</h5>
+                    <p class="card-text">Resultado final</p>
+                    <a class="btn btn-primary text-white" id="btn10" style="cursor:pointer;" onclick="fnAbrirFase(10)">Ir a la fase</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="~/Content/image/imagen2.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Fase 11</h5>
+                    <p class="card-text">Entrevista con Psicóloga</p>
+                    <a class="btn btn-primary text-white" id="btn11" style="cursor:pointer;" onclick="fnAbrirFase(11)">Ir a la fase</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="justify-center row">
-    <v-flex lg4 xs12 md4 sm4 xl4 class="pl-3 pr-3 pt-5">
-        <v-card>
-            <v-img src="~/Content/image/imagen2.jpg" height="200px" style="cursor:pointer"></v-img>
-            <v-card-title primary-title>
-                <div style="cursor:pointer" onclick="javascript:AbrirCurso('')">
-                    <div class="headline">Fase 1</div>
-                </div>
-            </v-card-title>
-            <v-card-actions>
-                <v-btn block onclick="javascript:AbrirCurso('')" color="purple" style="color:white">Entrar</v-btn>
-            </v-card-actions>
-            <v-card-text>
-                Preguntas de la fase 1 Prueba de entrada
-            </v-card-text>
-        </v-card>
-    </v-flex>
+<input type="hidden" id="hddvgidrespuesta" value="@ViewBag.VGidrespuesta" />
+<script>
+    function redirectPostV2(location, nameparam1, value1) {
+        var form = '';
+        var rt = '<form id="rtmvc" action="' + location + '" method="POST">'
+            + '<input type="hidden" name="' + nameparam1 + '" value="' + value1 + '">'
+            + '</form>'
+        var data = appendHtml(document.body, rt);
+        document.getElementById("rtmvc").submit();
 
-    <v-flex lg4 xs12 md4 sm4 xl4 class="pl-3 pr-3 pt-5">
-        <v-card>
-            <v-img src="~/Content/image/imagen2.jpg" height="200px" style="cursor:pointer"></v-img>
-            <v-card-title primary-title>
-                <div style="cursor:pointer" onclick="javascript:AbrirCurso('')">
-                    <div class="headline">Fase 2</div>
-                </div>
-            </v-card-title>
-            <v-card-actions>
-                <v-btn block onclick="javascript:AbrirCurso('')" color="purple" style="color:white">Entrar</v-btn>
-            </v-card-actions>
-            <v-card-text>
-                Mis espectativas
-            </v-card-text>
-        </v-card>
-    </v-flex>
+    }
 
-    <v-flex lg4 xs12 md4 sm4 xl4 class="pl-3 pr-3 pt-5">
-        <v-card>
-            <v-img src="~/Content/image/imagen2.jpg" height="200px" style="cursor:pointer"></v-img>
-            <v-card-title primary-title>
-                <div style="cursor:pointer" onclick="javascript:AbrirCurso('')">
-                    <div class="headline">Fase 3</div>
-                </div>
-            </v-card-title>
-            <v-card-actions>
-                <v-btn block onclick="javascript:AbrirCurso('')" color="purple" style="color:white">Entrar</v-btn>
-            </v-card-actions>
-            <v-card-text>
-                Escuchar a los padres
-            </v-card-text>
-        </v-card>
-    </v-flex>
+    function fnAbrirFase(idfase) {
+        var vidfase = "";
+        console.log(idfase);
+        switch (idfase) {
+            case 1: vidfase = "faseUno"; break;
+            case 2: vidfase = "faseDos"; break;
+            case 3: vidfase = "faseTres"; break;
+            case 4: vidfase = "faseCuatro"; break;
+            case 5: vidfase = "faseCinco"; break;
+            case 6: vidfase = "faseSeis"; break;
+            case 7: vidfase = "faseSiete"; break;
+            case 8: vidfase = "faseOcho"; break;
+            case 9: vidfase = "faseNueve"; break;
+            case 10: vidfase = "faseDiez"; break;
+            case 11: vidfase = "faseOnce"; break;
+            case 12: vidfase = "faseDoce"; break;
+        }
 
-    <v-flex lg4 xs12 md4 sm4 xl4 class="pl-3 pr-3 pt-5">
-        <v-card>
-            <v-img src="~/Content/image/imagen2.jpg" height="200px" style="cursor:pointer"></v-img>
-            <v-card-title primary-title>
-                <div style="cursor:pointer" onclick="javascript:AbrirCurso('')">
-                    <div class="headline">Fase 4</div>
-                </div>
-            </v-card-title>
-            <v-card-actions>
-                <v-btn block onclick="javascript:AbrirCurso('')" color="purple" style="color:white">Entrar</v-btn>
-            </v-card-actions>
-            <v-card-text>
-                Conocer mis habilidades
-            </v-card-text>
-        </v-card>
-    </v-flex>
+        var idusuario = parseInt($('#hddvgidrespuesta').val());
+        redirectPostV2(vgrutaprincipal + "actividad/" + vidfase, "idusuario", idusuario);
+    }
 
-    <v-flex lg4 xs12 md4 sm4 xl4 class="pl-3 pr-3 pt-5">
-        <v-card>
-            <v-img src="~/Content/image/imagen2.jpg" height="200px" style="cursor:pointer"></v-img>
-            <v-card-title primary-title>
-                <div style="cursor:pointer" onclick="javascript:AbrirCurso('')">
-                    <div class="headline">Fase 5</div>
-                </div>
-            </v-card-title>
-            <v-card-actions>
-                <v-btn block onclick="javascript:AbrirCurso('')" color="purple" style="color:white">Entrar</v-btn>
-            </v-card-actions>
-            <v-card-text>
-                Conocer mis estilos de aprendizaje
-            </v-card-text>
-        </v-card>
-    </v-flex>
+    function CerrarOV() {
+        $.ajax({
+            url: vgrutaprincipal + "actividad/CerrarOV",
+            cache: false,
+            success: function () {
+                window.location.href = vgrutaprincipal + "actividad/registro";
+            },
+            error: function () {
+                console.log("No se ha podido obtener la información");
+            }
+        });
+    }
 
-    <v-flex lg4 xs12 md4 sm4 xl4 class="pl-3 pr-3 pt-5">
-        <v-card>
-            <v-img src="~/Content/image/imagen2.jpg" height="200px" style="cursor:pointer"></v-img>
-            <v-card-title primary-title>
-                <div style="cursor:pointer" onclick="javascript:AbrirCurso('')">
-                    <div class="headline">Fase 6</div>
-                </div>
-            </v-card-title>
-            <v-card-actions>
-                <v-btn block onclick="javascript:AbrirCurso('')" color="purple" style="color:white">Entrar</v-btn>
-            </v-card-actions>
-            <v-card-text>
-                Conociendo mi tipo de inteligencia
-            </v-card-text>
-        </v-card>
-    </v-flex>
+    function fnListarFaseCompletada() {
+        var idalumnoReg = $('#hddvgidrespuesta').val();
+        $.ajax({
+            url: vgrutaprincipal + "actividad/ListarFases",
+            type: 'POST',
+            data: {
+                "widactividadFase": idalumnoReg
+            },
+            cache: false,
+            success: function (respuesta) {
+                console.log(respuesta.aaData);
+                //$('#btn11').removeClass("btn-primary");
+                //$('#btn11').addClass("btn-success");
 
-    <v-flex lg4 xs12 md4 sm4 xl4 class="pl-3 pr-3 pt-5">
-        <v-card>
-            <v-img src="~/Content/image/imagen2.jpg" height="200px" style="cursor:pointer"></v-img>
-            <v-card-title primary-title>
-                <div style="cursor:pointer" onclick="javascript:AbrirCurso('')">
-                    <div class="headline">Fase 7</div>
-                </div>
-            </v-card-title>
-            <v-card-actions>
-                <v-btn block onclick="javascript:AbrirCurso('')" color="purple" style="color:white">Entrar</v-btn>
-            </v-card-actions>
-            <v-card-text>
-                Conociendo mi personalidad
-            </v-card-text>
-        </v-card>
-    </v-flex>
+            },
+            error: function () {
+                console.log("No se ha podido obtener la información");
+            }
+        });
+    }
 
-    <v-flex lg4 xs12 md4 sm4 xl4 class="pl-3 pr-3 pt-5">
-        <v-card>
-            <v-img src="~/Content/image/imagen2.jpg" height="200px" style="cursor:pointer"></v-img>
-            <v-card-title primary-title>
-                <div style="cursor:pointer" onclick="javascript:AbrirCurso('')">
-                    <div class="headline">Fase 8</div>
-                </div>
-            </v-card-title>
-            <v-card-actions>
-                <v-btn block onclick="javascript:AbrirCurso('')" color="purple" style="color:white">Entrar</v-btn>
-            </v-card-actions>
-            <v-card-text>
-                Entrevistas a profesionales
-            </v-card-text>
-        </v-card>
-    </v-flex>
-
-    <v-flex lg4 xs12 md4 sm4 xl4 class="pl-3 pr-3 pt-5">
-        <v-card>
-            <v-img src="~/Content/image/imagen2.jpg" height="200px" style="cursor:pointer"></v-img>
-            <v-card-title primary-title>
-                <div style="cursor:pointer" onclick="javascript:AbrirCurso('')">
-                    <div class="headline">Fase 9</div>
-                </div>
-            </v-card-title>
-            <v-card-actions>
-                <v-btn block onclick="javascript:AbrirCurso('')" color="purple" style="color:white">Entrar</v-btn>
-            </v-card-actions>
-            <v-card-text>
-                Conociendo el mercado laboral
-            </v-card-text>
-        </v-card>
-    </v-flex>
-
-    <v-flex lg6 xs12 md6 sm6 xl6 class="pl-3 pr-3 pt-5">
-        <v-card>
-            <v-img src="~/Content/image/imagen2.jpg" height="200px" style="cursor:pointer"></v-img>
-            <v-card-title primary-title>
-                <div style="cursor:pointer" onclick="javascript:AbrirCurso('')">
-                    <div class="headline">Fase 10</div>
-                </div>
-            </v-card-title>
-            <v-card-actions>
-                <v-btn block onclick="javascript:AbrirCurso('')" color="purple" style="color:white">Entrar</v-btn>
-            </v-card-actions>
-            <v-card-text>
-                Resultado final
-            </v-card-text>
-        </v-card>
-    </v-flex>
-
-    <v-flex lg6 xs12 md6 sm6 xl6 class="pl-3 pr-3 pt-5">
-        <v-card>
-            <v-img src="~/Content/image/imagen2.jpg" height="200px" style="cursor:pointer"></v-img>
-            <v-card-title primary-title>
-                <div style="cursor:pointer" onclick="javascript:AbrirCurso('')">
-                    <div class="headline">Fase 11</div>
-                </div>
-            </v-card-title>
-            <v-card-actions>
-                <v-btn block onclick="javascript:AbrirCurso('')" color="purple" style="color:white">Entrar</v-btn>
-            </v-card-actions>
-            <v-card-text>
-                Resultado final: Entrevista con Psicóloga
-            </v-card-text>
-        </v-card>
-    </v-flex>
-
-</div>
+    $(document).ready(function () {
+        fnListarFaseCompletada();
+    });
+</script>

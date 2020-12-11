@@ -31,7 +31,7 @@ namespace frontendWEB
             HttpContextBase httpContext = new HttpContextWrapper(HttpContext.Current);
             UrlHelper urlHelper = new UrlHelper(new RequestContext(httpContext, new RouteData()));
             int CodigoError = (httpException == null ? 500 : httpException.GetHttpCode());
-            string redirectUrl = urlHelper.Action("inicio", "login");
+            string redirectUrl = urlHelper.Action("Index", "index");
             httpContext.Response.Redirect(redirectUrl, true);
         }
     }

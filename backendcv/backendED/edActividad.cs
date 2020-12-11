@@ -11,7 +11,13 @@ namespace backendED
         public string alternativa_C { get; set; }
         public string alternativa_D { get; set; }
         public string alternativa_E { get; set; }
+        public string alternativa_F { get; set; }
+        public string alternativa_G { get; set; }
+        public string alternativa_H { get; set; }
+        public string alternativa_I { get; set; }
         public int tipo_pregunta { get; set; }
+        public int ipregunta { get; set; }
+        public int ifase { get; set; }
         public int puntaje_pregunta { get; set; }
         public int idactividadAlumnodetalle { get; set; }
         public int idactividad_alumno { get; set; }
@@ -32,10 +38,15 @@ namespace backendED
         public string scomentario { get; set; }
         public string dtfecharegistro { get; set; }
         public string dtfechafin { get; set; }
-        public int respuestaA { get; set; }
-        public int respuestaB { get; set; }
-        public int respuestaC { get; set; }
-        public int respuestaD { get; set; }
-        public int respuestaE { get; set; }
+        public string sclave { get; set; }
+        public string respuestaA { get; set; }
+        public string respuestaB { get; set; }
+        public string respuestaC { get; set; }
+        public string respuestaD { get; set; }
+        public string respuestaE { get; set; }
+        public string respuestaF { get; set; }
+        public string respuestaG { get; set; }
+        public string respuestaH { get; set; }
+        public string respuestaI { get; set; }
     }
 }

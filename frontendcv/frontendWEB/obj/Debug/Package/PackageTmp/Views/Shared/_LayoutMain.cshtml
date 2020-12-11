@@ -11,8 +11,9 @@
     <link rel="stylesheet" href="~/Content/lib/vuetify/css/vuetify.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" />
     <link href='~/Content/lib/fontsgoogle/css/css.css' rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/css-loader/3.3.3/css-loader.css" rel="stylesheet" />
 
-    <link href="~/Content/lib/main/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
     <script src="~/Content/lib/jquery/js/jquery.js"></script>
     <script src="~/Content/lib/bootstrap/js/bootstrap.js"></script>
     @* <script src="~/Content/lib/main/mainbootstrap.js"></script>
@@ -35,6 +36,7 @@
     </style>
 </head>
 <body>
+    <div id="divcarga" class="loader loader-default" data-text="Cargando... por favor espere" blink></div>
     @RenderBody()
     <script type="text/javascript">
         var vgrutaprincipal = "@Url.Content("~")";
@@ -101,6 +103,19 @@
             var data = appendHtml(document.body, rt);
             document.getElementById("rtmvc").submit();
 
+        }
+
+        function CerrarOV() {
+            $.ajax({
+                url: vgrutaprincipal + "actividad/CerrarOV",
+                cache: false,
+                success: function () {
+                    window.location.href = vgrutaprincipal + "actividad/registro";
+                },
+                error: function () {
+                    console.log("No se ha podido obtener la información");
+                }
+            });
         }
 
     </script>
