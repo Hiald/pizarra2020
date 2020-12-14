@@ -88,10 +88,9 @@ function fnValidar() {
             return;
         }
     }
-    $('#divcarga').addClass("is-active");
     fnGuardar();
-    setTimeout(function () { $('#divcarga').removeClass("is-active"); }, 8000);
 
+    
 }
 // $("input[name='vp1'][value='2']").prop('checked', true);
 // $('#vp35').prop("checked", true);
@@ -145,6 +144,11 @@ function fnGuardar() {
 
     }
 
+    alert("Registrado correctamente");
+    var gidusuario = $('#hddidusuario').val();
+    window.location.href = vgrutaprincipal + "actividad/fase?idrespuesta=" + gidusuario;
+
+
 }
 
 function fnLeer() { }
@@ -159,6 +163,7 @@ function AlmacenarPreguntas(
     $.ajax({
         url: vgrutaprincipal + "actividad/InsertarActividadAlumnoDetalle",
         type: 'POST',
+        async: false,
         data: {
             "widactividadAlumno": usuarioid,
             "widactividadDetalle": ipregunta,

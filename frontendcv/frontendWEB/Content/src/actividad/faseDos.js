@@ -22,11 +22,24 @@ function fbValidar() {
         alert("falta seleccionar algunas preguntas");
         return;
     }
+    //si todo esta correcto
 
-    fnGuardar();
-}
 
-function fnGuardar() {
+    var idusuario = $('#hddidusuario').val();
+    for (var i = 1; i < 11; i++) {
+        var valorRB = $('input[name=' + "grd" + i + ']:checked').val();
+        AlmacenarPreguntas(idusuario, i, 2, valorRB, "", "", "", "", "", "", "", "");
+
+    }
+
+    for (var i = 1; i < 5; i++) {
+        var valorRB = $('#ip2' + i).val();
+        AlmacenarPreguntas(idusuario, i, 1, valorRB, "", "", "", "", "", "", "", "");
+    }
+
+    alert("Registrado correctamente");
+    var gidusuario = $('#hddidusuario').val();
+    window.location.href = vgrutaprincipal + "actividad/fase?idrespuesta=" + gidusuario;
 
 }
 
@@ -41,6 +54,7 @@ function AlmacenarPreguntas(
     $.ajax({
         url: vgrutaprincipal + "actividad/InsertarActividadAlumnoDetalle",
         type: 'POST',
+        async: false,
         data: {
             "widactividadAlumno": usuarioid,
             "widactividadDetalle": ipregunta,
