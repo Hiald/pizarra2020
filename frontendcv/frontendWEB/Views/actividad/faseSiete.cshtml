@@ -2,6 +2,7 @@
     ViewBag.Title = "faseSiete";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
+<input type="hidden" id="hddidusuario" value="@ViewBag.VGidusuario" />
 <nav class="navbar navbar-light bg-light justify-content-between">
     <img class="navbar-brand" src="~/Content/image/pizarra21.png" style="width:130px;height:65px;cursor:pointer" />
     <form class="form-inline">
@@ -1189,6 +1190,10 @@
 <div class="container justify-center">
     <div class="row align-center justify-center justify-content-md-center">
         <div class="col-md-12"></div>
-        <button class="btn btn-lg btn-success">Finalizar fase</button>
+        <button class="btn btn-lg btn-success" onclick="fnValidar();">Finalizar fase</button>
     </div>
 </div>
+
+@section scripts{
+    <script src="~/Content/src/actividad/faseSiete.js"></script>
+}

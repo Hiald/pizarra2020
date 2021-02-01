@@ -256,7 +256,11 @@
     <Content Include="Content\lib\vuetify\js\vuetify.min.js" />
     <Content Include="Content\lib\vue\js\vue.js" />
     <Content Include="Content\lib\vue\js\vue.min.js" />
+    <Content Include="Content\src\actividad\faseCinco.js" />
+    <Content Include="Content\src\actividad\faseCuatro.js" />
     <Content Include="Content\src\actividad\faseDos.js" />
+    <Content Include="Content\src\actividad\faseSeis.js" />
+    <Content Include="Content\src\actividad\faseSiete.js" />
     <Content Include="Content\src\actividad\faseUno.js" />
     <Content Include="Content\src\configuracion\configuracion.js" />
     <Content Include="Content\src\curso\curso.js" />
