@@ -13,61 +13,8 @@ namespace backendAD
             cnMysql = cn;
         }
 
-        public List<edActividad> adListarActividad(int adactividaid)
-        {
-            try
-            {
-                List<edActividad> lstArchivo = new List<edActividad>();
-                using (MySqlCommand cmd = new MySqlCommand("sp_obtener_preguntas", cnMysql))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("_idactividad", MySqlDbType.Int32).Value = adactividaid;
-
-                    using (MySqlDataReader mdrd = cmd.ExecuteReader())
-                    {
-                        if (mdrd != null)
-                        {
-                            edActividad senArchivo = null;
-                            int pos_idactividaddetalle = mdrd.GetOrdinal("id_actividad_detalle");
-                            int pos_idactividad = mdrd.GetOrdinal("id_actividad");
-                            int pos_vpregunta = mdrd.GetOrdinal("v_pregunta");
-                            int pos_valternativaA = mdrd.GetOrdinal("v_alternativa_A");
-                            int pos_valternativaB = mdrd.GetOrdinal("v_alternativa_B");
-                            int pos_valternativaC = mdrd.GetOrdinal("v_alternativa_C");
-                            int pos_valternativaD = mdrd.GetOrdinal("v_alternativa_D");
-                            int pos_valternativaE = mdrd.GetOrdinal("v_alternativa_E");
-                            int pos_tipopregunta = mdrd.GetOrdinal("i_tipo_pregunta");
-                            int pos_puntajepregunta = mdrd.GetOrdinal("i_puntaje_pregunta");
-
-                            while (mdrd.Read())
-                            {
-                                senArchivo = new edActividad();
-                                senArchivo.idactividaddetalle = (mdrd.IsDBNull(pos_idactividaddetalle) ? 0 : mdrd.GetInt32(pos_idactividaddetalle));
-                                senArchivo.idactividad = (mdrd.IsDBNull(pos_idactividad) ? 0 : mdrd.GetInt32(pos_idactividad));
-                                senArchivo.v_pregunta = (mdrd.IsDBNull(pos_vpregunta) ? "-" : mdrd.GetString(pos_vpregunta));
-                                senArchivo.alternativa_A = (mdrd.IsDBNull(pos_valternativaA) ? "-" : mdrd.GetString(pos_valternativaA));
-                                senArchivo.alternativa_B = (mdrd.IsDBNull(pos_valternativaB) ? "-" : mdrd.GetString(pos_valternativaB));
-                                senArchivo.alternativa_C = (mdrd.IsDBNull(pos_valternativaC) ? "-" : mdrd.GetString(pos_valternativaC));
-                                senArchivo.alternativa_D = (mdrd.IsDBNull(pos_valternativaD) ? "-" : mdrd.GetString(pos_valternativaD));
-                                senArchivo.alternativa_E = (mdrd.IsDBNull(pos_valternativaE) ? "-" : mdrd.GetString(pos_valternativaE));
-                                senArchivo.tipo_pregunta = (mdrd.IsDBNull(pos_tipopregunta) ? 0 : mdrd.GetInt32(pos_tipopregunta));
-                                senArchivo.puntaje_pregunta = (mdrd.IsDBNull(pos_puntajepregunta) ? 0 : mdrd.GetInt32(pos_puntajepregunta));
-
-                                lstArchivo.Add(senArchivo);
-                            }
-                        }
-                    }
-                    return lstArchivo;
-                }
-            }
-            catch (Exception ex)
-            {
-                //UtlLog.toWrite(UtlConstantes.TProcessAD, UtlConstantes.LogNamespace_TProcessAD, this.GetType().Name.ToString(), MethodBase.GetCurrentMethod().Name, UtlConstantes.LogTipoError, "", ex.StackTrace.ToString(), ex.Message.ToString());
-                throw ex;
-            }
-        }
-
-        public int adInsertarActividadAlumno(int adactividad, string adnombres
+        // registra a los alumnos en orientacion vocacional (USUARIO)
+        public int adRegistrarAlumnoOV(int adactividad, string adnombres
           , string adapellidos, string adlugarnacimiento, int adigrado, int adiedad
           , int adisexo, string adcelular, string adcorreo, string adclave, string adcolegio, string addistrito, string adugel
           , Int16 adestado, DateTime adfecharegistro)
@@ -103,33 +50,99 @@ namespace backendAD
             }
         }
 
-        public int adInsertarActividadAlumnoDetalle(int adidactividadAlumno, int adidactividadDetalle
-                , string adrespuesta_A, string adrespuesta_B, string adrespuesta_C, string adrespuesta_D
-                , string adrespuesta_E, string adrespuesta_F, string adrespuesta_G, string adrespuesta_H
-                , string adrespuesta_I, int adipuntaje, int adifase, int adpregunta, int aditipoPregunta
-                , Int16 adestado)
+        // registra las preguntas por cada fase (USUARIO)
+        public int adInsertarFase(int id_actividad_alumno, int id_actividad_detalle,
+                    int i_fase, string v_pregunta_1, string v_pregunta_2, string v_pregunta_3,
+                    string v_pregunta_4, string v_pregunta_5, string v_pregunta_6, string v_pregunta_7,
+                    string v_pregunta_8, string v_pregunta_9, string v_pregunta_10, string v_pregunta_11,
+                    string v_pregunta_12, string v_pregunta_13, string v_pregunta_14, string v_pregunta_15,
+                    string v_pregunta_16, string v_pregunta_17, string v_pregunta_18, string v_pregunta_19,
+                    string v_pregunta_20, string v_pregunta_21, string v_pregunta_22, string v_pregunta_23,
+                    string v_pregunta_24, string v_pregunta_25, string v_pregunta_26, string v_pregunta_27,
+                    string v_pregunta_28, string v_pregunta_29, string v_pregunta_30, string v_pregunta_31,
+                    string v_pregunta_32, string v_pregunta_33, string v_pregunta_34, string v_pregunta_35,
+                    string v_pregunta_36, string v_pregunta_37, string v_pregunta_38, string v_pregunta_39,
+                    string v_pregunta_40, string v_pregunta_41, string v_pregunta_42, string v_pregunta_43,
+                    string v_pregunta_44, string v_pregunta_45, string v_pregunta_46, string v_pregunta_47,
+                    string v_pregunta_48, string v_pregunta_49, string v_pregunta_50, string v_pregunta_51,
+                    string v_pregunta_52, string v_pregunta_53, string v_pregunta_54, string v_pregunta_55,
+                    string v_pregunta_56, string v_pregunta_57, string v_pregunta_58, string v_pregunta_59,
+                    string v_pregunta_60, int i_puntaje, string v_descripcion, int i_tipo_pregunta,
+                    int b_estado, string dt_fecharegistro)
         {
             try
             {
                 int result = -1;
                 MySqlCommand cmd = new MySqlCommand("sp_insertar_actividadAlumnoDetalle", cnMysql);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("_id_actividad_alumno", MySqlDbType.Int32).Value = adidactividadAlumno;
-                cmd.Parameters.Add("_id_actividad_detalle", MySqlDbType.Int32).Value = adidactividadDetalle;
-                cmd.Parameters.Add("_b_respuesta_A", MySqlDbType.VarChar, 50).Value = adrespuesta_A;
-                cmd.Parameters.Add("_b_respuesta_B", MySqlDbType.VarChar, 50).Value = "";
-                cmd.Parameters.Add("_b_respuesta_C", MySqlDbType.VarChar, 50).Value = "";
-                cmd.Parameters.Add("_b_respuesta_D", MySqlDbType.VarChar, 50).Value = "";
-                cmd.Parameters.Add("_b_respuesta_E", MySqlDbType.VarChar, 50).Value = "";
-                cmd.Parameters.Add("_b_respuesta_F", MySqlDbType.VarChar, 50).Value = "";
-                cmd.Parameters.Add("_b_respuesta_G", MySqlDbType.VarChar, 50).Value = "";
-                cmd.Parameters.Add("_b_respuesta_H", MySqlDbType.VarChar, 50).Value = "";
-                cmd.Parameters.Add("_b_respuesta_I", MySqlDbType.VarChar, 50).Value = "";
-                cmd.Parameters.Add("_i_pregunta", MySqlDbType.Int32).Value = adpregunta;
-                cmd.Parameters.Add("_i_fase", MySqlDbType.Int32).Value = adifase;
-                cmd.Parameters.Add("_i_puntaje", MySqlDbType.Int32).Value = adipuntaje;
-                cmd.Parameters.Add("_i_tipo_pregunta", MySqlDbType.Int32).Value = aditipoPregunta;
-                cmd.Parameters.Add("_b_estado", MySqlDbType.Bit).Value = adestado;
+                cmd.Parameters.Add("_id_actividad_alumno", MySqlDbType.Int32).Value = id_actividad_alumno;
+                cmd.Parameters.Add("_id_actividad_detalle", MySqlDbType.Int32).Value = id_actividad_detalle;
+                cmd.Parameters.Add("_i_fase", MySqlDbType.Int32).Value = i_fase;
+                cmd.Parameters.Add("_v_pregunta_1", MySqlDbType.VarChar, 50).Value = v_pregunta_1;
+                cmd.Parameters.Add("_v_pregunta_2", MySqlDbType.VarChar, 50).Value = v_pregunta_2;
+                cmd.Parameters.Add("_v_pregunta_3", MySqlDbType.VarChar, 50).Value = v_pregunta_3;
+                cmd.Parameters.Add("_v_pregunta_4", MySqlDbType.VarChar, 50).Value = v_pregunta_4;
+                cmd.Parameters.Add("_v_pregunta_5", MySqlDbType.VarChar, 50).Value = v_pregunta_5;
+                cmd.Parameters.Add("_v_pregunta_6", MySqlDbType.VarChar, 50).Value = v_pregunta_6;
+                cmd.Parameters.Add("_v_pregunta_7", MySqlDbType.VarChar, 50).Value = v_pregunta_7;
+                cmd.Parameters.Add("_v_pregunta_8", MySqlDbType.VarChar, 50).Value = v_pregunta_8;
+                cmd.Parameters.Add("_v_pregunta_9", MySqlDbType.VarChar, 50).Value = v_pregunta_9;
+                cmd.Parameters.Add("_v_pregunta_10", MySqlDbType.VarChar, 50).Value = v_pregunta_10;
+                cmd.Parameters.Add("_v_pregunta_11", MySqlDbType.VarChar, 50).Value = v_pregunta_11;
+                cmd.Parameters.Add("_v_pregunta_12", MySqlDbType.VarChar, 50).Value = v_pregunta_12;
+                cmd.Parameters.Add("_v_pregunta_13", MySqlDbType.VarChar, 50).Value = v_pregunta_13;
+                cmd.Parameters.Add("_v_pregunta_14", MySqlDbType.VarChar, 50).Value = v_pregunta_14;
+                cmd.Parameters.Add("_v_pregunta_15", MySqlDbType.VarChar, 50).Value = v_pregunta_15;
+                cmd.Parameters.Add("_v_pregunta_16", MySqlDbType.VarChar, 50).Value = v_pregunta_16;
+                cmd.Parameters.Add("_v_pregunta_17", MySqlDbType.VarChar, 50).Value = v_pregunta_17;
+                cmd.Parameters.Add("_v_pregunta_18", MySqlDbType.VarChar, 50).Value = v_pregunta_18;
+                cmd.Parameters.Add("_v_pregunta_19", MySqlDbType.VarChar, 50).Value = v_pregunta_19;
+                cmd.Parameters.Add("_v_pregunta_20", MySqlDbType.VarChar, 50).Value = v_pregunta_20;
+                cmd.Parameters.Add("_v_pregunta_21", MySqlDbType.VarChar, 50).Value = v_pregunta_21;
+                cmd.Parameters.Add("_v_pregunta_22", MySqlDbType.VarChar, 50).Value = v_pregunta_22;
+                cmd.Parameters.Add("_v_pregunta_23", MySqlDbType.VarChar, 50).Value = v_pregunta_23;
+                cmd.Parameters.Add("_v_pregunta_24", MySqlDbType.VarChar, 50).Value = v_pregunta_24;
+                cmd.Parameters.Add("_v_pregunta_25", MySqlDbType.VarChar, 50).Value = v_pregunta_25;
+                cmd.Parameters.Add("_v_pregunta_26", MySqlDbType.VarChar, 50).Value = v_pregunta_26;
+                cmd.Parameters.Add("_v_pregunta_27", MySqlDbType.VarChar, 50).Value = v_pregunta_27;
+                cmd.Parameters.Add("_v_pregunta_28", MySqlDbType.VarChar, 50).Value = v_pregunta_28;
+                cmd.Parameters.Add("_v_pregunta_29", MySqlDbType.VarChar, 50).Value = v_pregunta_29;
+                cmd.Parameters.Add("_v_pregunta_30", MySqlDbType.VarChar, 50).Value = v_pregunta_30;
+                cmd.Parameters.Add("_v_pregunta_31", MySqlDbType.VarChar, 50).Value = v_pregunta_31;
+                cmd.Parameters.Add("_v_pregunta_32", MySqlDbType.VarChar, 50).Value = v_pregunta_32;
+                cmd.Parameters.Add("_v_pregunta_33", MySqlDbType.VarChar, 50).Value = v_pregunta_33;
+                cmd.Parameters.Add("_v_pregunta_34", MySqlDbType.VarChar, 50).Value = v_pregunta_34;
+                cmd.Parameters.Add("_v_pregunta_35", MySqlDbType.VarChar, 50).Value = v_pregunta_35;
+                cmd.Parameters.Add("_v_pregunta_36", MySqlDbType.VarChar, 50).Value = v_pregunta_36;
+                cmd.Parameters.Add("_v_pregunta_37", MySqlDbType.VarChar, 50).Value = v_pregunta_37;
+                cmd.Parameters.Add("_v_pregunta_38", MySqlDbType.VarChar, 50).Value = v_pregunta_38;
+                cmd.Parameters.Add("_v_pregunta_39", MySqlDbType.VarChar, 50).Value = v_pregunta_39;
+                cmd.Parameters.Add("_v_pregunta_40", MySqlDbType.VarChar, 50).Value = v_pregunta_40;
+                cmd.Parameters.Add("_v_pregunta_41", MySqlDbType.VarChar, 50).Value = v_pregunta_41;
+                cmd.Parameters.Add("_v_pregunta_42", MySqlDbType.VarChar, 50).Value = v_pregunta_42;
+                cmd.Parameters.Add("_v_pregunta_43", MySqlDbType.VarChar, 50).Value = v_pregunta_43;
+                cmd.Parameters.Add("_v_pregunta_44", MySqlDbType.VarChar, 50).Value = v_pregunta_44;
+                cmd.Parameters.Add("_v_pregunta_45", MySqlDbType.VarChar, 50).Value = v_pregunta_45;
+                cmd.Parameters.Add("_v_pregunta_46", MySqlDbType.VarChar, 50).Value = v_pregunta_46;
+                cmd.Parameters.Add("_v_pregunta_47", MySqlDbType.VarChar, 50).Value = v_pregunta_47;
+                cmd.Parameters.Add("_v_pregunta_48", MySqlDbType.VarChar, 50).Value = v_pregunta_48;
+                cmd.Parameters.Add("_v_pregunta_49", MySqlDbType.VarChar, 50).Value = v_pregunta_49;
+                cmd.Parameters.Add("_v_pregunta_50", MySqlDbType.VarChar, 50).Value = v_pregunta_50;
+                cmd.Parameters.Add("_v_pregunta_51", MySqlDbType.VarChar, 50).Value = v_pregunta_51;
+                cmd.Parameters.Add("_v_pregunta_52", MySqlDbType.VarChar, 50).Value = v_pregunta_52;
+                cmd.Parameters.Add("_v_pregunta_53", MySqlDbType.VarChar, 50).Value = v_pregunta_53;
+                cmd.Parameters.Add("_v_pregunta_54", MySqlDbType.VarChar, 50).Value = v_pregunta_54;
+                cmd.Parameters.Add("_v_pregunta_55", MySqlDbType.VarChar, 50).Value = v_pregunta_55;
+                cmd.Parameters.Add("_v_pregunta_56", MySqlDbType.VarChar, 50).Value = v_pregunta_56;
+                cmd.Parameters.Add("_v_pregunta_57", MySqlDbType.VarChar, 50).Value = v_pregunta_57;
+                cmd.Parameters.Add("_v_pregunta_58", MySqlDbType.VarChar, 50).Value = v_pregunta_58;
+                cmd.Parameters.Add("_v_pregunta_59", MySqlDbType.VarChar, 50).Value = v_pregunta_59;
+                cmd.Parameters.Add("_v_pregunta_60", MySqlDbType.VarChar, 50).Value = v_pregunta_60;
+                cmd.Parameters.Add("_i_puntaje", MySqlDbType.Int32).Value = i_puntaje;
+                cmd.Parameters.Add("_v_descripcion", MySqlDbType.VarChar, 50).Value = v_descripcion;
+                cmd.Parameters.Add("_i_tipo_pregunta", MySqlDbType.Int32).Value = i_tipo_pregunta;
+                cmd.Parameters.Add("_b_estado", MySqlDbType.Bit).Value = b_estado;
+                cmd.Parameters.Add("_dt_fecharegistro", MySqlDbType.VarChar, 25).Value = dt_fecharegistro;
 
                 result = Convert.ToInt32(cmd.ExecuteScalar());
                 return result;
@@ -141,7 +154,8 @@ namespace backendAD
             }
         }
 
-        public int adActualizarClase(int adidactividadAlumno, string adcarrera1
+        // actualiza los datos de cada fase de los alumnos (ADMIN)
+        public int adActualizarFaseFinal(int adidactividadAlumno, string adcarrera1
                     , string adcarrera2, string adcarrera3, string adcarrera4
                     , string adcarrera5, int adipuntaje, string adcomentario)
         {
@@ -169,7 +183,33 @@ namespace backendAD
             }
         }
 
-        public List<edActividad> adListarActividadAlumno(string adcorreo)
+        // actualiza los datos de cada fase de los alumnos (ADMIN)
+        public int adActualizarResultadoxFase(int adidactividadalumno, int adifase, string adsdescripcion
+                                            , int aditipo_pregunta, int adipuntaje)
+        {
+            try
+            {
+                int result = -1;
+                MySqlCommand cmd = new MySqlCommand("sp_actualizar_actividadAlumnoDetalle", cnMysql);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("_id_actividad_alumno", MySqlDbType.Int32).Value = adidactividadalumno;
+                cmd.Parameters.Add("_ifase", MySqlDbType.Int32).Value = adifase;
+                cmd.Parameters.Add("_v_descripcion", MySqlDbType.VarChar, 500).Value = adsdescripcion;
+                cmd.Parameters.Add("_i_tipo_pregunta", MySqlDbType.Int32).Value = aditipo_pregunta;
+                cmd.Parameters.Add("_i_puntaje", MySqlDbType.Int32).Value = adipuntaje;
+
+                result = Convert.ToInt32(cmd.ExecuteScalar());
+                return result;
+            }
+            catch (Exception ex)
+            {
+                //utllog.towrite(utlconstantes.tprocessad, utlconstantes.lognamespace_tprocessad, this.gettype().name.tostring(), methodbase.getcurrentmethod().name, utlconstantes.logtipoerror, "", ex.stacktrace.tostring(), ex.message.tostring());
+                throw ex;
+            }
+        }
+
+        // obtiene los datos del alumno dependiendo del correo (ADMIN)
+        public List<edActividad> adListarDatosAlumno(string adcorreo)
         {
             try
             {
@@ -241,7 +281,8 @@ namespace backendAD
             }
         }
 
-        public List<edActividad> adListarActividadAlumnoDetalle(int adidactividad)
+        // obtiene las respuestas marcadas por el alumno (ADMIN)
+        public List<edActividad> adListarRespuestasxFase(int adidactividad, int adifase)
         {
             try
             {
@@ -250,37 +291,154 @@ namespace backendAD
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("_idactividad", MySqlDbType.Int32).Value = adidactividad;
+                    cmd.Parameters.Add("_ifase", MySqlDbType.Int32).Value = adifase;
 
                     using (MySqlDataReader mdrd = cmd.ExecuteReader())
                     {
                         if (mdrd != null)
                         {
                             edActividad senArchivo = null;
-                            int pos_idactividadalumnodetalle = mdrd.GetOrdinal("id_actividad_alumno_detalle");
-                            int pos_idactividadalumno = mdrd.GetOrdinal("id_actividad_alumno");
-                            int pos_idactividaddetalle = mdrd.GetOrdinal("id_actividad_detalle");
-                            int pos_brespuestaA = mdrd.GetOrdinal("b_respuesta_A");
-                            int pos_brespuestaB = mdrd.GetOrdinal("b_respuesta_B");
-                            int pos_brespuestaC = mdrd.GetOrdinal("b_respuesta_C");
-                            int pos_brespuestaD = mdrd.GetOrdinal("b_respuesta_D");
-                            int pos_brespuestaE = mdrd.GetOrdinal("b_respuesta_E");
-                            int pos_ipuntaje = mdrd.GetOrdinal("i_puntaje");
-                            int pos_itipopregunta = mdrd.GetOrdinal("i_tipo_pregunta");
+                            int pos_id_actividad_alumno_detalle = mdrd.GetOrdinal("id_actividad_alumno_detalle");
+                            int pos_id_actividad_alumno = mdrd.GetOrdinal("id_actividad_alumno");
+                            int pos_id_actividad_detalle = mdrd.GetOrdinal("id_actividad_detalle");
+                            int pos_i_fase = mdrd.GetOrdinal("i_fase");
+                            int pos_v_pregunta_1 = mdrd.GetOrdinal("v_pregunta_1");
+                            int pos_v_pregunta_2 = mdrd.GetOrdinal("v_pregunta_2");
+                            int pos_v_pregunta_3 = mdrd.GetOrdinal("v_pregunta_3");
+                            int pos_v_pregunta_4 = mdrd.GetOrdinal("v_pregunta_4");
+                            int pos_v_pregunta_5 = mdrd.GetOrdinal("v_pregunta_5");
+                            int pos_v_pregunta_6 = mdrd.GetOrdinal("v_pregunta_6");
+                            int pos_v_pregunta_7 = mdrd.GetOrdinal("v_pregunta_7");
+                            int pos_v_pregunta_8 = mdrd.GetOrdinal("v_pregunta_8");
+                            int pos_v_pregunta_9 = mdrd.GetOrdinal("v_pregunta_9");
+                            int pos_v_pregunta_10 = mdrd.GetOrdinal("v_pregunta_10");
+                            int pos_v_pregunta_11 = mdrd.GetOrdinal("v_pregunta_11");
+                            int pos_v_pregunta_12 = mdrd.GetOrdinal("v_pregunta_12");
+                            int pos_v_pregunta_13 = mdrd.GetOrdinal("v_pregunta_13");
+                            int pos_v_pregunta_14 = mdrd.GetOrdinal("v_pregunta_14");
+                            int pos_v_pregunta_15 = mdrd.GetOrdinal("v_pregunta_15");
+                            int pos_v_pregunta_16 = mdrd.GetOrdinal("v_pregunta_16");
+                            int pos_v_pregunta_17 = mdrd.GetOrdinal("v_pregunta_17");
+                            int pos_v_pregunta_18 = mdrd.GetOrdinal("v_pregunta_18");
+                            int pos_v_pregunta_19 = mdrd.GetOrdinal("v_pregunta_19");
+                            int pos_v_pregunta_20 = mdrd.GetOrdinal("v_pregunta_20");
+                            int pos_v_pregunta_21 = mdrd.GetOrdinal("v_pregunta_21");
+                            int pos_v_pregunta_22 = mdrd.GetOrdinal("v_pregunta_22");
+                            int pos_v_pregunta_23 = mdrd.GetOrdinal("v_pregunta_23");
+                            int pos_v_pregunta_24 = mdrd.GetOrdinal("v_pregunta_24");
+                            int pos_v_pregunta_25 = mdrd.GetOrdinal("v_pregunta_25");
+                            int pos_v_pregunta_26 = mdrd.GetOrdinal("v_pregunta_26");
+                            int pos_v_pregunta_27 = mdrd.GetOrdinal("v_pregunta_27");
+                            int pos_v_pregunta_28 = mdrd.GetOrdinal("v_pregunta_28");
+                            int pos_v_pregunta_29 = mdrd.GetOrdinal("v_pregunta_29");
+                            int pos_v_pregunta_30 = mdrd.GetOrdinal("v_pregunta_30");
+                            int pos_v_pregunta_31 = mdrd.GetOrdinal("v_pregunta_31");
+                            int pos_v_pregunta_32 = mdrd.GetOrdinal("v_pregunta_32");
+                            int pos_v_pregunta_33 = mdrd.GetOrdinal("v_pregunta_33");
+                            int pos_v_pregunta_34 = mdrd.GetOrdinal("v_pregunta_34");
+                            int pos_v_pregunta_35 = mdrd.GetOrdinal("v_pregunta_35");
+                            int pos_v_pregunta_36 = mdrd.GetOrdinal("v_pregunta_36");
+                            int pos_v_pregunta_37 = mdrd.GetOrdinal("v_pregunta_37");
+                            int pos_v_pregunta_38 = mdrd.GetOrdinal("v_pregunta_38");
+                            int pos_v_pregunta_39 = mdrd.GetOrdinal("v_pregunta_39");
+                            int pos_v_pregunta_40 = mdrd.GetOrdinal("v_pregunta_40");
+                            int pos_v_pregunta_41 = mdrd.GetOrdinal("v_pregunta_41");
+                            int pos_v_pregunta_42 = mdrd.GetOrdinal("v_pregunta_42");
+                            int pos_v_pregunta_43 = mdrd.GetOrdinal("v_pregunta_43");
+                            int pos_v_pregunta_44 = mdrd.GetOrdinal("v_pregunta_44");
+                            int pos_v_pregunta_45 = mdrd.GetOrdinal("v_pregunta_45");
+                            int pos_v_pregunta_46 = mdrd.GetOrdinal("v_pregunta_46");
+                            int pos_v_pregunta_47 = mdrd.GetOrdinal("v_pregunta_47");
+                            int pos_v_pregunta_48 = mdrd.GetOrdinal("v_pregunta_48");
+                            int pos_v_pregunta_49 = mdrd.GetOrdinal("v_pregunta_49");
+                            int pos_v_pregunta_50 = mdrd.GetOrdinal("v_pregunta_50");
+                            int pos_v_pregunta_51 = mdrd.GetOrdinal("v_pregunta_51");
+                            int pos_v_pregunta_52 = mdrd.GetOrdinal("v_pregunta_52");
+                            int pos_v_pregunta_53 = mdrd.GetOrdinal("v_pregunta_53");
+                            int pos_v_pregunta_54 = mdrd.GetOrdinal("v_pregunta_54");
+                            int pos_v_pregunta_55 = mdrd.GetOrdinal("v_pregunta_55");
+                            int pos_v_pregunta_56 = mdrd.GetOrdinal("v_pregunta_56");
+                            int pos_v_pregunta_57 = mdrd.GetOrdinal("v_pregunta_57");
+                            int pos_v_pregunta_58 = mdrd.GetOrdinal("v_pregunta_58");
+                            int pos_v_pregunta_59 = mdrd.GetOrdinal("v_pregunta_59");
+                            int pos_v_pregunta_60 = mdrd.GetOrdinal("v_pregunta_60");
+                            int pos_i_puntaje = mdrd.GetOrdinal("i_puntaje");
+                            int pos_v_descripcion = mdrd.GetOrdinal("v_descripcion");
+                            int pos_i_tipo_pregunta = mdrd.GetOrdinal("i_tipo_pregunta");
+                            int pos_b_estado = mdrd.GetOrdinal("b_estado");
 
                             while (mdrd.Read())
                             {
                                 senArchivo = new edActividad();
-                                senArchivo.idactividadAlumnodetalle = (mdrd.IsDBNull(pos_idactividadalumnodetalle) ? 0 : mdrd.GetInt32(pos_idactividadalumnodetalle));
-                                senArchivo.idactividad_alumno = (mdrd.IsDBNull(pos_idactividadalumno) ? 0 : mdrd.GetInt32(pos_idactividadalumno));
-                                senArchivo.idactividaddetalle = (mdrd.IsDBNull(pos_idactividaddetalle) ? 0 : mdrd.GetInt32(pos_idactividaddetalle));
-                                senArchivo.respuestaA = (mdrd.IsDBNull(pos_brespuestaA) ? "-" : mdrd.GetString(pos_brespuestaA));
-                                senArchivo.respuestaB = (mdrd.IsDBNull(pos_brespuestaB) ? "-" : mdrd.GetString(pos_brespuestaB));
-                                senArchivo.respuestaC = (mdrd.IsDBNull(pos_brespuestaC) ? "-" : mdrd.GetString(pos_brespuestaC));
-                                senArchivo.respuestaD = (mdrd.IsDBNull(pos_brespuestaD) ? "-" : mdrd.GetString(pos_brespuestaD));
-                                senArchivo.respuestaE = (mdrd.IsDBNull(pos_brespuestaE) ? "-" : mdrd.GetString(pos_brespuestaE));
-                                senArchivo.puntaje_pregunta = (mdrd.IsDBNull(pos_ipuntaje) ? 0 : mdrd.GetInt32(pos_brespuestaE));
-                                senArchivo.tipo_pregunta = (mdrd.IsDBNull(pos_itipopregunta) ? 0 : mdrd.GetInt32(pos_itipopregunta));
 
+                                senArchivo.id_actividad_alumno_detalle = (mdrd.IsDBNull(pos_id_actividad_alumno_detalle) ? 0 : mdrd.GetInt32(pos_id_actividad_alumno_detalle));
+                                senArchivo.id_actividad_alumno = (mdrd.IsDBNull(pos_id_actividad_alumno) ? 0 : mdrd.GetInt32(pos_id_actividad_alumno));
+                                senArchivo.id_actividad_detalle = (mdrd.IsDBNull(pos_id_actividad_detalle) ? 0 : mdrd.GetInt32(pos_id_actividad_detalle));
+                                senArchivo.i_fase = (mdrd.IsDBNull(pos_i_fase) ? 0 : mdrd.GetInt32(pos_i_fase));
+                                senArchivo.v_pregunta_1 = (mdrd.IsDBNull(pos_v_pregunta_1) ? "-" : mdrd.GetString(pos_v_pregunta_1));
+                                senArchivo.v_pregunta_2 = (mdrd.IsDBNull(pos_v_pregunta_2) ? "-" : mdrd.GetString(pos_v_pregunta_2));
+                                senArchivo.v_pregunta_3 = (mdrd.IsDBNull(pos_v_pregunta_3) ? "-" : mdrd.GetString(pos_v_pregunta_3));
+                                senArchivo.v_pregunta_4 = (mdrd.IsDBNull(pos_v_pregunta_4) ? "-" : mdrd.GetString(pos_v_pregunta_4));
+                                senArchivo.v_pregunta_5 = (mdrd.IsDBNull(pos_v_pregunta_5) ? "-" : mdrd.GetString(pos_v_pregunta_5));
+                                senArchivo.v_pregunta_6 = (mdrd.IsDBNull(pos_v_pregunta_6) ? "-" : mdrd.GetString(pos_v_pregunta_6));
+                                senArchivo.v_pregunta_7 = (mdrd.IsDBNull(pos_v_pregunta_7) ? "-" : mdrd.GetString(pos_v_pregunta_7));
+                                senArchivo.v_pregunta_8 = (mdrd.IsDBNull(pos_v_pregunta_8) ? "-" : mdrd.GetString(pos_v_pregunta_8));
+                                senArchivo.v_pregunta_9 = (mdrd.IsDBNull(pos_v_pregunta_9) ? "-" : mdrd.GetString(pos_v_pregunta_9));
+                                senArchivo.v_pregunta_10 = (mdrd.IsDBNull(pos_v_pregunta_10) ? "-" : mdrd.GetString(pos_v_pregunta_10));
+                                senArchivo.v_pregunta_11 = (mdrd.IsDBNull(pos_v_pregunta_11) ? "-" : mdrd.GetString(pos_v_pregunta_11));
+                                senArchivo.v_pregunta_12 = (mdrd.IsDBNull(pos_v_pregunta_12) ? "-" : mdrd.GetString(pos_v_pregunta_12));
+                                senArchivo.v_pregunta_13 = (mdrd.IsDBNull(pos_v_pregunta_13) ? "-" : mdrd.GetString(pos_v_pregunta_13));
+                                senArchivo.v_pregunta_14 = (mdrd.IsDBNull(pos_v_pregunta_14) ? "-" : mdrd.GetString(pos_v_pregunta_14));
+                                senArchivo.v_pregunta_15 = (mdrd.IsDBNull(pos_v_pregunta_15) ? "-" : mdrd.GetString(pos_v_pregunta_15));
+                                senArchivo.v_pregunta_16 = (mdrd.IsDBNull(pos_v_pregunta_16) ? "-" : mdrd.GetString(pos_v_pregunta_16));
+                                senArchivo.v_pregunta_17 = (mdrd.IsDBNull(pos_v_pregunta_17) ? "-" : mdrd.GetString(pos_v_pregunta_17));
+                                senArchivo.v_pregunta_18 = (mdrd.IsDBNull(pos_v_pregunta_18) ? "-" : mdrd.GetString(pos_v_pregunta_18));
+                                senArchivo.v_pregunta_19 = (mdrd.IsDBNull(pos_v_pregunta_19) ? "-" : mdrd.GetString(pos_v_pregunta_19));
+                                senArchivo.v_pregunta_20 = (mdrd.IsDBNull(pos_v_pregunta_20) ? "-" : mdrd.GetString(pos_v_pregunta_20));
+                                senArchivo.v_pregunta_21 = (mdrd.IsDBNull(pos_v_pregunta_21) ? "-" : mdrd.GetString(pos_v_pregunta_21));
+                                senArchivo.v_pregunta_22 = (mdrd.IsDBNull(pos_v_pregunta_22) ? "-" : mdrd.GetString(pos_v_pregunta_22));
+                                senArchivo.v_pregunta_23 = (mdrd.IsDBNull(pos_v_pregunta_23) ? "-" : mdrd.GetString(pos_v_pregunta_23));
+                                senArchivo.v_pregunta_24 = (mdrd.IsDBNull(pos_v_pregunta_24) ? "-" : mdrd.GetString(pos_v_pregunta_24));
+                                senArchivo.v_pregunta_25 = (mdrd.IsDBNull(pos_v_pregunta_25) ? "-" : mdrd.GetString(pos_v_pregunta_25));
+                                senArchivo.v_pregunta_26 = (mdrd.IsDBNull(pos_v_pregunta_26) ? "-" : mdrd.GetString(pos_v_pregunta_26));
+                                senArchivo.v_pregunta_27 = (mdrd.IsDBNull(pos_v_pregunta_27) ? "-" : mdrd.GetString(pos_v_pregunta_27));
+                                senArchivo.v_pregunta_28 = (mdrd.IsDBNull(pos_v_pregunta_28) ? "-" : mdrd.GetString(pos_v_pregunta_28));
+                                senArchivo.v_pregunta_29 = (mdrd.IsDBNull(pos_v_pregunta_29) ? "-" : mdrd.GetString(pos_v_pregunta_29));
+                                senArchivo.v_pregunta_30 = (mdrd.IsDBNull(pos_v_pregunta_30) ? "-" : mdrd.GetString(pos_v_pregunta_30));
+                                senArchivo.v_pregunta_31 = (mdrd.IsDBNull(pos_v_pregunta_31) ? "-" : mdrd.GetString(pos_v_pregunta_31));
+                                senArchivo.v_pregunta_32 = (mdrd.IsDBNull(pos_v_pregunta_32) ? "-" : mdrd.GetString(pos_v_pregunta_32));
+                                senArchivo.v_pregunta_33 = (mdrd.IsDBNull(pos_v_pregunta_33) ? "-" : mdrd.GetString(pos_v_pregunta_33));
+                                senArchivo.v_pregunta_34 = (mdrd.IsDBNull(pos_v_pregunta_34) ? "-" : mdrd.GetString(pos_v_pregunta_34));
+                                senArchivo.v_pregunta_35 = (mdrd.IsDBNull(pos_v_pregunta_35) ? "-" : mdrd.GetString(pos_v_pregunta_35));
+                                senArchivo.v_pregunta_36 = (mdrd.IsDBNull(pos_v_pregunta_36) ? "-" : mdrd.GetString(pos_v_pregunta_36));
+                                senArchivo.v_pregunta_37 = (mdrd.IsDBNull(pos_v_pregunta_37) ? "-" : mdrd.GetString(pos_v_pregunta_37));
+                                senArchivo.v_pregunta_38 = (mdrd.IsDBNull(pos_v_pregunta_38) ? "-" : mdrd.GetString(pos_v_pregunta_38));
+                                senArchivo.v_pregunta_39 = (mdrd.IsDBNull(pos_v_pregunta_39) ? "-" : mdrd.GetString(pos_v_pregunta_39));
+                                senArchivo.v_pregunta_40 = (mdrd.IsDBNull(pos_v_pregunta_40) ? "-" : mdrd.GetString(pos_v_pregunta_40));
+                                senArchivo.v_pregunta_41 = (mdrd.IsDBNull(pos_v_pregunta_41) ? "-" : mdrd.GetString(pos_v_pregunta_41));
+                                senArchivo.v_pregunta_42 = (mdrd.IsDBNull(pos_v_pregunta_42) ? "-" : mdrd.GetString(pos_v_pregunta_42));
+                                senArchivo.v_pregunta_43 = (mdrd.IsDBNull(pos_v_pregunta_43) ? "-" : mdrd.GetString(pos_v_pregunta_43));
+                                senArchivo.v_pregunta_44 = (mdrd.IsDBNull(pos_v_pregunta_44) ? "-" : mdrd.GetString(pos_v_pregunta_44));
+                                senArchivo.v_pregunta_45 = (mdrd.IsDBNull(pos_v_pregunta_45) ? "-" : mdrd.GetString(pos_v_pregunta_45));
+                                senArchivo.v_pregunta_46 = (mdrd.IsDBNull(pos_v_pregunta_46) ? "-" : mdrd.GetString(pos_v_pregunta_46));
+                                senArchivo.v_pregunta_47 = (mdrd.IsDBNull(pos_v_pregunta_47) ? "-" : mdrd.GetString(pos_v_pregunta_47));
+                                senArchivo.v_pregunta_48 = (mdrd.IsDBNull(pos_v_pregunta_48) ? "-" : mdrd.GetString(pos_v_pregunta_48));
+                                senArchivo.v_pregunta_49 = (mdrd.IsDBNull(pos_v_pregunta_49) ? "-" : mdrd.GetString(pos_v_pregunta_49));
+                                senArchivo.v_pregunta_50 = (mdrd.IsDBNull(pos_v_pregunta_50) ? "-" : mdrd.GetString(pos_v_pregunta_50));
+                                senArchivo.v_pregunta_51 = (mdrd.IsDBNull(pos_v_pregunta_51) ? "-" : mdrd.GetString(pos_v_pregunta_51));
+                                senArchivo.v_pregunta_52 = (mdrd.IsDBNull(pos_v_pregunta_52) ? "-" : mdrd.GetString(pos_v_pregunta_52));
+                                senArchivo.v_pregunta_53 = (mdrd.IsDBNull(pos_v_pregunta_53) ? "-" : mdrd.GetString(pos_v_pregunta_53));
+                                senArchivo.v_pregunta_54 = (mdrd.IsDBNull(pos_v_pregunta_54) ? "-" : mdrd.GetString(pos_v_pregunta_54));
+                                senArchivo.v_pregunta_55 = (mdrd.IsDBNull(pos_v_pregunta_55) ? "-" : mdrd.GetString(pos_v_pregunta_55));
+                                senArchivo.v_pregunta_56 = (mdrd.IsDBNull(pos_v_pregunta_56) ? "-" : mdrd.GetString(pos_v_pregunta_56));
+                                senArchivo.v_pregunta_57 = (mdrd.IsDBNull(pos_v_pregunta_57) ? "-" : mdrd.GetString(pos_v_pregunta_57));
+                                senArchivo.v_pregunta_58 = (mdrd.IsDBNull(pos_v_pregunta_58) ? "-" : mdrd.GetString(pos_v_pregunta_58));
+                                senArchivo.v_pregunta_59 = (mdrd.IsDBNull(pos_v_pregunta_59) ? "-" : mdrd.GetString(pos_v_pregunta_59));
+                                senArchivo.v_pregunta_60 = (mdrd.IsDBNull(pos_v_pregunta_60) ? "-" : mdrd.GetString(pos_v_pregunta_60));
+                                senArchivo.i_puntaje = (mdrd.IsDBNull(pos_i_puntaje) ? 0 : mdrd.GetInt32(pos_i_puntaje));
+                                senArchivo.v_descripcion = (mdrd.IsDBNull(pos_v_descripcion) ? "-" : mdrd.GetString(pos_v_descripcion));
+                                senArchivo.i_tipo_pregunta = (mdrd.IsDBNull(pos_i_tipo_pregunta) ? 0 : mdrd.GetInt32(pos_i_tipo_pregunta));
+                                senArchivo.b_estado = (mdrd.IsDBNull(pos_b_estado) ? 0 : mdrd.GetInt16(pos_b_estado));
                                 lstArchivo.Add(senArchivo);
                             }
                         }
@@ -295,7 +453,8 @@ namespace backendAD
             }
         }
 
-        public edActividad adListarActividadAlumnoAcceso(string adcorreo, string adclave)
+        // inicia sesion de cada usuario (ALUMNO)
+        public edActividad adListarLoginOV(string adcorreo, string adclave)
         {
             try
             {
@@ -341,7 +500,8 @@ namespace backendAD
             }
         }
 
-        public List<edActividad> adListarFases(int adidactividad)
+        // obtiene los numeros de las fases de los usuarios dependiendo del id del mismo (USUARIO)
+        public List<edActividad> adListarFasexUsuario(int adidactividad)
         {
             try
             {
@@ -376,57 +536,63 @@ namespace backendAD
             }
         }
 
-        public List<edActividad> adListarPreguntasxFase(int adidalumno, int adifase)
+        // obtiene el listado de usuarios (ADMIN)
+        public List<edActividad> adListarUsuariosOrientacion(string adsnombres, string adsapellidos)
         {
             try
             {
                 List<edActividad> lstArchivo = new List<edActividad>();
-                using (MySqlCommand cmd = new MySqlCommand("sp_listar_actividadAlumnoDetalle", cnMysql))
+                using (MySqlCommand cmd = new MySqlCommand("sp_listar_alumnosActividad", cnMysql))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("_id_actividad", MySqlDbType.Int32).Value = adidalumno;
-                    cmd.Parameters.Add("_i_fase", MySqlDbType.Int32).Value = adifase;
+                    cmd.Parameters.Add("_nombres", MySqlDbType.VarChar, 50).Value = adsnombres;
+                    cmd.Parameters.Add("_apellidos", MySqlDbType.VarChar, 50).Value = adsapellidos;
 
                     using (MySqlDataReader mdrd = cmd.ExecuteReader())
                     {
                         if (mdrd != null)
                         {
                             edActividad senArchivo = null;
-                            int pos_idactividadalumnodetalle = mdrd.GetOrdinal("id_actividad_alumno_detalle");
-                            int pos_idactividadalumno = mdrd.GetOrdinal("id_actividad_alumno");
-                            int pos_idactividaddetalle = mdrd.GetOrdinal("id_actividad_detalle");
-                            int pos_ipregunta = mdrd.GetOrdinal("i_pregunta");
-                            int pos_ifase = mdrd.GetOrdinal("i_fase");
-                            int pos_brespuestaA = mdrd.GetOrdinal("b_respuesta_A");
-                            int pos_brespuestaB = mdrd.GetOrdinal("b_respuesta_B");
-                            int pos_brespuestaC = mdrd.GetOrdinal("b_respuesta_C");
-                            int pos_brespuestaD = mdrd.GetOrdinal("b_respuesta_D");
-                            int pos_brespuestaE = mdrd.GetOrdinal("b_respuesta_E");
-                            int pos_brespuestaF = mdrd.GetOrdinal("b_respuesta_F");
-                            int pos_brespuestaG = mdrd.GetOrdinal("b_respuesta_G");
-                            int pos_brespuestaH = mdrd.GetOrdinal("b_respuesta_H");
-                            int pos_brespuestaI = mdrd.GetOrdinal("b_respuesta_I");
-                            int pos_itipopregunta = mdrd.GetOrdinal("i_tipo_pregunta");
+                            int pos_id_actividad_alumno = mdrd.GetOrdinal("id_actividad_alumno");
+                            int pos_id_actividad = mdrd.GetOrdinal("id_actividad");
+                            int pos_v_nombres = mdrd.GetOrdinal("v_nombres");
+                            int pos_v_apellidos = mdrd.GetOrdinal("v_apellidos");
+                            int pos_i_grado = mdrd.GetOrdinal("i_grado");
+                            int pos_i_edad = mdrd.GetOrdinal("i_edad");
+                            int pos_i_sexo = mdrd.GetOrdinal("i_sexo");
+                            int pos_v_colegio = mdrd.GetOrdinal("v_colegio");
+                            int pos_v_celular = mdrd.GetOrdinal("v_celular");
+                            int pos_v_correo = mdrd.GetOrdinal("v_correo");
+                            int pos_v_clave = mdrd.GetOrdinal("v_clave");
+                            int pos_i_carrera1 = mdrd.GetOrdinal("i_carrera1");
+                            int pos_i_carrera2 = mdrd.GetOrdinal("i_carrera2");
+                            int pos_i_carrera3 = mdrd.GetOrdinal("i_carrera3");
+                            int pos_i_carrera4 = mdrd.GetOrdinal("i_carrera4");
+                            int pos_i_carrera5 = mdrd.GetOrdinal("i_carrera5");
+                            int pos_i_puntaje = mdrd.GetOrdinal("i_puntaje");
+                            int pos_v_comentario = mdrd.GetOrdinal("v_comentario");
 
                             while (mdrd.Read())
                             {
                                 senArchivo = new edActividad();
-                                senArchivo.idactividadAlumnodetalle = (mdrd.IsDBNull(pos_idactividadalumnodetalle) ? 0 : mdrd.GetInt32(pos_idactividadalumnodetalle));
-                                senArchivo.idactividad_alumno = (mdrd.IsDBNull(pos_idactividadalumno) ? 0 : mdrd.GetInt32(pos_idactividadalumno));
-                                senArchivo.idactividaddetalle = (mdrd.IsDBNull(pos_idactividaddetalle) ? 0 : mdrd.GetInt32(pos_idactividaddetalle));
-                                senArchivo.ipregunta = (mdrd.IsDBNull(pos_ipregunta) ? 0 : mdrd.GetInt32(pos_ipregunta));
-                                senArchivo.ifase = (mdrd.IsDBNull(pos_ifase) ? 0 : mdrd.GetInt32(pos_ifase));
-                                senArchivo.respuestaA = (mdrd.IsDBNull(pos_brespuestaA) ? "-" : mdrd.GetString(pos_brespuestaA));
-                                senArchivo.respuestaB = (mdrd.IsDBNull(pos_brespuestaB) ? "-" : mdrd.GetString(pos_brespuestaB));
-                                senArchivo.respuestaC = (mdrd.IsDBNull(pos_brespuestaC) ? "-" : mdrd.GetString(pos_brespuestaC));
-                                senArchivo.respuestaD = (mdrd.IsDBNull(pos_brespuestaD) ? "-" : mdrd.GetString(pos_brespuestaD));
-                                senArchivo.respuestaE = (mdrd.IsDBNull(pos_brespuestaE) ? "-" : mdrd.GetString(pos_brespuestaE));
-                                senArchivo.respuestaF = (mdrd.IsDBNull(pos_brespuestaF) ? "-" : mdrd.GetString(pos_brespuestaF));
-                                senArchivo.respuestaG = (mdrd.IsDBNull(pos_brespuestaG) ? "-" : mdrd.GetString(pos_brespuestaG));
-                                senArchivo.respuestaH = (mdrd.IsDBNull(pos_brespuestaH) ? "-" : mdrd.GetString(pos_brespuestaH));
-                                senArchivo.respuestaI = (mdrd.IsDBNull(pos_brespuestaI) ? "-" : mdrd.GetString(pos_brespuestaI));
-                                senArchivo.tipo_pregunta = (mdrd.IsDBNull(pos_itipopregunta) ? 0 : mdrd.GetInt32(pos_itipopregunta));
-
+                                senArchivo.id_actividad_alumno = (mdrd.IsDBNull(pos_id_actividad_alumno) ? 0 : mdrd.GetInt32(pos_id_actividad_alumno));
+                                senArchivo.idactividad = (mdrd.IsDBNull(pos_id_actividad) ? 0 : mdrd.GetInt32(pos_id_actividad));
+                                senArchivo.snombres = (mdrd.IsDBNull(pos_v_nombres) ? "-" : mdrd.GetString(pos_v_nombres));
+                                senArchivo.sapellidos = (mdrd.IsDBNull(pos_v_apellidos) ? "-" : mdrd.GetString(pos_v_apellidos));
+                                senArchivo.igrado = (mdrd.IsDBNull(pos_i_grado) ? 0 : mdrd.GetInt32(pos_i_grado));
+                                senArchivo.iedad = (mdrd.IsDBNull(pos_i_edad) ? 0 : mdrd.GetInt32(pos_i_edad));
+                                senArchivo.isexo = (mdrd.IsDBNull(pos_i_sexo) ? 0 : mdrd.GetInt32(pos_i_sexo));
+                                senArchivo.scolegio = (mdrd.IsDBNull(pos_v_colegio) ? "-" : mdrd.GetString(pos_v_colegio));
+                                senArchivo.scelular = (mdrd.IsDBNull(pos_v_celular) ? "-" : mdrd.GetString(pos_v_celular));
+                                senArchivo.scorreo = (mdrd.IsDBNull(pos_v_correo) ? "-" : mdrd.GetString(pos_v_correo));
+                                senArchivo.sclave = (mdrd.IsDBNull(pos_v_clave) ? "-" : mdrd.GetString(pos_v_clave));
+                                senArchivo.scarrera1 = (mdrd.IsDBNull(pos_i_carrera1) ? "-" : mdrd.GetString(pos_i_carrera1));
+                                senArchivo.scarrera2 = (mdrd.IsDBNull(pos_i_carrera2) ? "-" : mdrd.GetString(pos_i_carrera2));
+                                senArchivo.scarrera3 = (mdrd.IsDBNull(pos_i_carrera3) ? "-" : mdrd.GetString(pos_i_carrera3));
+                                senArchivo.scarrera4 = (mdrd.IsDBNull(pos_i_carrera4) ? "-" : mdrd.GetString(pos_i_carrera4));
+                                senArchivo.scarrera5 = (mdrd.IsDBNull(pos_i_carrera5) ? "-" : mdrd.GetString(pos_i_carrera5));
+                                senArchivo.i_puntaje = (mdrd.IsDBNull(pos_i_puntaje) ? 0 : mdrd.GetInt32(pos_i_puntaje));
+                                senArchivo.scomentario = (mdrd.IsDBNull(pos_v_comentario) ? "-" : mdrd.GetString(pos_v_comentario));
                                 lstArchivo.Add(senArchivo);
                             }
                         }

@@ -343,15 +343,15 @@ END;
 ELSE
 BEGIN
 INSERT INTO padre(nombrepadre,fechareg,activo)
-		VALUES(_nombrepadre, NOW(), 1);
+    VALUES(_nombrepadre, NOW(), 1);
 
-	INSERT INTO alumno(idpadre,nombre,apellido,etapa_escolar,grado,seccion,fechareg,activo)
-		VALUES((SELECT LAST_INSERT_ID()),_nombre,_apellido,_etapa,_grado,_seccion,NOW(),1);
+  INSERT INTO alumno(idpadre,nombre,apellido,etapa_escolar,grado,seccion,fechareg,activo)
+    VALUES((SELECT LAST_INSERT_ID()),_nombre,_apellido,_etapa,_grado,_seccion,NOW(),1);
         
-	INSERT INTO accesoalumno(idalumno,clave,email,fechareg,activo) 
-		VALUES ((SELECT LAST_INSERT_ID()),_clave,_email, NOW(), 1);
+  INSERT INTO accesoalumno(idalumno,clave,email,fechareg,activo) 
+    VALUES ((SELECT LAST_INSERT_ID()),_clave,_email, NOW(), 1);
 
-	SELECT LAST_INSERT_ID() as '_result';
+  SELECT LAST_INSERT_ID() as '_result';
 END;
 END IF;
 
@@ -407,19 +407,19 @@ BEGIN
 UPDATE PAGO SET activo = 0 WHERE idalumno = _idalumno AND idetapa = _idetapa;
 
 INSERT INTO pago(
-	idalumno
-	,idetapa
-	,nombre
-	,tipopago
-	,dia
-	,mes
-	,anio
-	,monto
-	,fechareg
-	,fechafin
-	,activo
+  idalumno
+  ,idetapa
+  ,nombre
+  ,tipopago
+  ,dia
+  ,mes
+  ,anio
+  ,monto
+  ,fechareg
+  ,fechafin
+  ,activo
 )VALUES(
-	_idalumno
+  _idalumno
     ,_idetapa
     ,'Pago por plataforma web'
     ,_tipopago
@@ -496,16 +496,16 @@ CREATE PROCEDURE `spalumno_listar` (IN _idalumno INT)
 BEGIN
 
 SELECT 
-	 a.idalumno
-	,a.distrito
+   a.idalumno
+  ,a.distrito
     ,a.ciudad
     ,a.provincia
     ,CONCAT_WS(' ',a.nombre, a.apellido) as nombre
     ,DATE_FORMAT(a.fechanac, '%d %m %Y') as fechanac
     ,(SELECT a2.email FROM accesoalumno a2 where a2.idalumno = _idalumno) as 'email'
- 	,a.etapa_escolar
- 	,a.grado
- 	,a.seccion    
+  ,a.etapa_escolar
+  ,a.grado
+  ,a.seccion    
     ,a.tipodoc
     ,a.documento
     ,a.suscripcion_estado
@@ -528,13 +528,13 @@ BEGIN
 
 IF EXISTS(SELECT idalumno FROM accesoalumno WHERE `email` =  _correo) THEN
 BEGIN
-	DECLARE _result INT DEFAULT 0;	 
+  DECLARE _result INT DEFAULT 0;   
     SET _result = (SELECT IFNULL((SELECT idalumno FROM accesoalumno WHERE `email` =  _correo AND `clave` = _clave),-1) as '_result');
     SELECT _result;
 END;
 ELSE
-BEGIN	
-	SELECT 0 as '_result';
+BEGIN 
+  SELECT 0 as '_result';
 END;
 END IF;
 
@@ -567,11 +567,11 @@ BEGIN
 
 IF EXISTS(SELECT idalumno FROM accesoalumno WHERE `email` =  _correo) THEN
 BEGIN
-	SELECT 1 as '_result';
+  SELECT 1 as '_result';
 END;
 ELSE
 BEGIN
-	SELECT 0 as '_result';
+  SELECT 0 as '_result';
 END;
 END IF;
 
@@ -589,13 +589,13 @@ BEGIN
 
 IF ((SELECT activo FROM accesoalumno WHERE `email` =  _correo) = 0) THEN
 BEGIN
-	SELECT 1 as '_result';
+  SELECT 1 as '_result';
     
 END;
 ELSE
 BEGIN
-	
-	SELECT 0 as '_result';
+  
+  SELECT 0 as '_result';
 END;
 END IF;
 
@@ -610,7 +610,7 @@ CREATE PROCEDURE `spetapa_listar` (IN _idalumno INT)
 BEGIN
 
 SELECT 
-	idetapa
+  idetapa
     ,nombre
     ,descripcion
     ,activo
@@ -638,7 +638,7 @@ IF EXISTS(SELECT idpago FROM pago where (idalumno = _idalumno || _idalumno = 0) 
 BEGIN
 
 SELECT
-	idgrado
+  idgrado
     ,idetapa
     ,nombre
     ,descripcion
@@ -648,7 +648,7 @@ SELECT
     ,rutaimagen
     ,videoenlace
     ,valoracion
-	,0 as '_result'
+  ,0 as '_result'
 FROM grado WHERE idetapa = _idetapa AND activo = 1 ORDER BY idgrado ASC;
 
 END;
@@ -692,7 +692,7 @@ IF ((SELECT DATE(fechafin) FROM pago WHERE idalumno = _idalumno AND activo = 1 L
 BEGIN
 
 SELECT
-	   idcurso
+     idcurso
     ,idgrado
     ,idetapa
     ,nombre
@@ -700,7 +700,7 @@ SELECT
     ,rutaimagen
     ,videoenlace
     ,0 as 'valoracion'
-	,0 as '_result'
+  ,0 as '_result'
 FROM curso WHERE idgrado = _idgrado AND idetapa = _idetapa AND activo = 1 ORDER BY idcurso ASC;
 
 END;
@@ -779,7 +779,7 @@ CREATE PROCEDURE `sppago_notificar` (IN _idalumno INT, IN _idetapa INT)
 BEGIN
 
 SELECT
-	DATEDIFF(DATE(fechafin), CURDATE()) as fecha
+  DATEDIFF(DATE(fechafin), CURDATE()) as fecha
 FROM pago where idalumno = _idalumno AND idetapa = _idetapa AND activo = 1;
 
 END$$
@@ -1153,48 +1153,79 @@ CREATE TABLE t_actividad_alumno_detalle (
   `id_actividad_alumno_detalle` INT NOT NULL AUTO_INCREMENT,
   `id_actividad_alumno` INT NOT NULL,
   `id_actividad_detalle` INT NOT NULL,
-  `i_pregunta` INT NOT NULL,
-  `i_fase` INT NOT NULL,
-  `b_respuesta_A` VARCHAR(50) NOT NULL,
-  `b_respuesta_B` VARCHAR(50) NOT NULL,
-  `b_respuesta_C` VARCHAR(50) NOT NULL,
-  `b_respuesta_D` VARCHAR(50) NOT NULL,
-  `b_respuesta_E` VARCHAR(50) NOT NULL,
-  `b_respuesta_F` VARCHAR(50) NOT NULL,
-  `b_respuesta_G` VARCHAR(50) NOT NULL,
-  `b_respuesta_H` VARCHAR(50) NOT NULL,
-  `b_respuesta_I` VARCHAR(50) NOT NULL,
-  `i_puntaje` INT NOT NULL,
+  `i_fase` INT NULL,
+  `v_pregunta_1` VARCHAR(50) NULL,
+  `v_pregunta_2` VARCHAR(50) NULL,
+  `v_pregunta_3` VARCHAR(50) NULL,
+  `v_pregunta_4` VARCHAR(50) NULL,
+  `v_pregunta_5` VARCHAR(50) NULL,
+  `v_pregunta_6` VARCHAR(50) NULL,
+  `v_pregunta_7` VARCHAR(50) NULL,
+  `v_pregunta_8` VARCHAR(50) NULL,
+  `v_pregunta_9` VARCHAR(50) NULL,
+  `v_pregunta_10` VARCHAR(50) NULL,
+  `v_pregunta_11` VARCHAR(50) NULL,
+  `v_pregunta_12` VARCHAR(50) NULL,
+  `v_pregunta_13` VARCHAR(50) NULL,
+  `v_pregunta_14` VARCHAR(50) NULL,
+  `v_pregunta_15` VARCHAR(50) NULL,
+  `v_pregunta_16` VARCHAR(50) NULL,
+  `v_pregunta_17` VARCHAR(50) NULL,
+  `v_pregunta_18` VARCHAR(50) NULL,
+  `v_pregunta_19` VARCHAR(50) NULL,
+  `v_pregunta_20` VARCHAR(50) NULL,
+  `v_pregunta_21` VARCHAR(50) NULL,
+  `v_pregunta_22` VARCHAR(50) NULL,
+  `v_pregunta_23` VARCHAR(50) NULL,
+  `v_pregunta_24` VARCHAR(50) NULL,
+  `v_pregunta_25` VARCHAR(50) NULL,
+  `v_pregunta_26` VARCHAR(50) NULL,
+  `v_pregunta_27` VARCHAR(50) NULL,
+  `v_pregunta_28` VARCHAR(50) NULL,
+  `v_pregunta_29` VARCHAR(50) NULL,
+  `v_pregunta_30` VARCHAR(50) NULL,
+  `v_pregunta_31` VARCHAR(50) NULL,
+  `v_pregunta_32` VARCHAR(50) NULL,
+  `v_pregunta_33` VARCHAR(50) NULL,
+  `v_pregunta_34` VARCHAR(50) NULL,
+  `v_pregunta_35` VARCHAR(50) NULL,
+  `v_pregunta_36` VARCHAR(50) NULL,
+  `v_pregunta_37` VARCHAR(50) NULL,
+  `v_pregunta_38` VARCHAR(50) NULL,
+  `v_pregunta_39` VARCHAR(50) NULL,
+  `v_pregunta_40` VARCHAR(50) NULL,
+  `v_pregunta_41` VARCHAR(50) NULL,
+  `v_pregunta_42` VARCHAR(50) NULL,
+  `v_pregunta_43` VARCHAR(50) NULL,
+  `v_pregunta_44` VARCHAR(50) NULL,
+  `v_pregunta_45` VARCHAR(50) NULL,
+  `v_pregunta_46` VARCHAR(50) NULL,
+  `v_pregunta_47` VARCHAR(50) NULL,
+  `v_pregunta_48` VARCHAR(50) NULL,
+  `v_pregunta_49` VARCHAR(50) NULL,
+  `v_pregunta_50` VARCHAR(50) NULL,
+  `v_pregunta_51` VARCHAR(50) NULL,
+  `v_pregunta_52` VARCHAR(50) NULL,
+  `v_pregunta_53` VARCHAR(50) NULL,
+  `v_pregunta_54` VARCHAR(50) NULL,
+  `v_pregunta_55` VARCHAR(50) NULL,
+  `v_pregunta_56` VARCHAR(50) NULL,
+  `v_pregunta_57` VARCHAR(50) NULL,
+  `v_pregunta_58` VARCHAR(50) NULL,
+  `v_pregunta_59` VARCHAR(50) NULL,
+  `v_pregunta_60` VARCHAR(50) NULL,
+  `i_puntaje` INT NULL,
+  `v_descripcion` VARCHAR(500) NULL,
   `i_tipo_pregunta` INT NOT NULL,
   `b_estado` BIT(1) NOT NULL,
+  `dt_fecharegistro` DATETIME NULL,
   FOREIGN KEY (`id_actividad_alumno`) REFERENCES t_actividad_alumno(`id_actividad_alumno`),
   FOREIGN KEY (`id_actividad_detalle`) REFERENCES t_actividad_detalle(`id_actividad_detalle`),
   PRIMARY KEY (`id_actividad_alumno_detalle`)
 );
 
--- --------------------------------------------------
-
-DELIMITER $$
-CREATE PROCEDURE `sp_obtener_preguntas`(IN _idactividad int)
-BEGIN
-  select 
-    ad.id_actividad_detalle
-   ,ad.id_actividad
-   ,ad.v_pregunta
-   ,ad.v_alternativa_A
-   ,ad.v_alternativa_B
-   ,ad.v_alternativa_C
-   ,ad.v_alternativa_D
-   ,ad.v_alternativa_E
-   ,ad.i_tipo_pregunta
-   ,ad.i_puntaje_pregunta
-  from t_actividad_detalle ad
-    where ad.id_actividad = _idactividad AND ad.b_estado = 1;
-END$$
-DELIMITER ;
-
 -- -------------------------------------------------
-
+-- OBTIENE LA INFORMACION DEL ALUMNO INSCRITO
 DELIMITER $$
 CREATE PROCEDURE `sp_obtener_actividadA`(IN _v_correo VARCHAR(100))
 BEGIN
@@ -1224,33 +1255,90 @@ END$$
 DELIMITER ;
 
 -- -------------------------------------------------
-
+-- OBTIENE LAS PREGUNTAS DE CADA FASE
 DELIMITER $$
-CREATE PROCEDURE `sp_obtener_actividadA_det`(IN _idactividad int)
+CREATE PROCEDURE `sp_obtener_actividadA_det`(IN _idactividad INT,IN _ifase INT)
 BEGIN
   select 
-  aad.id_actividad_alumno_detalle
-  ,aad.id_actividad_alumno
-  ,aad.id_actividad_detalle
-  ,aad.b_respuesta_A
-  ,aad.b_respuesta_B
-  ,aad.b_respuesta_C
-  ,aad.b_respuesta_D
-  ,aad.b_respuesta_E
-  ,aad.i_pregunta
-  ,aad.i_fase
-  ,aad.i_puntaje
-  ,aad.i_tipo_pregunta
-  from t_actividad_alumno_detalle aad
-    where aad.id_actividad_alumno = _idactividad AND aad.b_estado = 1;
+     ad.id_actividad_alumno_detalle
+    ,ad.id_actividad_alumno
+    ,ad.id_actividad_detalle
+    ,ad.i_fase
+    ,ad.v_pregunta_1
+    ,ad.v_pregunta_2
+    ,ad.v_pregunta_3
+    ,ad.v_pregunta_4
+    ,ad.v_pregunta_5
+    ,ad.v_pregunta_6
+    ,ad.v_pregunta_7
+    ,ad.v_pregunta_8
+    ,ad.v_pregunta_9
+    ,ad.v_pregunta_10
+    ,ad.v_pregunta_11
+    ,ad.v_pregunta_12
+    ,ad.v_pregunta_13
+    ,ad.v_pregunta_14
+    ,ad.v_pregunta_15
+    ,ad.v_pregunta_16
+    ,ad.v_pregunta_17
+    ,ad.v_pregunta_18
+    ,ad.v_pregunta_19
+    ,ad.v_pregunta_20
+    ,ad.v_pregunta_21
+    ,ad.v_pregunta_22
+    ,ad.v_pregunta_23
+    ,ad.v_pregunta_24
+    ,ad.v_pregunta_25
+    ,ad.v_pregunta_26
+    ,ad.v_pregunta_27
+    ,ad.v_pregunta_28
+    ,ad.v_pregunta_29
+    ,ad.v_pregunta_30
+    ,ad.v_pregunta_31
+    ,ad.v_pregunta_32
+    ,ad.v_pregunta_33
+    ,ad.v_pregunta_34
+    ,ad.v_pregunta_35
+    ,ad.v_pregunta_36
+    ,ad.v_pregunta_37
+    ,ad.v_pregunta_38
+    ,ad.v_pregunta_39
+    ,ad.v_pregunta_40
+    ,ad.v_pregunta_41
+    ,ad.v_pregunta_42
+    ,ad.v_pregunta_43
+    ,ad.v_pregunta_44
+    ,ad.v_pregunta_45
+    ,ad.v_pregunta_46
+    ,ad.v_pregunta_47
+    ,ad.v_pregunta_48
+    ,ad.v_pregunta_49
+    ,ad.v_pregunta_50
+    ,ad.v_pregunta_51
+    ,ad.v_pregunta_52
+    ,ad.v_pregunta_53
+    ,ad.v_pregunta_54
+    ,ad.v_pregunta_55
+    ,ad.v_pregunta_56
+    ,ad.v_pregunta_57
+    ,ad.v_pregunta_58
+    ,ad.v_pregunta_59
+    ,ad.v_pregunta_60
+    ,ad.i_puntaje
+    ,ad.v_descripcion
+    ,ad.i_tipo_pregunta
+    ,ad.b_estado
+    ,DATE_FORMAT(ad.dt_fecharegistro, '%d %m %Y') as 'dt_fecharegistro'
+  from t_actividad_alumno_detalle ad
+    where ad.id_actividad_alumno = _idactividad AND ad.b_estado = 1 AND ad.i_fase = _ifase;
 END$$
 DELIMITER ;
 
 -- -------------------------------------------------
-
+-- REGISTRA A LOS ALUMNOS
 DELIMITER $$
 CREATE PROCEDURE `sp_insertar_actividadAlumno`(
-  IN _id_actividad INT
+   IN _id_actividad INT
   ,IN _v_nombres VARCHAR(150)
   ,IN _v_apellidos VARCHAR(150)
   ,IN _v_lugarnacimiento VARCHAR(150)
@@ -1318,60 +1406,215 @@ END$$
 DELIMITER ;
 
 -- -------------------------------------------------
-
+-- REGISTRA LAS PREGUNTAS DE CADA FASE
 DELIMITER $$
 CREATE PROCEDURE `sp_insertar_actividadAlumnoDetalle`(
-  IN _id_actividad_alumno INT
-  ,IN _id_actividad_detalle INT
-  ,IN _b_respuesta_A VARCHAR(50)
-  ,IN _b_respuesta_B VARCHAR(50)
-  ,IN _b_respuesta_C VARCHAR(50)
-  ,IN _b_respuesta_D VARCHAR(50)
-  ,IN _b_respuesta_E VARCHAR(50)
-  ,IN _b_respuesta_F VARCHAR(50)
-  ,IN _b_respuesta_G VARCHAR(50)
-  ,IN _b_respuesta_H VARCHAR(50)
-  ,IN _b_respuesta_I VARCHAR(50)
-  ,IN _i_pregunta INT
-  ,IN _i_fase INT
-  ,IN _i_puntaje INT
-  ,IN _i_tipo_pregunta INT
-  ,IN _b_estado BIT(1))
+   _id_actividad_alumno INT
+  ,_id_actividad_detalle INT
+  ,_i_fase INT
+  ,_v_pregunta_1 VARCHAR(50)
+  ,_v_pregunta_2 VARCHAR(50)
+  ,_v_pregunta_3 VARCHAR(50)
+  ,_v_pregunta_4 VARCHAR(50)
+  ,_v_pregunta_5 VARCHAR(50)
+  ,_v_pregunta_6 VARCHAR(50)
+  ,_v_pregunta_7 VARCHAR(50)
+  ,_v_pregunta_8 VARCHAR(50)
+  ,_v_pregunta_9 VARCHAR(50)
+  ,_v_pregunta_10 VARCHAR(50)
+  ,_v_pregunta_11 VARCHAR(50)
+  ,_v_pregunta_12 VARCHAR(50)
+  ,_v_pregunta_13 VARCHAR(50)
+  ,_v_pregunta_14 VARCHAR(50)
+  ,_v_pregunta_15 VARCHAR(50)
+  ,_v_pregunta_16 VARCHAR(50)
+  ,_v_pregunta_17 VARCHAR(50)
+  ,_v_pregunta_18 VARCHAR(50)
+  ,_v_pregunta_19 VARCHAR(50)
+  ,_v_pregunta_20 VARCHAR(50)
+  ,_v_pregunta_21 VARCHAR(50)
+  ,_v_pregunta_22 VARCHAR(50)
+  ,_v_pregunta_23 VARCHAR(50)
+  ,_v_pregunta_24 VARCHAR(50)
+  ,_v_pregunta_25 VARCHAR(50)
+  ,_v_pregunta_26 VARCHAR(50)
+  ,_v_pregunta_27 VARCHAR(50)
+  ,_v_pregunta_28 VARCHAR(50)
+  ,_v_pregunta_29 VARCHAR(50)
+  ,_v_pregunta_30 VARCHAR(50)
+  ,_v_pregunta_31 VARCHAR(50)
+  ,_v_pregunta_32 VARCHAR(50)
+  ,_v_pregunta_33 VARCHAR(50)
+  ,_v_pregunta_34 VARCHAR(50)
+  ,_v_pregunta_35 VARCHAR(50)
+  ,_v_pregunta_36 VARCHAR(50)
+  ,_v_pregunta_37 VARCHAR(50)
+  ,_v_pregunta_38 VARCHAR(50)
+  ,_v_pregunta_39 VARCHAR(50)
+  ,_v_pregunta_40 VARCHAR(50)
+  ,_v_pregunta_41 VARCHAR(50)
+  ,_v_pregunta_42 VARCHAR(50)
+  ,_v_pregunta_43 VARCHAR(50)
+  ,_v_pregunta_44 VARCHAR(50)
+  ,_v_pregunta_45 VARCHAR(50)
+  ,_v_pregunta_46 VARCHAR(50)
+  ,_v_pregunta_47 VARCHAR(50)
+  ,_v_pregunta_48 VARCHAR(50)
+  ,_v_pregunta_49 VARCHAR(50)
+  ,_v_pregunta_50 VARCHAR(50)
+  ,_v_pregunta_51 VARCHAR(50)
+  ,_v_pregunta_52 VARCHAR(50)
+  ,_v_pregunta_53 VARCHAR(50)
+  ,_v_pregunta_54 VARCHAR(50)
+  ,_v_pregunta_55 VARCHAR(50)
+  ,_v_pregunta_56 VARCHAR(50)
+  ,_v_pregunta_57 VARCHAR(50)
+  ,_v_pregunta_58 VARCHAR(50)
+  ,_v_pregunta_59 VARCHAR(50)
+  ,_v_pregunta_60 VARCHAR(50)
+  ,_i_puntaje INT
+  ,_v_descripcion VARCHAR(500)
+  ,_i_tipo_pregunta INT
+  ,_b_estado BIT(1)
+  ,_dt_fecharegistro VARCHAR(25))
 BEGIN
   INSERT INTO t_actividad_alumno_detalle(
-      id_actividad_alumno
+       id_actividad_alumno
       ,id_actividad_detalle
-      ,b_respuesta_A
-      ,b_respuesta_B
-      ,b_respuesta_C
-      ,b_respuesta_D
-      ,b_respuesta_E
-      ,b_respuesta_F
-      ,b_respuesta_G
-      ,b_respuesta_H
-      ,b_respuesta_I
-      ,i_pregunta
       ,i_fase
+      ,v_pregunta_1
+      ,v_pregunta_2
+      ,v_pregunta_3
+      ,v_pregunta_4
+      ,v_pregunta_5
+      ,v_pregunta_6
+      ,v_pregunta_7
+      ,v_pregunta_8
+      ,v_pregunta_9
+      ,v_pregunta_10
+      ,v_pregunta_11
+      ,v_pregunta_12
+      ,v_pregunta_13
+      ,v_pregunta_14
+      ,v_pregunta_15
+      ,v_pregunta_16
+      ,v_pregunta_17
+      ,v_pregunta_18
+      ,v_pregunta_19
+      ,v_pregunta_20
+      ,v_pregunta_21
+      ,v_pregunta_22
+      ,v_pregunta_23
+      ,v_pregunta_24
+      ,v_pregunta_25
+      ,v_pregunta_26
+      ,v_pregunta_27
+      ,v_pregunta_28
+      ,v_pregunta_29
+      ,v_pregunta_30
+      ,v_pregunta_31
+      ,v_pregunta_32
+      ,v_pregunta_33
+      ,v_pregunta_34
+      ,v_pregunta_35
+      ,v_pregunta_36
+      ,v_pregunta_37
+      ,v_pregunta_38
+      ,v_pregunta_39
+      ,v_pregunta_40
+      ,v_pregunta_41
+      ,v_pregunta_42
+      ,v_pregunta_43
+      ,v_pregunta_44
+      ,v_pregunta_45
+      ,v_pregunta_46
+      ,v_pregunta_47
+      ,v_pregunta_48
+      ,v_pregunta_49
+      ,v_pregunta_50
+      ,v_pregunta_51
+      ,v_pregunta_52
+      ,v_pregunta_53
+      ,v_pregunta_54
+      ,v_pregunta_55
+      ,v_pregunta_56
+      ,v_pregunta_57
+      ,v_pregunta_58
+      ,v_pregunta_59
+      ,v_pregunta_60
       ,i_puntaje
+      ,v_descripcion
       ,i_tipo_pregunta
       ,b_estado)
     VALUES (
       _id_actividad_alumno
       ,_id_actividad_detalle
-      ,_b_respuesta_A
-      ,_b_respuesta_B
-      ,_b_respuesta_C
-      ,_b_respuesta_D
-      ,_b_respuesta_E
-      ,_b_respuesta_F
-      ,_b_respuesta_G
-      ,_b_respuesta_H
-      ,_b_respuesta_I
-      ,_i_pregunta
       ,_i_fase
+      ,_v_pregunta_1
+      ,_v_pregunta_2
+      ,_v_pregunta_3
+      ,_v_pregunta_4
+      ,_v_pregunta_5
+      ,_v_pregunta_6
+      ,_v_pregunta_7
+      ,_v_pregunta_8
+      ,_v_pregunta_9
+      ,_v_pregunta_10
+      ,_v_pregunta_11
+      ,_v_pregunta_12
+      ,_v_pregunta_13
+      ,_v_pregunta_14
+      ,_v_pregunta_15
+      ,_v_pregunta_16
+      ,_v_pregunta_17
+      ,_v_pregunta_18
+      ,_v_pregunta_19
+      ,_v_pregunta_20
+      ,_v_pregunta_21
+      ,_v_pregunta_22
+      ,_v_pregunta_23
+      ,_v_pregunta_24
+      ,_v_pregunta_25
+      ,_v_pregunta_26
+      ,_v_pregunta_27
+      ,_v_pregunta_28
+      ,_v_pregunta_29
+      ,_v_pregunta_30
+      ,_v_pregunta_31
+      ,_v_pregunta_32
+      ,_v_pregunta_33
+      ,_v_pregunta_34
+      ,_v_pregunta_35
+      ,_v_pregunta_36
+      ,_v_pregunta_37
+      ,_v_pregunta_38
+      ,_v_pregunta_39
+      ,_v_pregunta_40
+      ,_v_pregunta_41
+      ,_v_pregunta_42
+      ,_v_pregunta_43
+      ,_v_pregunta_44
+      ,_v_pregunta_45
+      ,_v_pregunta_46
+      ,_v_pregunta_47
+      ,_v_pregunta_48
+      ,_v_pregunta_49
+      ,_v_pregunta_50
+      ,_v_pregunta_51
+      ,_v_pregunta_52
+      ,_v_pregunta_53
+      ,_v_pregunta_54
+      ,_v_pregunta_55
+      ,_v_pregunta_56
+      ,_v_pregunta_57
+      ,_v_pregunta_58
+      ,_v_pregunta_59
+      ,_v_pregunta_60
       ,_i_puntaje
+      ,_v_descripcion
       ,_i_tipo_pregunta
-      ,_b_estado);
+      ,_b_estado
+      ,STR_TO_DATE(_dt_fecharegistro,'%Y-%m-%d'));
 
     SELECT LAST_INSERT_ID() as '_result';
 
@@ -1380,7 +1623,7 @@ DELIMITER ;
 
 -- -------------------------------------------------
 
-
+-- CREA LAS CARRERAS PARA EL ALUMNO
 DELIMITER $$
 CREATE PROCEDURE `sp_actualizar_actividadAlumno`(
   IN id_actividad_alumno INT
@@ -1407,11 +1650,30 @@ DELIMITER ;
 
 -- --------------------------------------------------
 
+-- CREA EL RESULTADO FINAL DE CADA FASE
+DELIMITER $$
+CREATE PROCEDURE `sp_actualizar_actividadAlumnoDetalle`(
+   IN _id_actividad_alumno INT
+  ,IN _ifase INT
+  ,IN _v_descripcion VARCHAR(500)
+  ,IN _i_tipo_pregunta INT
+  ,IN _i_puntaje INT)
+BEGIN
+  UPDATE t_actividad_alumno_detalle
+  SET  
+  i_puntaje = _i_puntaje
+  ,v_descripcion = _v_descripcion
+  ,i_tipo_pregunta = _i_tipo_pregunta
+  WHERE id_actividad_alumno = _id_actividad_alumno AND i_fase = _ifase;
+END$$
+DELIMITER ;
+
+-- --------------------------------------------------
+-- TRAE LA SESSION DEL ALUMNO PARA EL LOGIN
 DELIMITER $$
 CREATE PROCEDURE `sp_listar_actividadAlumno`(
   IN _v_correo  VARCHAR(100)
-  ,IN _v_clave  VARCHAR(100)
-  )
+  ,IN _v_clave  VARCHAR(100))
 BEGIN
  SELECT
       aa.id_actividad
@@ -1429,7 +1691,7 @@ DELIMITER ;
 
 
 -- --------------------------------------------------
-
+-- TRAE LAS FASES DE LOS ALUMNOS DEPENDIENDO DEL ID DE USUARIO
 DELIMITER $$
 CREATE PROCEDURE `sp_listar_actividadFases`(
   IN _id_actividad INT)
@@ -1442,35 +1704,39 @@ BEGIN
 END$$
 DELIMITER ;
 
--- ---------------------------------------------------
+-- --------------------------------------------------------
 
-
+-- TRAE A LOS USUARIOS EN GENERAL
 DELIMITER $$
-CREATE PROCEDURE `sp_listar_actividadAlumnoDetalle`(
-  IN _id_actividad INT
-  ,IN _i_fase INT)
+CREATE PROCEDURE `sp_listar_alumnosActividad`(
+   IN _nombres VARCHAR(50)
+  ,IN _apellidos VARCHAR(50))
 BEGIN
  SELECT
-  aad.id_actividad_alumno_detalle
-  ,aad.id_actividad_alumno
-  ,aad.id_actividad_detalle
-  ,aad.i_pregunta
-  ,aad.i_fase
-  ,aad.b_respuesta_A
-  ,aad.b_respuesta_B
-  ,aad.b_respuesta_C
-  ,aad.b_respuesta_D
-  ,aad.b_respuesta_E
-  ,aad.b_respuesta_F
-  ,aad.b_respuesta_G
-  ,aad.b_respuesta_H
-  ,aad.b_respuesta_I
-  ,aad.i_tipo_pregunta
+   aad.id_actividad_alumno
+  ,aad.id_actividad
+  ,aad.v_nombres
+  ,aad.v_apellidos
+  ,aad.i_grado
+  ,aad.i_edad
+  ,aad.i_sexo
+  ,aad.v_colegio
+  ,aad.v_celular
+  ,aad.v_correo
+  ,aad.v_clave
+  ,aad.i_carrera1
+  ,aad.i_carrera2
+  ,aad.i_carrera3
+  ,aad.i_carrera4
+  ,aad.i_carrera5
+  ,aad.i_puntaje
+  ,aad.v_comentario
 
   FROM t_actividad_alumno_detalle aad 
-    WHERE aad.id_actividad_alumno = _id_actividad 
-      AND aad.i_fase = _i_fase;
+    WHERE aad.v_nombres LIKE CONCAT('%', _nombres, '%') OR (_nombres = '') 
+      AND aad.v_apellidos LIKE CONCAT('%', _apellidos, '%') OR (_apellidos = '');
 
 END$$
 DELIMITER ;
 
+-- ----------------------------------------------------
