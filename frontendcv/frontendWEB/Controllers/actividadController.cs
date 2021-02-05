@@ -36,6 +36,7 @@ namespace frontendWEB.Controllers
                 return View("registro");
             }
 
+            ViewBag.VGidusuario = int.Parse(Session["SESSION_IDUSUARIO_OV"].ToString());
             ViewBag.VGidrespuesta = idrespuesta;
             return View();
         }

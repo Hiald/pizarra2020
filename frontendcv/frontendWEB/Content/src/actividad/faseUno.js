@@ -13,7 +13,6 @@ $('input[name="vp20"]').click(function () {
     } else {
         $('.secpreg7').css("display", "none");
     }
-
 });
 
 $('#pregsec2').css("display", "none");
@@ -25,7 +24,6 @@ $('input[name="vp43"]').click(function () {
     } else {
         $('#pregsec2').css("display", "none");
     }
-
 });
 
 function fnValidar() {
@@ -91,8 +89,6 @@ function fnValidar() {
         }
     }
     fnGuardar();
-
-
 }
 // $("input[name='vp1'][value='2']").prop('checked', true);
 // $('#vp35').prop("checked", true);
@@ -144,7 +140,7 @@ function fnGuardar() {
     var iv41 = $('input[name="vp' + 41 + '"]:checked').val();
     var iv42 = $('input[name="vp' + 42 + '"]:checked').val();
     var iv43 = $('input[name="vp' + 43 + '"]:checked').val();
-    var iv44 = $('input[name="vp' + i + '"]:checked').val();
+    var iv44 = $('input[name="vp' + 44 + '"]:checked').val();
     var iv45 = "";
     var iv46 = "";
     var iv47 = "";
@@ -221,7 +217,7 @@ function fnGuardar() {
             "v46": iv46, "v47": iv47, "v48": iv48, "v49": iv49, "v50": iv50,
             "v51": iv51, "v52": iv52, "v53": iv53, "v54": iv54, "v55": iv55,
             "v56": iv56, "v57": iv57, "v58": iv58, "v59": iv59, "v60": iv60,
-            "i_puntaje": "", "vdes": "", "itipopreg": 0, "best": 1, "dtfr": fechahoy
+            "i_puntaje": 0, "vdes": "", "itipopreg": 0, "best": 1, "dtfr": fechahoy
         },
         cache: false,
         success: function (respuesta) {
@@ -233,7 +229,7 @@ function fnGuardar() {
             console.log("No se ha podido obtener la información");
         }
     });
-
 }
 
 function fnLeer() { }
+$('#frmcerrar').submit(false);

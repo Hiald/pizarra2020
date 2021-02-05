@@ -1545,7 +1545,8 @@ BEGIN
       ,i_puntaje
       ,v_descripcion
       ,i_tipo_pregunta
-      ,b_estado)
+      ,b_estado
+      ,dt_fecharegistro)
     VALUES (
       _id_actividad_alumno
       ,_id_actividad_detalle
