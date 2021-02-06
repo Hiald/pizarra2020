@@ -231,5 +231,54 @@ function fnGuardar() {
     });
 }
 
-function fnLeer() { }
-$('#frmcerrar').submit(false);
+function fnLeer(ifase) {
+
+    var paramidusuario = $('#hddidusuario').val();
+    $.ajax({
+        url: vgrutaprincipal + "actividad/ListarActividadAlumnoDetalle",
+        type: 'POST',
+        data: {
+            "widactividad": parseInt(paramidusuario),
+            "wifase": parseInt(ifase)
+        },
+        cache: false,
+        success: function (respuesta) {
+            console.log(respuesta);
+            /* $.each(respuesta.aaData, function (index, value) {
+                 if (value.idactividad_alumno == 1) {
+                     $('#btnFase1R').css('display', 'none');
+                     $('#btnFase1E').css('display', 'block');
+                 } else if (value.idactividad_alumno == 2) {
+                     $('#btnFase2R').css('display', 'none');
+                     $('#btnFase2E').css('display', 'block');
+                 } else if (value.idactividad_alumno == 4) {
+                     $('#btnFase4R').css('display', 'none');
+                     $('#btnFase4E').css('display', 'block');
+                 } else if (value.idactividad_alumno == 5) {
+                     $('#btnFase5R').css('display', 'none');
+                     $('#btnFase5E').css('display', 'block');
+                 } else if (value.idactividad_alumno == 6) {
+                     $('#btnFase6R').css('display', 'none');
+                     $('#btnFase6E').css('display', 'block');
+                 } else if (value.idactividad_alumno == 7) {
+                     $('#btnFase7R').css('display', 'none');
+                     $('#btnFase7E').css('display', 'block');
+                 }
+ 
+             });*/
+
+        },
+        error: function () {
+            console.log("No se ha podido obtener la información");
+        }
+    });
+}
+
+$(document).ready(function () {
+    var gicompletado = $('#hddiCompletado').val();
+    if (gicompletado != 0) {
+        fnLeer(gicompletado);
+    } else {
+        console.log("sin completar");
+    }
+});

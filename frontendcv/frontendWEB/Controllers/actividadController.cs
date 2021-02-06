@@ -41,75 +41,87 @@ namespace frontendWEB.Controllers
             return View();
         }
 
-        public ActionResult faseUno(int idusuario)
+        public ActionResult faseUno(int idusuario, int itipoCompleto)
         {
             ViewBag.VGidusuario = idusuario;
+            ViewBag.VGitipoCompleto = itipoCompleto;
             return View();
         }
 
-        public ActionResult faseDos(int idusuario)
+        public ActionResult faseDos(int idusuario, int itipoCompleto)
         {
             ViewBag.VGidusuario = idusuario;
+            ViewBag.VGitipoCompleto = itipoCompleto;
             return View();
         }
 
-        public ActionResult faseTres(int idusuario)
+        public ActionResult faseTres(int idusuario, int itipoCompleto)
         {
             ViewBag.VGidusuario = idusuario;
+            ViewBag.VGitipoCompleto = itipoCompleto;
             return View();
         }
 
-        public ActionResult faseCuatro(int idusuario)
+        public ActionResult faseCuatro(int idusuario, int itipoCompleto)
         {
             ViewBag.VGidusuario = idusuario;
+            ViewBag.VGitipoCompleto = itipoCompleto;
             return View();
         }
 
-        public ActionResult faseCinco(int idusuario)
+        public ActionResult faseCinco(int idusuario, int itipoCompleto)
         {
             ViewBag.VGidusuario = idusuario;
+            ViewBag.VGitipoCompleto = itipoCompleto;
             return View();
         }
 
-        public ActionResult faseSeis(int idusuario)
+        public ActionResult faseSeis(int idusuario, int itipoCompleto)
         {
             ViewBag.VGidusuario = idusuario;
+            ViewBag.VGitipoCompleto = itipoCompleto;
             return View();
         }
 
-        public ActionResult faseSiete(int idusuario)
+        public ActionResult faseSiete(int idusuario, int itipoCompleto)
         {
             ViewBag.VGidusuario = idusuario;
+            ViewBag.VGitipoCompleto = itipoCompleto;
             return View();
         }
 
-        public ActionResult faseOcho(int idusuario)
+        public ActionResult faseOcho(int idusuario, int itipoCompleto)
         {
             ViewBag.VGidusuario = idusuario;
+            ViewBag.VGitipoCompleto = itipoCompleto;
             return View();
         }
 
-        public ActionResult faseNueve(int idusuario)
+        public ActionResult faseNueve(int idusuario, int itipoCompleto)
         {
             ViewBag.VGidusuario = idusuario;
+            ViewBag.VGitipoCompleto = itipoCompleto;
             return View();
         }
 
-        public ActionResult faseDiez(int idusuario)
+        public ActionResult faseDiez(int idusuario, int itipoCompleto)
         {
             ViewBag.VGidusuario = idusuario;
+            ViewBag.VGitipoCompleto = itipoCompleto;
             return View();
         }
 
-        public ActionResult faseOnce(int idusuario)
+        public ActionResult faseOnce(int idusuario, int itipoCompleto)
         {
             ViewBag.VGidusuario = idusuario;
+            ViewBag.VGitipoCompleto = itipoCompleto;
             return View();
         }
 
-        public ActionResult faseDoce(int idusuario)
+        public ActionResult faseDoce(int idusuario, int itipoCompleto)
         {
             ViewBag.VGidusuario = idusuario;
+            ViewBag.VGitipoCompleto = itipoCompleto;
             return View();
         }
 
@@ -327,7 +339,7 @@ namespace frontendWEB.Controllers
 
         // obtiene las respuestas marcadas por el alumno (ADMIN)
         [HttpPost]
-        public async Task<ActionResult> ListarActividadAlumnoDetalle(int widactividad, int wifase)
+        public async Task<JsonResult> ListarActividadAlumnoDetalle(int widactividad, int wifase)
         {
             var objResultado = new object();
             List<edActividad> loenActividad = new List<edActividad>();

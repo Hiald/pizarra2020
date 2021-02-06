@@ -29,8 +29,8 @@
                 <div class="card-body">
                     <h5 class="card-title">Fase 1</h5>
                     <p class="card-text">Fase 1 Prueba de entrada</p>
-                    <a class="btn btn-primary text-white" id="btnFase1R" style="cursor:pointer;" onclick="fnAbrirFase(1);">Ir a la fase</a>
-                    <a class="btn btn-primary text-white" id="btnFase1E" style="cursor:pointer;display:none;" onclick="fnVerFase(@ViewBag.VGidusuario,1);">Ver Fase</a>
+                    <a class="btn btn-primary text-white" id="btnFase1R" style="cursor:pointer;" onclick="fnAbrirFase(@ViewBag.VGidusuario,0);">Ir a la fase</a>
+                    <a class="btn btn-primary text-white" id="btnFase1E" style="cursor:pointer;display:none;" onclick="fnAbrirFase(@ViewBag.VGidusuario,1);">Ver Fase</a>
                 </div>
             </div>
         </div>
@@ -41,8 +41,8 @@
                 <div class="card-body">
                     <h5 class="card-title">Fase 2</h5>
                     <p class="card-text">Mis espectativas</p>
-                    <a class="btn btn-primary text-white" id="btnFase2R" style="cursor:pointer;" onclick="fnAbrirFase(2);">Ir a la fase</a>
-                    <a class="btn btn-primary text-white" id="btnFase2E" style="cursor:pointer;display:none;" onclick="fnVerFase(@ViewBag.VGidusuario,2);">Ver Fase</a>
+                    <a class="btn btn-primary text-white" id="btnFase2R" style="cursor:pointer;" onclick="fnAbrirFase(@ViewBag.VGidusuario,0);">Ir a la fase</a>
+                    <a class="btn btn-primary text-white" id="btnFase2E" style="cursor:pointer;display:none;" onclick="fnAbrirFase(@ViewBag.VGidusuario,2);">Ver Fase</a>
                 </div>
             </div>
         </div>
@@ -64,8 +64,8 @@
                 <div class="card-body">
                     <h5 class="card-title">Fase 4</h5>
                     <p class="card-text">Conocer mis habilidades</p>
-                    <a class="btn btn-primary text-white" id="btnFase4R" style="cursor:pointer;" onclick="fnAbrirFase(4);">Ir a la fase</a>
-                    <a class="btn btn-primary text-white" id="btnFase4E" style="cursor:pointer;display:none;" onclick="fnVerFase(@ViewBag.VGidusuario,4);">Ver Fase</a>
+                    <a class="btn btn-primary text-white" id="btnFase4R" style="cursor:pointer;" onclick="fnAbrirFase(@ViewBag.VGidusuario,0);">Ir a la fase</a>
+                    <a class="btn btn-primary text-white" id="btnFase4E" style="cursor:pointer;display:none;" onclick="fnAbrirFase(@ViewBag.VGidusuario,4);">Ver Fase</a>
                 </div>
             </div>
         </div>
@@ -76,8 +76,8 @@
                 <div class="card-body">
                     <h5 class="card-title">Fase 5</h5>
                     <p class="card-text">Conocer mis estilos de aprendizaje</p>
-                    <a class="btn btn-primary text-white" id="btnFase5R" style="cursor:pointer;" onclick="fnAbrirFase(5);">Ir a la fase</a>
-                    <a class="btn btn-primary text-white" id="btnFase5E" style="cursor:pointer;display:none;" onclick="fnVerFase(@ViewBag.VGidusuario,5);">Ver Fase</a>
+                    <a class="btn btn-primary text-white" id="btnFase5R" style="cursor:pointer;" onclick="fnAbrirFase(@ViewBag.VGidusuario,0);">Ir a la fase</a>
+                    <a class="btn btn-primary text-white" id="btnFase5E" style="cursor:pointer;display:none;" onclick="fnAbrirFase(@ViewBag.VGidusuario,5);">Ver Fase</a>
                 </div>
             </div>
         </div>
@@ -88,8 +88,8 @@
                 <div class="card-body">
                     <h5 class="card-title">Fase 6</h5>
                     <p class="card-text">Mi tipo de inteligencia</p>
-                    <a class="btn btn-primary text-white" id="btnFase6R" style="cursor:pointer;" onclick="fnAbrirFase(6);">Ir a la fase</a>
-                    <a class="btn btn-primary text-white" id="btnFase6E" style="cursor:pointer;display:none;" onclick="fnVerFase(@ViewBag.VGidusuario,6);">Ver Fase</a>
+                    <a class="btn btn-primary text-white" id="btnFase6R" style="cursor:pointer;" onclick="fnAbrirFase(@ViewBag.VGidusuario,0);">Ir a la fase</a>
+                    <a class="btn btn-primary text-white" id="btnFase6E" style="cursor:pointer;display:none;" onclick="fnAbrirFase(@ViewBag.VGidusuario,6);">Ver Fase</a>
                 </div>
             </div>
         </div>
@@ -100,8 +100,8 @@
                 <div class="card-body">
                     <h5 class="card-title">Fase 7</h5>
                     <p class="card-text">Conociendo mi personalidad</p>
-                    <a class="btn btn-primary text-white" id="btnFase7R" style="cursor:pointer;" onclick="fnAbrirFase(7);">Ir a la fase</a>
-                    <a class="btn btn-primary text-white" id="btnFase7E" style="cursor:pointer;display:none;" onclick="fnVerFase(@ViewBag.VGidusuario,7);">Ver Fase</a>
+                    <a class="btn btn-primary text-white" id="btnFase7R" style="cursor:pointer;" onclick="fnAbrirFase(@ViewBag.VGidusuario,0);">Ir a la fase</a>
+                    <a class="btn btn-primary text-white" id="btnFase7E" style="cursor:pointer;display:none;" onclick="fnAbrirFase(@ViewBag.VGidusuario,7);">Ver Fase</a>
                 </div>
             </div>
         </div>
@@ -154,20 +154,21 @@
 
 <input type="hidden" id="hddvgidrespuesta" value="@ViewBag.VGidrespuesta" />
 <script>
-    function redirectPostV2(location, nameparam1, value1) {
+    function redirectPostV2(location, nameparam1, value1, nameparam2, value2) {
         var form = '';
-        var rt = '<form id="rtmvc" action="' + location + '" method="POST">'
+
+        var rt = '<form id="rtmvcdsds" action="' + location + '" method="POST">'
             + '<input type="hidden" name="' + nameparam1 + '" value="' + value1 + '">'
+            + '<input type="hidden" name="' + nameparam2 + '" value="' + value2 + '">'
             + '</form>'
         var data = appendHtml(document.body, rt);
-        document.getElementById("rtmvc").submit();
+        document.getElementById("rtmvcdsds").submit();
 
     }
 
-    function fnAbrirFase(idfase) {
+    function fnAbrirFase(idfase, paramitipocompletado) {
         var vidfase = "";
-        console.log(idfase);
-        switch (idfase) {
+        switch (paramitipocompletado) {
             case 1: vidfase = "faseUno"; break;
             case 2: vidfase = "faseDos"; break;
             case 3: vidfase = "faseTres"; break;
@@ -183,7 +184,7 @@
         }
 
         var idusuario = parseInt($('#hddvgidrespuesta').val());
-        redirectPostV2(vgrutaprincipal + "actividad/" + vidfase, "idusuario", idusuario);
+        redirectPostV2(vgrutaprincipal + "actividad/" + vidfase, "idusuario", idusuario, "itipoCompleto", paramitipocompletado);
     }
 
     function CerrarOV() {
@@ -200,7 +201,7 @@
     }
 
     function fnListarFaseCompletada() {
-        
+
         var idalumnoReg = $('#hddvgidrespuesta').val();
         $.ajax({
             url: vgrutaprincipal + "actividad/ListarFases",
