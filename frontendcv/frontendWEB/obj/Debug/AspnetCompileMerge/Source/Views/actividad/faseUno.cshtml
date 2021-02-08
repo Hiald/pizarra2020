@@ -3,10 +3,11 @@
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
 <input type="hidden" id="hddidusuario" value="@ViewBag.VGidusuario" />
+<input type="hidden" id="hddiCompletado" value="@ViewBag.VGitipoCompleto" />
 
 <nav class="navbar navbar-light bg-light justify-content-between">
     <img class="navbar-brand" src="~/Content/image/pizarra21.png" style="width:130px;height:65px;cursor:pointer" />
-    <form class="form-inline">
+    <form class="form-inline" id="frmcerrar">
         <button class="btn btn-outline-success my-2 my-sm-0" onclick="CerrarOV()">Salir</button>
     </form>
 </nav>
@@ -495,10 +496,40 @@
 <div class="container justify-center">
     <div class="row align-center justify-center justify-content-md-center">
         <div class="col-md-12"></div>
-        <button class="btn btn-lg btn-success" onclick=" fnGuardar();">Finalizar fase</button>
+        <button class="btn btn-lg btn-success" id="btnff" onclick="fnValidar();">Finalizar fase</button>
+        <button class="btn btn-lg btn-success" id="btnaf" onclick="fnGenerarFase();">Ver resultado</button>
     </div>
 </div>
 
+<div class="modal fade" id="modalfaseresultado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Resultados de la fase 1</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label id="lbldescripcion"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="btnvi">Volver a inicio</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="hddpuntaje" value="" />
+<input type="hidden" id="hdddescripcion" value="" />
+<input type="hidden" id="hddtipopregunta" value="" />
+
 @section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="~/Content/src/actividad/faseUno.js"></script>
 }

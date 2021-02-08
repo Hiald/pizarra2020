@@ -2,6 +2,9 @@
     ViewBag.Title = "faseSiete";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
+<input type="hidden" id="hddidusuario" value="@ViewBag.VGidusuario" />
+<input type="hidden" id="hddiCompletado" value="@ViewBag.VGitipoCompleto" />
+
 <nav class="navbar navbar-light bg-light justify-content-between">
     <img class="navbar-brand" src="~/Content/image/pizarra21.png" style="width:130px;height:65px;cursor:pointer" />
     <form class="form-inline">
@@ -46,7 +49,7 @@
                         </td>
                         <td>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="grd1" id="rd13" value="1">
+                                <input class="form-check-input" type="radio" name="grd1" id="rd13" value="3">
                             </div>
                         </td>
                     </tr>
@@ -409,17 +412,17 @@
                         <th scope="row">Colaborador/a</th>
                         <td>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="grd2" id="rd21" value="2">
+                                <input class="form-check-input" type="radio" name="grd2" id="rd21" value="1">
                             </div>
                         </td>
                         <td>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="grd2" id="rd22" value="1">
+                                <input class="form-check-input" type="radio" name="grd2" id="rd22" value="2">
                             </div>
                         </td>
                         <td>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="grd2" id="rd23" value="2">
+                                <input class="form-check-input" type="radio" name="grd2" id="rd23" value="3">
                             </div>
                         </td>
                     </tr>
@@ -830,7 +833,7 @@
                         </td>
                         <td>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="grd3" id="rd33" value="1">
+                                <input class="form-check-input" type="radio" name="grd3" id="rd33" value="3">
                             </div>
                         </td>
                     </tr>
@@ -1189,6 +1192,40 @@
 <div class="container justify-center">
     <div class="row align-center justify-center justify-content-md-center">
         <div class="col-md-12"></div>
-        <button class="btn btn-lg btn-success">Finalizar fase</button>
+        <button class="btn btn-lg btn-success" id="btnff" onclick="fnValidar();">Finalizar fase</button>
+        <button class="btn btn-lg btn-success" id="btnaf" onclick="fnGenerarFase();">Ver resultado</button>
     </div>
 </div>
+
+<div class="modal fade" id="modalfaseresultado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Resultados de la fase 1</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label id="lbldescripcion"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="fninicio();" id="btnvi">Volver a inicio</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="hddpuntaje" value="" />
+<input type="hidden" id="hdddescripcion" value="" />
+<input type="hidden" id="hddtipopregunta" value="" />
+
+@section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="~/Content/src/actividad/faseSiete.js"></script>
+}

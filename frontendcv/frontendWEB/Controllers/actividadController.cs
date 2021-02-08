@@ -230,7 +230,7 @@ namespace frontendWEB.Controllers
         }
 
         // actualiza los datos de cada fase de los alumnos (ADMIN)
-        public async Task<JsonResult> ActualizarClase(int widactividadAlumno, string wcarrera1
+        public async Task<JsonResult> ActualizarFaseFinal(int widactividadAlumno, string wcarrera1
                     , string wcarrera2, string wcarrera3, string wcarrera4
                     , string wcarrera5, int wipuntaje, string wcomentario)
         {
@@ -267,7 +267,7 @@ namespace frontendWEB.Controllers
         }
 
         // actualiza los datos de cada fase de los alumnos (ADMIN)
-        public async Task<JsonResult> ActualizarClase(int wsidactividadalumno, int wsifase
+        public async Task<JsonResult> ActualizarResultadoxFase(int wsidactividadalumno, int wsifase
                                 , string wssdescripcion, int wsitipo_pregunta, int wsipuntaje)
         {
             int iresultado = 0;

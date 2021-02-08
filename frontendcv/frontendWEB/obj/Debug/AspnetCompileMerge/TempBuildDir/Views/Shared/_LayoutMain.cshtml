@@ -37,8 +37,11 @@
 </head>
 <body>
     <div id="divcarga" class="loader loader-default" data-text="Cargando... por favor espere" blink></div>
+    <div id="divcarga2" class="loader loader-default is-active" data-text="Cargando... por favor espere" blink></div>
     @RenderBody()
     <script type="text/javascript">
+        $('#divcarga2').hide();
+
         var vgrutaprincipal = "@Url.Content("~")";
         var datourlp = window.location.pathname;
         var rutaservidorp = window.location.host;

@@ -52,48 +52,45 @@
             </div>
         </v-toolbar>
 
-                <div class="justify-center row">
-                    @if (ViewBag.loenCursoConteo > 0)
-                    {
-                        foreach (var ent in ViewBag.loenCurso)
-                        {
-                            <v-flex class="col-lg-3 col-md-6 col-xs-12 pl-3 pr-3 pt-5">
-                                <v-card>
-                                    <v-img src="~/Content/image/acercade2.jpg" style="min-height:280px!important;cursor:pointer" onclick="javascript:AbrirCurso('@ent.srutavideo', '@ent.snombre','@ent.idvideo','@ent.idcurso','@ViewBag.Gfechabuscar')"></v-img>
-                                    <v-card-title primary-title>
-                                        <div style="cursor:pointer" onclick="javascript:AbrirCurso('@ent.srutavideo', '@ent.snombre','@ent.idvideo','@ent.idcurso','@ViewBag.Gfechabuscar')">
-                                            <div>@ent.snombre</div>
-                                        </div>
-                                    </v-card-title>
-                                    <v-card-actions>
-                                        <v-btn block onclick="javascript:AbrirCurso('@ent.srutavideo', '@ent.snombre','@ent.idvideo','@ent.idcurso','@ViewBag.Gfechabuscar')" color="purple" style="color:white">Entrar</v-btn>
-                                    </v-card-actions>
-                                    <v-card-text>
-                                        @ent.sdescripcion
-                                    </v-card-text>
-                                </v-card>
-                            </v-flex>
-                        }
-                    }
-                    else
-                    {
-                        <v-flex lg3 xs12 md3 sm3 xl3 class="pl-3 pr-3 pt-5">
-                            <v-card>
-                                <v-img src="~/Content/image/imagen2.jpg" height="200px" style="cursor:pointer"></v-img>
-                                <v-card-title primary-title>
-                                    <div style="cursor:pointer">
-                                        <div class="headline">Próximamente cursos</div>
-                                    </div>
-                                </v-card-title>
-                                <v-card-actions>
-                                </v-card-actions>
-                                <v-card-text>
-                                    Ponte en contacto con tu pizarra21 para consultar sobre los próximos cursos en esta fecha
-                                </v-card-text>
-                            </v-card>
-                        </v-flex>
-                    }
-                </div>
+        <div class="justify-center row">
+            @if (ViewBag.loenCursoConteo > 0)
+            {
+                foreach (var ent in ViewBag.loenCurso)
+                {
+                    <v-flex class="col-lg-2 col-md-6 col-xs-12 pl-3 pr-3 pt-5">
+                        <v-card>
+                            <v-img src="~/Content/image/acercade2.jpg" style="min-height:150px!important;cursor:pointer" onclick="javascript:AbrirCurso('@ent.srutavideo', '@ent.snombre','@ent.idvideo','@ent.idcurso','@ViewBag.Gfechabuscar')"></v-img>
+                            <v-card-title primary-title>
+                                <div style="cursor:pointer" onclick="javascript:AbrirCurso('@ent.srutavideo', '@ent.snombre','@ent.idvideo','@ent.idcurso','@ViewBag.Gfechabuscar')">
+                                    <div>@ent.snombre</div>
+                                </div>
+                            </v-card-title>
+                            <v-card-actions>
+                                <v-btn block onclick="javascript:AbrirCurso('@ent.srutavideo', '@ent.snombre','@ent.idvideo','@ent.idcurso','@ViewBag.Gfechabuscar')" color="purple" style="color:white">Entrar</v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-flex>
+                }
+            }
+            else
+            {
+                <v-flex lg3 xs12 md3 sm3 xl3 class="pl-3 pr-3 pt-5">
+                    <v-card>
+                        <v-img src="~/Content/image/imagen2.jpg" height="200px" style="cursor:pointer"></v-img>
+                        <v-card-title primary-title>
+                            <div style="cursor:pointer">
+                                <div class="headline">Próximamente cursos</div>
+                            </div>
+                        </v-card-title>
+                        <v-card-actions>
+                        </v-card-actions>
+                        <v-card-text>
+                            Ponte en contacto con tu pizarra21 para consultar sobre los próximos cursos en esta fecha
+                        </v-card-text>
+                    </v-card>
+                </v-flex>
+            }
+        </div>
 
     </v-app>
 </div>

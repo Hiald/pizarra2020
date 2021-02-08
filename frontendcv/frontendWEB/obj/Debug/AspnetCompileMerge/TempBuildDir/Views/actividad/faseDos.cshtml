@@ -3,6 +3,9 @@
     ViewBag.Title = "faseDos";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
 }
+<input type="hidden" id="hddidusuario" value="@ViewBag.VGidusuario" />
+<input type="hidden" id="hddiCompletado" value="@ViewBag.VGitipoCompleto" />
+
 <nav class="navbar navbar-light bg-light justify-content-between">
     <img class="navbar-brand" src="~/Content/image/pizarra21.png" style="width:130px;height:65px;cursor:pointer" />
     <form class="form-inline">
@@ -50,26 +53,26 @@
         <div class="col-md-4">
             <label>2. Conozco las instituciones donde estudiar la carrera que me gusta.</label>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd2" id="rd11" value="1">
-                <label class="form-check-label" for="rd11">
+                <input class="form-check-input" type="radio" name="grd2" id="rd21" value="1">
+                <label class="form-check-label" for="rd21">
                     Bastante
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd2" id="rd12" value="2">
-                <label class="form-check-label" for="rd12">
+                <input class="form-check-input" type="radio" name="grd2" id="rd22" value="2">
+                <label class="form-check-label" for="rd22">
                     Regular
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd2" id="rd13" value="3">
-                <label class="form-check-label" for="rd13">
+                <input class="form-check-input" type="radio" name="grd2" id="rd23" value="3">
+                <label class="form-check-label" for="rd23">
                     Poco
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd2" id="rd14" value="4">
-                <label class="form-check-label" for="rd14">
+                <input class="form-check-input" type="radio" name="grd2" id="rd24" value="4">
+                <label class="form-check-label" for="rd24">
                     Nada
                 </label>
             </div>
@@ -78,26 +81,26 @@
         <div class="col-md-4">
             <label>3. Siendo sincero, la elección de mi futura profesión está influenciada por los consejos de mi grupo de amigos/as.</label>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd3" id="rd11" value="1">
-                <label class="form-check-label" for="rd11">
+                <input class="form-check-input" type="radio" name="grd3" id="rd31" value="1">
+                <label class="form-check-label" for="rd31">
                     Bastante
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd3" id="rd12" value="2">
-                <label class="form-check-label" for="rd12">
+                <input class="form-check-input" type="radio" name="grd3" id="rd32" value="2">
+                <label class="form-check-label" for="rd32">
                     Regular
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd3" id="rd13" value="3">
-                <label class="form-check-label" for="rd13">
+                <input class="form-check-input" type="radio" name="grd3" id="rd33" value="3">
+                <label class="form-check-label" for="rd33">
                     Poco
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd3" id="rd14" value="4">
-                <label class="form-check-label" for="rd14">
+                <input class="form-check-input" type="radio" name="grd3" id="rd34" value="4">
+                <label class="form-check-label" for="rd34">
                     Nada
                 </label>
             </div>
@@ -108,26 +111,26 @@
         <div class="col-md-4">
             <label>4. Mis padres o algún otro pariente ha contribuido mucho a la decisión de mi futura profesión.</label>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd4" id="rd11" value="1">
-                <label class="form-check-label" for="rd11">
+                <input class="form-check-input" type="radio" name="grd4" id="rd41" value="1">
+                <label class="form-check-label" for="rd41">
                     Bastante
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd4" id="rd12" value="2">
-                <label class="form-check-label" for="rd12">
+                <input class="form-check-input" type="radio" name="grd4" id="rd42" value="2">
+                <label class="form-check-label" for="rd42">
                     Regular
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd4" id="rd13" value="3">
-                <label class="form-check-label" for="rd13">
+                <input class="form-check-input" type="radio" name="grd4" id="rd43" value="3">
+                <label class="form-check-label" for="rd43">
                     Poco
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd3" id="rd14" value="4">
-                <label class="form-check-label" for="rd14">
+                <input class="form-check-input" type="radio" name="grd3" id="rd44" value="4">
+                <label class="form-check-label" for="rd44">
                     Nada
                 </label>
             </div>
@@ -136,26 +139,26 @@
         <div class="col-md-4">
             <label>5. Tengo razones para decir que me gusta mi futura profesión porque goza de buena reputación y de reconocimiento social.</label>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd5" id="rd11" value="1">
-                <label class="form-check-label" for="rd11">
+                <input class="form-check-input" type="radio" name="grd5" id="rd51" value="1">
+                <label class="form-check-label" for="rd51">
                     Bastante
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd5" id="rd12" value="2">
-                <label class="form-check-label" for="rd12">
+                <input class="form-check-input" type="radio" name="grd5" id="rd52" value="2">
+                <label class="form-check-label" for="rd52">
                     Regular
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd5" id="rd13" value="3">
-                <label class="form-check-label" for="rd13">
+                <input class="form-check-input" type="radio" name="grd5" id="rd53" value="3">
+                <label class="form-check-label" for="rd53">
                     Poco
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd5" id="rd14" value="4">
-                <label class="form-check-label" for="rd14">
+                <input class="form-check-input" type="radio" name="grd5" id="rd54" value="4">
+                <label class="form-check-label" for="rd54">
                     Nada
                 </label>
             </div>
@@ -164,26 +167,26 @@
         <div class="col-md-4">
             <label>6. La decisión de mi futura profesión está influenciada por el dinero que podré recibir de ella.</label>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd6" id="rd11" value="1">
-                <label class="form-check-label" for="rd11">
+                <input class="form-check-input" type="radio" name="grd6" id="rd61" value="1">
+                <label class="form-check-label" for="rd61">
                     Bastante
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd6" id="rd12" value="2">
-                <label class="form-check-label" for="rd12">
+                <input class="form-check-input" type="radio" name="grd6" id="rd62" value="2">
+                <label class="form-check-label" for="rd62">
                     Regular
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd6" id="rd13" value="3">
-                <label class="form-check-label" for="rd13">
+                <input class="form-check-input" type="radio" name="grd6" id="rd63" value="3">
+                <label class="form-check-label" for="rd63">
                     Poco
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd6" id="rd14" value="4">
-                <label class="form-check-label" for="rd14">
+                <input class="form-check-input" type="radio" name="grd6" id="rd64" value="4">
+                <label class="form-check-label" for="rd64">
                     Nada
                 </label>
             </div>
@@ -194,26 +197,26 @@
         <div class="col-md-4">
             <label>7. Siendo consciente de los recursos económicos de mi familia, me siento obligado a elegir una profesión que en realidad no es mi total satisfacción.</label>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd7" id="rd11" value="1">
-                <label class="form-check-label" for="rd11">
+                <input class="form-check-input" type="radio" name="grd7" id="rd71" value="1">
+                <label class="form-check-label" for="rd71">
                     Bastante
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd7" id="rd12" value="2">
-                <label class="form-check-label" for="rd12">
+                <input class="form-check-input" type="radio" name="grd7" id="rd72" value="2">
+                <label class="form-check-label" for="rd72">
                     Regular
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd7" id="rd13" value="3">
-                <label class="form-check-label" for="rd13">
+                <input class="form-check-input" type="radio" name="grd7" id="rd73" value="3">
+                <label class="form-check-label" for="rd73">
                     Poco
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd7" id="rd14" value="4">
-                <label class="form-check-label" for="rd14">
+                <input class="form-check-input" type="radio" name="grd7" id="rd74" value="4">
+                <label class="form-check-label" for="rd74">
                     Nada
                 </label>
             </div>
@@ -222,26 +225,26 @@
         <div class="col-md-4">
             <label>8. Pienso y siento que una carrera de mando intermedio no tiene la reputación social que deseo, por ello.</label>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd8" id="rd11" value="1">
-                <label class="form-check-label" for="rd11">
+                <input class="form-check-input" type="radio" name="grd8" id="rd81" value="1">
+                <label class="form-check-label" for="rd81">
                     Bastante
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd8" id="rd12" value="2">
-                <label class="form-check-label" for="rd12">
+                <input class="form-check-input" type="radio" name="grd8" id="rd82" value="2">
+                <label class="form-check-label" for="rd82">
                     Regular
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd8" id="rd13" value="3">
-                <label class="form-check-label" for="rd13">
+                <input class="form-check-input" type="radio" name="grd8" id="rd83" value="3">
+                <label class="form-check-label" for="rd83">
                     Poco
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd8" id="rd14" value="4">
-                <label class="form-check-label" for="rd14">
+                <input class="form-check-input" type="radio" name="grd8" id="rd84" value="4">
+                <label class="form-check-label" for="rd84">
                     Nada
                 </label>
             </div>
@@ -250,26 +253,26 @@
         <div class="col-md-4">
             <label>9. En realidad estoy seguro(a) de lo que voy a estudiar.</label>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd9" id="rd11" value="1">
-                <label class="form-check-label" for="rd11">
+                <input class="form-check-input" type="radio" name="grd9" id="rd91" value="1">
+                <label class="form-check-label" for="rd91">
                     Bastante
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd9" id="rd12" value="2">
-                <label class="form-check-label" for="rd12">
+                <input class="form-check-input" type="radio" name="grd9" id="rd92" value="2">
+                <label class="form-check-label" for="rd92">
                     Regular
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd9" id="rd13" value="3">
-                <label class="form-check-label" for="rd13">
+                <input class="form-check-input" type="radio" name="grd9" id="rd93" value="3">
+                <label class="form-check-label" for="rd93">
                     Poco
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd9" id="rd14" value="4">
-                <label class="form-check-label" for="rd14">
+                <input class="form-check-input" type="radio" name="grd9" id="rd94" value="4">
+                <label class="form-check-label" for="rd94">
                     Nada
                 </label>
             </div>
@@ -280,26 +283,26 @@
         <div class="col-md-4">
             <label>10. Los calificativos más altos que he obtenido durante mi vida escolar están en los cursos que considero elementales para mi futura profesión.</label>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd10" id="rd11" value="1">
-                <label class="form-check-label" for="rd11">
+                <input class="form-check-input" type="radio" name="grd10" id="rd101" value="1">
+                <label class="form-check-label" for="rd101">
                     Bastante
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd10" id="rd12" value="2">
-                <label class="form-check-label" for="rd12">
+                <input class="form-check-input" type="radio" name="grd10" id="rd102" value="2">
+                <label class="form-check-label" for="rd102">
                     Regular
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd10" id="rd13" value="3">
-                <label class="form-check-label" for="rd13">
+                <input class="form-check-input" type="radio" name="grd10" id="rd103" value="3">
+                <label class="form-check-label" for="rd103">
                     Poco
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="grd10" id="rd14" value="4">
-                <label class="form-check-label" for="rd14">
+                <input class="form-check-input" type="radio" name="grd10" id="rd104" value="4">
+                <label class="form-check-label" for="rd104">
                     Nada
                 </label>
             </div>
@@ -308,19 +311,19 @@
         <div class="col-md-8">
             <label>11. Cuéntanos un poco sobre tus gustos o expectativas actuales.</label>
             <div class="form-group">
-                <label for="ip41" class="sr-only">Profesiones u ocupaciones que más me interesan en el momento actual</label>
+                <label for="ip21" class="sr-only">Profesiones u ocupaciones que más me interesan en el momento actual</label>
                 <input type="text" class="form-control" id="ip21" placeholder="Tu respuesta">
             </div>
             <div class="form-group">
-                <label for="ip42" class="sr-only">¿Cómo veo a mis padres en este proceso y qué espero de ellos?</label>
+                <label for="ip22" class="sr-only">¿Cómo veo a mis padres en este proceso y qué espero de ellos?</label>
                 <input type="text" class="form-control" id="ip22" placeholder="Tu respuesta">
             </div>
             <div class="form-group">
-                <label for="ip43" class="sr-only">Sentimientos que tengo frente a la necesidad de tomar una decisión sobre lo que haré al terminar la secundaria</label>
+                <label for="ip23" class="sr-only">Sentimientos que tengo frente a la necesidad de tomar una decisión sobre lo que haré al terminar la secundaria</label>
                 <input type="text" class="form-control" id="ip23" placeholder="Tu respuesta">
             </div>
             <div class="form-group">
-                <label for="ip44" class="sr-only">¿Qué espero de este programa?</label>
+                <label for="ip24" class="sr-only">¿Qué espero de este programa?</label>
                 <input type="text" class="form-control" id="ip24" placeholder="Tu respuesta">
             </div>
         </div>
@@ -329,8 +332,41 @@
     <div class="container justify-center">
         <div class="row align-center justify-center justify-content-md-center">
             <div class="col-md-12"></div>
-            <button class="btn btn-lg btn-success">Finalizar fase</button>
+            <button class="btn btn-lg btn-success" id="btnff" onclick="fbValidar();">Finalizar fase</button>
+            <button class="btn btn-lg btn-success" id="btnaf" onclick="fnGenerarFase();">Ver resultado</button>
         </div>
     </div>
-
 </div>
+
+<div class="modal fade" id="modalfaseresultado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Resultados de la fase 1</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label id="lbldescripcion"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="btnvi">Volver a inicio</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="hddpuntaje" value="" />
+<input type="hidden" id="hdddescripcion" value="" />
+<input type="hidden" id="hddtipopregunta" value="" />
+
+@section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="~/Content/src/actividad/faseDos.js"></script>
+}

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
   <parameter name="cnMysql-Web.config Connection String" description="cnMysql Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="Data Source=mysql5017.site4now.net;User Id=a47a2c_bdcv001;Initial Catalog=db_a47a2c_bdcv001;Password=cv23042020" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\jonat\\Desktop\\proyectoClaseVirtual\\pizarra2020\\backendcv\\globalws\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='cnMysql']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\jonat\\Desktop\\proyectoClaseVirtual\\repo\\pizarra2020\\backendcv\\globalws\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='cnMysql']/@connectionString" />
   </parameter>
 </parameters>
